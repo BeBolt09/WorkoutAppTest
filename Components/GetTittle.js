@@ -9,12 +9,15 @@ const GetTitle = () => {
   const [generatedResponse, setGeneratedResponse] = useState("");
   const [showVideo, setShowVideo] = useState(false); // State to control video visibility
   const [videoWeShow, setVideo] = useState(null);
+  const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
+  console.log(GOOGLE_API_KEY);
+  const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
 
   const handleButtonPress = () => {
     // Do something with the input value, for now, let's just log it
     console.log("Input value:", inputValue);
     async function run() {
-        const genAI = new GoogleGenerativeAI('AIzaSyA_dw6uJmAVV1gd2Ta1JCtU7ciOA7vIZs0');
+        const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY);
         const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
         const generationConfig = {
           temperature: 0.9,
@@ -48,7 +51,7 @@ const GetTitle = () => {
     try {
       const response = await axios.get(`https://www.googleapis.com/youtube/v3/search`, {
         params: {
-          key: "AIzaSyBJEMszIiajj10X8ZyhQ8nb6LbUBjCmfBY",
+          key: YOUTUBE_API_KEY,
           q: generatedResponse,
           part: 'snippet',
           maxResults: 1,
