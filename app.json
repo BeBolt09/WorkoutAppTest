@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Tester",
-    "slug": "Tester",
+    "name": "youtube-video-in-native",
+    "slug": "youtube-video-in-native",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

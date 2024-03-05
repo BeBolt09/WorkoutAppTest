@@ -1,24 +1,24 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Home from './Components/Home'
-import Settings from './Components/Settings';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View } from 'react-native';
+import Youtube from './Components/Youtube'
+import GetTittle from './Components/GetTittle';
 
-
-
-const App = () => {
-
-  const Tab = createBottomTabNavigator();
-  
+export default function App() {
   return (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="Settings" component={Settings} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <View>
+      <GetTittle/>
+      <StatusBar style="auto" />
+    </View>
   );
-};
+}
+// AIzaSyA_dw6uJmAVV1gd2Ta1JCtU7ciOA7vIZs0
 
-export default App;
-
+// AIzaSyBJEMszIiajj10X8ZyhQ8nb6LbUBjCmfBY
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
