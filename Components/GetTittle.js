@@ -9,9 +9,8 @@ const GetTitle = () => {
   const [generatedResponse, setGeneratedResponse] = useState("");
   const [showVideo, setShowVideo] = useState(false); // State to control video visibility
   const [videoWeShow, setVideo] = useState(null);
-  const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
-  console.log(GOOGLE_API_KEY);
-  const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
+  const GOOGLE_API_KEY = process.env.EXPO_PUBLIC_GOOGLE_API_KEY;
+  const YOUTUBE_API_KEY = process.env.EXPO_PUBLIC_YOUTUBE_API_KEY;
 
   const handleButtonPress = () => {
     // Do something with the input value, for now, let's just log it
