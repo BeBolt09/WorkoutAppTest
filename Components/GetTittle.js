@@ -1,7 +1,7 @@
 import { View, Text, TextInput, Button,TouchableOpacity } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from "@google/generative-ai";
-import axios from 'axios'; // Import Axios properly
+import axios from 'axios';
 import YoutubeIframe from 'react-native-youtube-iframe';
 
 const GetTitle = () => {
