@@ -1,23 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import GetTittle from './Components/GetTittle';
+// import InitialDemo from './Components/InintialDemo'
+
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import FirstScreen from './screens/FirstScreen';
+import SecondScreen from './screens/SecondScreen';
+import ThirdScreen from './screens/ThirdScreen';
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View>
-      <GetTittle/>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="FirstScreen" component={FirstScreen} />
+        <Stack.Screen name="SecondScreen" component={SecondScreen} />
+        <Stack.Screen name="ThirdScreen" component={ThirdScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-// AIzaSyA_dw6uJmAVV1gd2Ta1JCtU7ciOA7vIZs0
-
-// AIzaSyBJEMszIiajj10X8ZyhQ8nb6LbUBjCmfBY
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
