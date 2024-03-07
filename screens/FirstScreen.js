@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from "@google/generative-ai";
 
 const FirstScreen = ({ navigation }) => {
     const GOOGLE_API_KEY = process.env.EXPO_PUBLIC_GOOGLE_API_KEY;
     const [inputValue, setInputValue] = useState('');
     const [geminiOutput1, setgeminiOutput1] = useState("");
+
     const handleButtonPress = async () => {
         try {
             const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY);
@@ -44,15 +45,106 @@ const FirstScreen = ({ navigation }) => {
     }, [geminiOutput1, inputValue, navigation]);
 
     return (
-        <View>
-            <View style={{ width: '100%', backgroundColor: 'black', height: 1 }}></View>
-            <Text style={{ fontSize: 18, margin: 10, textAlign: 'center' }}>
-                What Exercise do you want to replace?
+        <View style={styles.body}>
+            <Image
+                source={require('../assets/weight.png')}
+                style={styles.image}
+            />
+            <Text style={styles.h1}>
+                Swap Exercise
             </Text>
-            <TextInput onChangeText={setInputValue} value={inputValue} style={{ borderWidth: 1, width: 300, height: 40, alignSelf: 'center', borderRadius: 10 }}></TextInput>
-            <Button title='Next' onPress={handleButtonPress}></Button>
+            <Text style={styles.p}>
+                What exercise are you trying to replace? We'll help you find a substitute!
+            </Text>
+            <Text style={styles.h2}>
+                Exercise
+            </Text>
+            <TextInput
+                onChangeText={setInputValue}
+                value={inputValue}
+                placeholder='ex: Bulgarian Split Squat'
+                placeholderTextColor='gray'
+                style={styles.input}
+            />
+            <TouchableOpacity style={styles.button} onPress={handleButtonPress}>
+                <Text style={styles.buttonText}>Next</Text>
+            </TouchableOpacity>
         </View>
     );
 };
+
+const styles = StyleSheet.create({
+    body: {
+        flex: 1,
+        backgroundColor: '#1a1a1a',
+        justifyContent: 'center',
+        padding: 20,
+    },
+    image: {
+        position: 'absolute',
+        top: 0,
+        width: 400,
+        height: 200,
+        resizeMode: 'cover',
+        marginBottom: 20,
+    },
+    h1: {
+        position: 'relative',
+        bottom: 80,
+        fontSize: 20,
+        textAlign: 'left',
+        color: '#fff',
+        fontWeight: '700',
+        borderTopWidth: 1,
+        borderTopColor: 'white',
+    },
+    h2: {
+        position: 'relative',
+        bottom: 10,
+        fontSize: 16,
+        justifyContent: 'center',
+        textAlign: 'left',
+        color: '#fff',
+        fontWeight: '200',
+        borderTopWidth: 1,
+        borderTopColor: 'white',
+    },
+    p: {
+        position: 'relative',
+        bottom: 60,
+        fontSize: 18,
+        justifyContent: 'center',
+        textAlign: 'left',
+        fontWeight: '300',
+        color: '#fff',
+    },
+    input: {
+        borderWidth: 1,
+        width: 350,
+        height: 40,
+        alignSelf: 'center',
+        borderRadius: 2,
+        borderColor: '#fff',
+        backgroundColor: 'white',
+        color: 'green',
+        paddingLeft: 5,
+    },
+    button: {
+        position: 'absolute',
+        bottom: 90,
+        marginTop: 10,
+        alignSelf: 'center',
+        backgroundColor: 'gray',
+        width: 330,
+        height: 40,
+        borderRadius: 2,
+        justifyContent: 'center',
+    },
+    buttonText: {
+        color: 'white',
+        fontSize: 20,
+        textAlign: 'center',
+    },
+});
 
 export default FirstScreen;
