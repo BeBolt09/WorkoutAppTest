@@ -1,5 +1,5 @@
-import { View, Text, Button, ScrollView, TouchableOpacity } from 'react-native'
 import React, { useState, useEffect } from 'react';
+import { View, Text, ScrollView, TouchableOpacity, Button, StyleSheet } from 'react-native';
 import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from "@google/generative-ai";
 
 const SecondScreen = ({ route, navigation }) => {
@@ -62,34 +62,112 @@ const SecondScreen = ({ route, navigation }) => {
         return (
             <TouchableOpacity
                 key={index}
-                style={{
-                    height: 150,
-                    width: '50%',
-                    borderWidth: 1,
-                    borderColor: selectedEquipment.includes(itemName) ? 'blue' : 'black',
-                }}
+                style={selectedEquipment.includes(itemName) ? styles.selectedItem : styles.item}
                 onPress={() => handleEquipmentSelection(itemName)}
             >
-                <Text>{itemName}</Text>
+                <Text style={styles.itemText}>{itemName}</Text>
             </TouchableOpacity>
         );
     }).filter(card => card !== null); // Filter out null elements (blank cards)
     
 
     return (
-        <View style={{ flex: 1 }}>
-            <View style={{ width: '100%', backgroundColor: 'black', height: 1 }}></View>
-            <Text style={{ fontSize: 18, margin: 10, textAlign: 'center' }}>
-                What equipment do you have ?
+        <View style={styles.body}>
+            <View style={styles.seperator}></View>
+            <Text style={styles.h1}>
+                What equipment do you have?
             </Text>
-            <ScrollView contentContainerStyle={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+            <ScrollView contentContainerStyle={styles.scrollView}>
                 {equipmentNames}
             </ScrollView>
-            <View style={{ borderRadius: 10, borderWidth: 1, height: 50, margin: 30 }}>
-                <Button title='Next' onPress={handleNext}></Button>
-            </View>
+
+
+
+            <TouchableOpacity style={styles.button} onPress={handleNext}>
+                <Text style={styles.buttonText}>Next</Text>
+            </TouchableOpacity>
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    body: {
+        flex: 1,
+        backgroundColor: '#1a1a1a',
+        justifyContent: 'center',
+        padding: 20,
+    },
+    seperator: {
+        width: '100%',
+        justifyContent: 'center',
+        paddingTop: 30,
+    },
+    h1: {
+        position: 'absolute',
+        top: 10,
+        left: 60,
+        fontSize: 20,
+        color: '#fff',
+        fontWeight: '800',
+    },
+    scrollView: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+    },
+    item: {
+        position: 'relative',
+        left: 15,
+        height: 150,
+        width: 150,
+        borderWidth: 1,
+        borderColor: 'black',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 7,
+        margin: 5,
+        backgroundColor: 'white',
+        borderColor: '#696969',
+        borderRadius: 5,
+    },
+    selectedItem: {
+        position: 'relative',
+        left: 15,
+        height: 150,
+        width: 150,
+        borderWidth: 3,
+        borderColor: 'black',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 7,
+        margin: 5,
+        backgroundColor: '#696969',
+        borderColor: 'white',
+        borderRadius: 10,
+        color: 'green',
+
+    },
+    itemText: {
+        color: 'black',
+        fontSize: 18,
+        fontWeight: 'bold',
+        textAlign: 'center',
+    },
+    button: {
+        position: 'absolute',
+        bottom: 60,
+        marginTop: 10,
+        alignSelf: 'center',
+        backgroundColor: 'gray',
+        width: 330,
+        height: 40,
+        borderRadius: 2,
+        justifyContent: 'center',
+    },
+    buttonText: {
+        color: 'white',
+        fontSize: 20,
+        textAlign: 'center',
+    },
+});
 
 export default SecondScreen;
