@@ -79,14 +79,16 @@ const styles = StyleSheet.create({
         backgroundColor: '#1a1a1a',
         justifyContent: 'center',
         padding: 20,
+        zIndex: 1,
     },
     image: {
         position: 'absolute',
         top: 0,
         width: 400,
         height: 200,
-        resizeMode: 'cover',
+        resizeMode: 'auto',
         marginBottom: 20,
+        zIndex: 0,
     },
     h1: {
         position: 'relative',
@@ -95,8 +97,7 @@ const styles = StyleSheet.create({
         textAlign: 'left',
         color: '#fff',
         fontWeight: '700',
-        borderTopWidth: 1,
-        borderTopColor: 'white',
+
     },
     h2: {
         position: 'relative',
@@ -105,9 +106,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         textAlign: 'left',
         color: '#fff',
-        fontWeight: '200',
-        borderTopWidth: 1,
-        borderTopColor: 'white',
+        fontWeight: '300',
     },
     p: {
         position: 'relative',
@@ -126,12 +125,12 @@ const styles = StyleSheet.create({
         borderRadius: 2,
         borderColor: '#fff',
         backgroundColor: 'white',
-        color: 'green',
+        color: 'black',
         paddingLeft: 5,
     },
     button: {
         position: 'absolute',
-        bottom: 90,
+        bottom: 60,
         marginTop: 10,
         alignSelf: 'center',
         backgroundColor: 'gray',
