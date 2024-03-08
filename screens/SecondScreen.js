@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, Button, StyleSheet } from 'react-native';
 import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from "@google/generative-ai";
+import { LinearGradient, RadialGradient } from 'expo-linear-gradient';
 
 const SecondScreen = ({ route, navigation }) => {
     const GOOGLE_API_KEY = process.env.EXPO_PUBLIC_GOOGLE_API_KEY;
@@ -60,6 +61,7 @@ const SecondScreen = ({ route, navigation }) => {
             return null; // Return null if blank or empty
         }
         return (
+            
             <TouchableOpacity
                 key={index}
                 style={selectedEquipment.includes(itemName) ? styles.selectedItem : styles.item}
@@ -72,79 +74,98 @@ const SecondScreen = ({ route, navigation }) => {
     
 
     return (
+        <LinearGradient
+        colors={['#1A1A1A', '#11133A', '#1A1A1A']}
+        style={styles.gradient}
+    >
         <View style={styles.body}>
-            <View style={styles.seperator}></View>
-            <Text style={styles.h1}>
-                What equipment do you have?
-            </Text>
-            <ScrollView contentContainerStyle={styles.scrollView}>
-                {equipmentNames}
-            </ScrollView>
-
-
-
-            <TouchableOpacity style={styles.button} onPress={handleNext}>
-                <Text style={styles.buttonText}>Next</Text>
-            </TouchableOpacity>
+            <View style={styles.headerContainer}>
+                <Text style={styles.h1}>
+                    What equipment is available for you to use? We'll suggest exercises based on what you select.
+                </Text>
+            </View>
+            <View style={styles.contentContainer}>
+                <ScrollView contentContainerStyle={styles.scrollView}>
+                    {equipmentNames}
+                </ScrollView>
+            </View>
+            <View style={styles.bottomContainer}>
+                <TouchableOpacity style={styles.button} onPress={handleNext}>
+                    <Text style={styles.buttonText}>Next</Text>
+                </TouchableOpacity>
+            </View>
         </View>
+        </LinearGradient>
     );
 }
 
 const styles = StyleSheet.create({
+    gradient: {
+        flex: 1,       
+    },
     body: {
         flex: 1,
-        backgroundColor: '#1a1a1a',
         justifyContent: 'center',
         padding: 20,
     },
-    seperator: {
-        width: '100%',
-        justifyContent: 'center',
-        paddingTop: 30,
-    },
-    h1: {
+    headerContainer: {
         position: 'absolute',
         top: 10,
-        left: 60,
+        left: 0,
+        right: 0,
+        alignItems: 'center',
+    },
+    contentContainer: {
+        marginTop: 80,
+        flex: 1,
+    },
+    bottomContainer: {
+        position: 'absolute',
+        bottom: 20,
+        left: 0,
+        right: 0,
+        alignItems: 'center',
+        height: 80,
+        backgroundColor: '#1a1a1a'
+    },
+    h1: {
         fontSize: 20,
         color: '#fff',
         fontWeight: '800',
+        textAlign: 'center',
+        padding: 10,
     },
     scrollView: {
         flexDirection: 'row',
         flexWrap: 'wrap',
+        justifyContent: 'center',
     },
     item: {
-        position: 'relative',
-        left: 15,
         height: 150,
         width: 150,
         borderWidth: 1,
         borderColor: 'black',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 7,
+        padding: 8,
         margin: 5,
-        backgroundColor: 'white',
-        borderColor: '#696969',
+        backgroundColor: '#D9D9D9',
+        borderColor: 'white',
         borderRadius: 5,
     },
     selectedItem: {
-        position: 'relative',
-        left: 15,
         height: 150,
         width: 150,
         borderWidth: 3,
         borderColor: 'black',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 7,
+        padding: 8,
         margin: 5,
         backgroundColor: '#696969',
         borderColor: 'white',
         borderRadius: 10,
         color: 'green',
-
     },
     itemText: {
         color: 'black',
@@ -153,20 +174,19 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     button: {
-        position: 'absolute',
-        bottom: 60,
-        marginTop: 10,
-        alignSelf: 'center',
+        marginTop: 15,
         backgroundColor: 'gray',
-        width: 330,
+        width: 200,
         height: 40,
-        borderRadius: 2,
+        borderRadius: 5,
         justifyContent: 'center',
+        alignItems: 'center',
     },
     buttonText: {
         color: 'white',
         fontSize: 20,
         textAlign: 'center',
+        fontWeight: '600',
     },
 });
 
