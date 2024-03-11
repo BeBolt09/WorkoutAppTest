@@ -12,7 +12,7 @@ const FirstScreen = ({ navigation }) => {
             const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY);
             const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
             const generationConfig = {
-                temperature: 0.9,
+                temperature: 0.0,
                 topK: 1,
                 topP: 1,
                 maxOutputTokens: 2048,
