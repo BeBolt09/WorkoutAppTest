@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import axios from 'axios';
 import YoutubeIframe from 'react-native-youtube-iframe';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -10,6 +10,7 @@ const FourthScreen = ({ route }) => {
 
     const [showVideo, setShowVideo] = useState(false);
     const [videoWeShow, setVideo] = useState(null);
+
     const fetchVideo = async () => {
         try {
             const response = await axios.get(`https://www.googleapis.com/youtube/v3/search`, {
@@ -31,6 +32,10 @@ const FourthScreen = ({ route }) => {
         }
     };
 
+    useEffect(() => {
+        fetchVideo();
+    }, []); // Empty dependency array to trigger effect only once when component mounts
+
     return (
         <LinearGradient
             colors={['#1A1A1A', '#000', '#1A1A1A']}
@@ -38,9 +43,6 @@ const FourthScreen = ({ route }) => {
         >
             <ScrollView contentContainerStyle={styles.container}>
                 <Text style={styles.title}>{selectedExercise}</Text>
-                <TouchableOpacity style={styles.button} onPress={fetchVideo}>
-                    <Text style={styles.buttonText}>See Video</Text>
-                </TouchableOpacity>
                 {showVideo && (
                     <View style={styles.videoContainer}>
                         <YoutubeIframe height={300} width={400} play videoId={videoWeShow} />
@@ -78,21 +80,6 @@ const styles = StyleSheet.create({
         color: '#fff',
         marginBottom: 20,
         textTransform: 'uppercase',
-    },
-    button: {
-        backgroundColor: 'gray',
-        width: 200,
-        height: 40,
-        borderRadius: 5,
-        marginBottom: 20,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    buttonText: {
-        color: 'white',
-        fontSize: 20,
-        textAlign: 'center',
-        fontWeight: '600',
     },
     videoContainer: {
         width: '100%',
