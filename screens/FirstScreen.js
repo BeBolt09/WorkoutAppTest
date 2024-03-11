@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from "@google/generative-ai";
+import { LinearGradient } from 'expo-linear-gradient';
 
 const FirstScreen = ({ navigation }) => {
     const GOOGLE_API_KEY = process.env.EXPO_PUBLIC_GOOGLE_API_KEY;
@@ -45,6 +46,10 @@ const FirstScreen = ({ navigation }) => {
     }, [geminiOutput1, inputValue, navigation]);
 
     return (
+        <LinearGradient
+        colors={['#1A1A1A', '#000', '#1A1A1A']}
+        style={styles.gradient}
+    >
         <View style={styles.body}>
             <Image
                 source={require('../assets/weight.png')}
@@ -70,16 +75,18 @@ const FirstScreen = ({ navigation }) => {
                 <Text style={styles.buttonText}>Next</Text>
             </TouchableOpacity>
         </View>
+        </LinearGradient>
     );
 };
 
 const styles = StyleSheet.create({
+    gradient: {
+        flex: 1,    
+    },
     body: {
         flex: 1,
-        backgroundColor: '#1a1a1a',
         justifyContent: 'center',
         padding: 20,
-        zIndex: 1,
     },
     image: {
         position: 'absolute',
@@ -87,8 +94,7 @@ const styles = StyleSheet.create({
         width: 400,
         height: 200,
         resizeMode: 'auto',
-        marginBottom: 20,
-        zIndex: 0,
+        elevation: 20,
     },
     h1: {
         position: 'relative',
@@ -97,6 +103,7 @@ const styles = StyleSheet.create({
         textAlign: 'left',
         color: '#fff',
         fontWeight: '700',
+        paddingTop: 40,
 
     },
     h2: {
@@ -119,10 +126,10 @@ const styles = StyleSheet.create({
     },
     input: {
         borderWidth: 1,
-        width: 350,
+        width: 330,
         height: 40,
-        alignSelf: 'center',
-        borderRadius: 2,
+        alignSelf: 'left',
+        borderRadius: 5,
         borderColor: '#fff',
         backgroundColor: 'white',
         color: 'black',
@@ -134,15 +141,16 @@ const styles = StyleSheet.create({
         marginTop: 10,
         alignSelf: 'center',
         backgroundColor: 'gray',
-        width: 330,
+        width: 200,
         height: 40,
-        borderRadius: 2,
+        borderRadius: 5,
         justifyContent: 'center',
     },
     buttonText: {
         color: 'white',
         fontSize: 20,
         textAlign: 'center',
+        fontWeight: '600',
     },
 });
 

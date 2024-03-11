@@ -1,10 +1,12 @@
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, TextInput, ScrollView } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from "@google/generative-ai";
+import { LinearGradient } from 'expo-linear-gradient';
 
 const ThirdScreen = ({ route, navigation }) => {
     const { selectedEquipment, inputValue } = route.params;
     const [listOfExercises, setListOfExercises] = useState('');
+
     const GOOGLE_API_KEY = process.env.EXPO_PUBLIC_GOOGLE_API_KEY;
 
     useEffect(() => {
@@ -49,23 +51,91 @@ const ThirdScreen = ({ route, navigation }) => {
     };
 
     const exerciseCards = listOfExercises.split('\n').map((exercise, index) => {
-        const cleanedExercise = exercise.replace(/^[-*]\s*/, '');        
+        const cleanedExercise = exercise.replace(/^[-*]\s*/, '');   
         return (
-            <TouchableOpacity key={index} onPress={() => handleExerciseSelection(cleanedExercise)}>
-                <View style={{ padding: 10, margin: 5, backgroundColor: 'lightgray', borderRadius: 5 }}>
-                    <Text>{cleanedExercise}</Text>
+            <TouchableOpacity key={index} onPress={() => handleExerciseSelection(cleanedExercise, index)}>
+                <View style={styles.item}>
+                    <TextInput
+                        value={exercise}
+                        onChangeText={text => handleExerciseSelection(text, index)}
+                        style={styles.itemText}
+                    />
                 </View>
             </TouchableOpacity>
         );
     });
 
     return (
-        <View>
-            <Text style={{ alignSelf: "center", paddingTop: 30, fontSize: 18 }}>List of exercises to Substitute for:</Text>
-            <Text style={{ alignSelf: "center", fontSize: 18, fontWeight: 'bold' }}>{inputValue}</Text>
-            {exerciseCards}
+
+        <LinearGradient
+        colors={['#1A1A1A', '#000', '#1A1A1A']}
+        style={styles.gradient}
+    >
+        <View style={styles.body}>
+            <Text style={styles.h1}>Select an Exercise to Substitute for:</Text>
+            <Text style={styles.p}>{inputValue}</Text>
+            <ScrollView style={styles.scrollView}>
+                {exerciseCards}
+            </ScrollView>
         </View>
+    </LinearGradient>
     );
 };
+
+const styles = StyleSheet.create({
+    gradient: {
+        flex: 1, 
+    },
+    body: {
+        flex: 1,
+        alignItems: 'center',
+        padding: 20,
+        zIndex: 1,
+    },
+    h1: {
+        justifyContent: 'top',
+        fontSize: 20,
+        color: '#fff',
+        fontWeight: '600',
+        marginBottom: 10,
+    },
+    p: {
+        justifyContent: 'center',
+        fontSize: 18,
+        textAlign: 'center',
+        fontWeight: '900',
+        color: 'gray',
+        marginBottom: 15,
+        textTransform: 'uppercase',
+        
+    },
+    scrollView: {
+        width: '100%',
+        flex: 1,
+    },
+    item: {
+        width: 340,
+        height: 80,
+        borderWidth: 1,
+        borderColor: 'black',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 8,
+        margin: 5,
+        backgroundColor: '#D9D9D9',
+        borderColor: 'white',
+        borderWidth: 2,
+        borderRadius: 5,
+        elevation: 2,
+    },
+    itemText: {
+        color: '#1a1a1a',
+        fontSize: 15,
+        fontWeight: '600',
+        textAlign: 'center',
+        textTransform: 'uppercase',
+
+    },
+});
 
 export default ThirdScreen;
