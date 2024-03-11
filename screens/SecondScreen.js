@@ -75,7 +75,7 @@ const SecondScreen = ({ route, navigation }) => {
 
     return (
         <LinearGradient
-        colors={['#1A1A1A', '#11133A', '#1A1A1A']}
+        colors={['#1A1A1A', '#000', '#1A1A1A']}
         style={styles.gradient}
     >
         <View style={styles.body}>

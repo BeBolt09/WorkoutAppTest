@@ -47,7 +47,7 @@ const FirstScreen = ({ navigation }) => {
 
     return (
         <LinearGradient
-        colors={['#1A1A1A', '#11133A', '#1A1A1A']}
+        colors={['#1A1A1A', '#000', '#1A1A1A']}
         style={styles.gradient}
     >
         <View style={styles.body}>
@@ -94,7 +94,6 @@ const styles = StyleSheet.create({
         width: 400,
         height: 200,
         resizeMode: 'auto',
-        marginBottom: 20,
         elevation: 20,
     },
     h1: {
@@ -104,6 +103,7 @@ const styles = StyleSheet.create({
         textAlign: 'left',
         color: '#fff',
         fontWeight: '700',
+        paddingTop: 40,
 
     },
     h2: {
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         width: 330,
         height: 40,
-        alignSelf: 'center',
+        alignSelf: 'left',
         borderRadius: 5,
         borderColor: '#fff',
         backgroundColor: 'white',

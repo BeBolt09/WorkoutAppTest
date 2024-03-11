@@ -6,7 +6,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 const ThirdScreen = ({ route, navigation }) => {
     const { selectedEquipment, inputValue } = route.params;
     const [listOfExercises, setListOfExercises] = useState('');
-    const [editedExercises, setEditedExercises] = useState([]);
+
     const GOOGLE_API_KEY = process.env.EXPO_PUBLIC_GOOGLE_API_KEY;
 
     useEffect(() => {
@@ -36,7 +36,6 @@ const ThirdScreen = ({ route, navigation }) => {
                 });
                 const response = result.response;
                 setListOfExercises(response.text());
-                setEditedExercises(response.text().split('\n').map(exercise => exercise.replace(/[*-]/g, '').trim())); // Initialize editedExercises state with exercise list
             } catch (error) {
                 console.error('Error generating response:', error);
             }
@@ -44,14 +43,15 @@ const ThirdScreen = ({ route, navigation }) => {
         GetListOfExercises();
     }, [selectedEquipment, inputValue]); 
 
-    const handleExerciseSelection = (exercise, index) => {
-        // Update the edited exercise text in the state
-        const updatedExercises = [...editedExercises];
-        updatedExercises[index] = exercise;
-        setEditedExercises(updatedExercises);
+    const handleExerciseSelection = (exercise) => {
+        // Handle the selection of the exercise here
+        console.log('Selected exercise:', exercise);
+        // Navigate to FourthScreen and pass selected exercise as parameter
+        navigation.navigate('FourthScreen', { selectedExercise: exercise });
     };
 
-    const exerciseCards = editedExercises.map((exercise, index) => {
+    const exerciseCards = listOfExercises.split('\n').map((exercise, index) => {
+        const cleanedExercise = exercise.replace(/^[-*]\s*/, '');   
         return (
             <TouchableOpacity key={index} onPress={() => handleExerciseSelection(cleanedExercise, index)}>
                 <View style={styles.item}>
@@ -68,7 +68,7 @@ const ThirdScreen = ({ route, navigation }) => {
     return (
 
         <LinearGradient
-        colors={['#1A1A1A', '#11133A', '#1A1A1A']}
+        colors={['#1A1A1A', '#000', '#1A1A1A']}
         style={styles.gradient}
     >
         <View style={styles.body}>
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         textAlign: 'center',
         fontWeight: '900',
-        color: '#8ff',
+        color: 'gray',
         marginBottom: 15,
         textTransform: 'uppercase',
         
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     item: {
-        width: 330,
+        width: 340,
         height: 80,
         borderWidth: 1,
         borderColor: 'black',
@@ -130,11 +130,11 @@ const styles = StyleSheet.create({
     },
     itemText: {
         color: '#1a1a1a',
-        fontSize: 20,
+        fontSize: 15,
         fontWeight: '600',
         textAlign: 'center',
         textTransform: 'uppercase',
-        textDecoration: 'none',
+
     },
 });
 
