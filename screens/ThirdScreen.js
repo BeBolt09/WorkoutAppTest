@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity, StyleSheet, TextInput, ScrollView } from 
 import React, { useState, useEffect } from 'react';
 import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from "@google/generative-ai";
 import { LinearGradient } from 'expo-linear-gradient';
-import { Ionicons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
 const ThirdScreen = ({ route, navigation }) => {
     const { selectedEquipment, inputValue } = route.params;
@@ -64,7 +64,7 @@ const ThirdScreen = ({ route, navigation }) => {
                         onChangeText={text => handleExerciseSelection(text, index)}
                         style={[styles.itemText, textDecorationStyle]} // Apply conditional style
                     />
-                    <Ionicons name="arrow-forward-circle-outline" size={24} color="black" />
+                    <AntDesign name="rightcircleo" size={26} color="gray" />
                 </View>
             </TouchableOpacity>
         );
@@ -72,13 +72,12 @@ const ThirdScreen = ({ route, navigation }) => {
 
     return (
         <LinearGradient
-            colors={['#1A1A1A', '#000', '#1A1A1A']}
+            colors={['#293236', '#293236', '#293236']}
             style={styles.gradient}
         >
             <View style={styles.body}>
-                <Text style={styles.h1}>Select an Exercise to Substitute for:</Text>
-                <Text style={styles.p}>{inputValue}</Text>
                 <ScrollView style={styles.scrollView}>
+                <Text style={styles.h1}>{exerciseCards.length} substitutes for {inputValue}</Text>
                     {exerciseCards}
                 </ScrollView>
             </View>
@@ -97,49 +96,39 @@ const styles = StyleSheet.create({
         zIndex: 1,
     },
     h1: {
-        // justifyContent: 'top',
         fontSize: 20,
         color: '#fff',
         fontWeight: '600',
         marginBottom: 10,
-    },
-    p: {
-        justifyContent: 'center',
-        fontSize: 18,
-        textAlign: 'center',
-        fontWeight: '900',
-        color: 'gray',
-        marginBottom: 15,
-        textTransform: 'uppercase',
-        
+        marginLeft: 10,
+        textAlign: 'left',
     },
     scrollView: {
         width: '100%',
         flex: 1,
     },
     item: {
-        flexDirection: 'row', // Align items horizontally
-        alignItems: 'center', // Center items vertically
+        flexDirection: 'row',
+        alignItems: 'center',
         width: 340,
-        height: 80,
+        height: 90,
         borderWidth: 1,
-        borderColor: 'black',
-        justifyContent: 'space-between', // Space between item text and arrow icon
-        padding: 8,
-        margin: 5,
-        backgroundColor: '#D9D9D9',
         borderColor: 'white',
-        borderWidth: 2,
-        borderRadius: 5,
+        padding: 8,
+        paddingBottom: 40,
+        margin: 8,
+        backgroundColor: '#01E4F314',
+        borderRadius: 15,
         elevation: 2,
     },
     itemText: {
-        color: '#1a1a1a',
-        fontSize: 15,
+        color: 'white',
+        fontSize: 18,
         fontWeight: '600',
-        textAlign: 'center',
-        textTransform: 'uppercase',
-        flex: 1, // Allow item text to flex to available space
+        textAlign: 'left',
+        textTransform: 'capitalize',
+        flex: 1,
+        flexWrap: 'wrap',
     },
 });
 

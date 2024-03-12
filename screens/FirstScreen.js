@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#028B94',
         width: 350,
         height: 50,
-        borderRadius: 20,
+        borderRadius: 50,
         justifyContent: 'center',
     },
     buttonFocused: {
