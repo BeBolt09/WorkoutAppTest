@@ -82,16 +82,16 @@ const SecondScreen = ({ route, navigation }) => {
         style={styles.gradient}
     >
         <View style={styles.body}>
+                <ScrollView contentContainerStyle={styles.scrollView}>
             <View style={styles.headerContainer}>
                 <Text style={styles.h1}>
                     What equipment is available for you to use? We'll suggest exercises based on what you select.
                 </Text>
             </View>
             <View style={styles.contentContainer}>
-                <ScrollView contentContainerStyle={styles.scrollView}>
                     {equipmentNames}
-                </ScrollView>
             </View>
+                </ScrollView>
             <View style={styles.bottomContainer}>
                 <TouchableOpacity style={[styles.button, selectedEquipment.length > 0 && styles.buttonFocused]} onPress={handleNext}>
                     <Text style={styles.buttonText}>Find Substitute</Text>
@@ -111,16 +111,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         padding: 20,
     },
-    headerContainer: {
-        position: 'absolute',
-        top: 10,
-        left: 0,
-        right: 0,
-        alignItems: 'center',
-    },
     contentContainer: {
-        marginTop: 80,
         flex: 1,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        alignItems: 'center',
     },
     bottomContainer: {
         position: 'absolute',
@@ -139,6 +134,7 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     scrollView: {
+        flex: 1,
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'center',
@@ -152,7 +148,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: 8,
-        margin: 11,
+        margin: 10,
         backgroundColor: '#293236',
         borderColor: 'white',
         borderRadius: 8,
