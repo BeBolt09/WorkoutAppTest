@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
         zIndex: 1,
     },
     h1: {
-        justifyContent: 'top',
+        // justifyContent: 'top',
         fontSize: 20,
         color: '#fff',
         fontWeight: '600',

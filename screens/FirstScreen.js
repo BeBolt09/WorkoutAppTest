@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from "@google/generative-ai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import { LinearGradient } from 'expo-linear-gradient';
 
 const FirstScreen = ({ navigation }) => {
@@ -18,24 +18,18 @@ const FirstScreen = ({ navigation }) => {
                 topP: 1,
                 maxOutputTokens: 2048,
             };
-            const safetySettings = [
-                { category: HarmCategory.HARM_CATEGORY_HARASSMENT, threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE },
-                { category: HarmCategory.HARM_CATEGORY_HATE_SPEECH, threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE },
-                { category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT, threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE },
-                { category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT, threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE },
-            ];
             const parts = [
                 { text: `Give me a List of 10 exercises names that can substitute this exercise: ${inputValue}` },
             ];
             const result = await model.generateContent({
                 contents: [{ role: "user", parts }],
                 generationConfig,
-                safetySettings,
             });
             const response = result.response;
             setgeminiOutput1(response.text());
         } catch (error) {
             console.error('Error generating response:', error);
+            handleButtonPress();
         }
     };
 
@@ -93,8 +87,8 @@ const styles = StyleSheet.create({
         top: 0,
         width: 400,
         height: 200,
-        resizeMode: 'auto',
-        elevation: 20,
+        resizeMode: 'stretch',
+        "borderBottomWidth": 20,
     },
     h1: {
         position: 'relative',
@@ -128,7 +122,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         width: 330,
         height: 40,
-        alignSelf: 'left',
+        alignSelf: 'flex-start',
         borderRadius: 5,
         borderColor: '#fff',
         backgroundColor: 'white',
