@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import axios from 'axios';
 import YoutubeIframe from 'react-native-youtube-iframe';
 import { LinearGradient } from 'expo-linear-gradient';
+import Markdown from 'react-native-markdown-display';
+
 
 const FourthScreen = ({ route }) => {
     const YOUTUBE_API_KEY = process.env.EXPO_PUBLIC_YOUTUBE_API_KEY;
@@ -10,6 +13,33 @@ const FourthScreen = ({ route }) => {
 
     const [showVideo, setShowVideo] = useState(false);
     const [videoWeShow, setVideo] = useState(null);
+
+    const GOOGLE_API_KEY = process.env.EXPO_PUBLIC_GOOGLE_API_KEY;
+    const [geminiInstructions, setGeminiInstructions] = useState("");
+    const fetchInstructions = async() => {
+        try {
+            const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY);
+            const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+            const generationConfig = {
+                temperature: 0.1,
+                topK: 1,
+                topP: 1,
+                maxOutputTokens: 2048,
+            };
+            const parts = [
+                { text: `step by step instructions on how to perform : ${selectedExercise}, NO TIPS OR ANY ADDITIONAL INFORMATION` },
+            ];
+            const result = await model.generateContent({
+                contents: [{ role: "user", parts }],
+                generationConfig,
+            });
+            const response = result.response;
+            const responseWithoutAsterisks = response.text().split("*").join("");
+            setGeminiInstructions(responseWithoutAsterisks);
+        } catch (error) {
+            console.error('Error generating response:', error);
+        }
+    };
 
     const fetchVideo = async () => {
         try {
@@ -34,6 +64,7 @@ const FourthScreen = ({ route }) => {
 
     useEffect(() => {
         fetchVideo();
+        fetchInstructions();
     }, []); // Empty dependency array to trigger effect only once when component mounts
 
     return (
@@ -51,13 +82,7 @@ const FourthScreen = ({ route }) => {
                 <View style={styles.instructionsContainer}>
                     <Text style={styles.instructionsTitle}>Instructions:</Text>
                     <Text style={styles.instructions}>
-                        1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </Text>
-                    <Text style={styles.instructions}>
-                        2. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    </Text>
-                    <Text style={styles.instructions}>
-                        3. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        {geminiInstructions}
                     </Text>
                 </View>
             </ScrollView>
