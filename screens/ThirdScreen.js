@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacity, StyleSheet, TextInput, ScrollView } from 
 import React, { useState, useEffect } from 'react';
 import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from "@google/generative-ai";
 import { LinearGradient } from 'expo-linear-gradient';
+import { Ionicons } from '@expo/vector-icons';
 
 const ThirdScreen = ({ route, navigation }) => {
     const { selectedEquipment, inputValue } = route.params;
@@ -52,33 +53,36 @@ const ThirdScreen = ({ route, navigation }) => {
 
     const exerciseCards = listOfExercises.split('\n').map((exercise, index) => {
         const cleanedExercise = exercise.replace(/^[-*]\s*/, '');   
+        // Check if the exercise starts with '*', '-', or a number
+        const textDecorationStyle = /^[-*\d]/.test(exercise) ? {} : styles.itemText;
+        
         return (
             <TouchableOpacity key={index} onPress={() => handleExerciseSelection(cleanedExercise, index)}>
                 <View style={styles.item}>
                     <TextInput
                         value={exercise}
                         onChangeText={text => handleExerciseSelection(text, index)}
-                        style={styles.itemText}
+                        style={[styles.itemText, textDecorationStyle]} // Apply conditional style
                     />
+                    <Ionicons name="arrow-forward-circle-outline" size={24} color="black" />
                 </View>
             </TouchableOpacity>
         );
     });
 
     return (
-
         <LinearGradient
-        colors={['#1A1A1A', '#000', '#1A1A1A']}
-        style={styles.gradient}
-    >
-        <View style={styles.body}>
-            <Text style={styles.h1}>Select an Exercise to Substitute for:</Text>
-            <Text style={styles.p}>{inputValue}</Text>
-            <ScrollView style={styles.scrollView}>
-                {exerciseCards}
-            </ScrollView>
-        </View>
-    </LinearGradient>
+            colors={['#1A1A1A', '#000', '#1A1A1A']}
+            style={styles.gradient}
+        >
+            <View style={styles.body}>
+                <Text style={styles.h1}>Select an Exercise to Substitute for:</Text>
+                <Text style={styles.p}>{inputValue}</Text>
+                <ScrollView style={styles.scrollView}>
+                    {exerciseCards}
+                </ScrollView>
+            </View>
+        </LinearGradient>
     );
 };
 
@@ -114,12 +118,13 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     item: {
+        flexDirection: 'row', // Align items horizontally
+        alignItems: 'center', // Center items vertically
         width: 340,
         height: 80,
         borderWidth: 1,
         borderColor: 'black',
-        justifyContent: 'center',
-        alignItems: 'center',
+        justifyContent: 'space-between', // Space between item text and arrow icon
         padding: 8,
         margin: 5,
         backgroundColor: '#D9D9D9',
@@ -134,7 +139,7 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         textAlign: 'center',
         textTransform: 'uppercase',
-
+        flex: 1, // Allow item text to flex to available space
     },
 });
 
