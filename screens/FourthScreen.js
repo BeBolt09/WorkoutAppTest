@@ -38,7 +38,7 @@ const FourthScreen = ({ route }) => {
 
     return (
         <LinearGradient
-            colors={['#1A1A1A', '#000', '#1A1A1A']}
+            colors={['#293236', '#293236', '#293236']}
             style={styles.gradient}
         >
             <ScrollView contentContainerStyle={styles.container}>
@@ -79,16 +79,18 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#fff',
         marginBottom: 20,
-        textTransform: 'uppercase',
+        textTransform: 'capitalize',
     },
     videoContainer: {
         width: '100%',
         alignItems: 'center',
     },
     instructionsContainer: {
-        padding: 10,
-        backgroundColor: '#333',
-        borderRadius: 5,
+        padding: 12,
+        width: 390,
+        backgroundColor: '#293236',
+        borderTopWidth: 2,
+        borderColor: 'white',
     },
     instructionsTitle: {
         fontSize: 20,
@@ -100,6 +102,10 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: '#fff',
         marginBottom: 5,
+        paddingBottom: 5,
+        textAlign: 'auto',
+        marginLeft: 20,
+        lineHeight: 22,
     },
 });
 
