@@ -82,9 +82,7 @@ const FourthScreen = ({ route }) => {
                 <View style={styles.instructionsContainer}>
                     <Text style={styles.instructionsTitle}>Instructions:</Text>
                     <Text style={styles.instructions}>
-                        
                         {geminiInstructions}
-                        
                     </Text>
                 </View>
             </ScrollView>
