@@ -50,6 +50,7 @@ const SecondScreen = ({ route, navigation }) => {
             setSelectedEquipment([...selectedEquipment, equipment]);
         }
     };
+
     const handleNext = () => {
         navigation.navigate('ThirdScreen', { selectedEquipment, inputValue });
     };
@@ -61,10 +62,12 @@ const SecondScreen = ({ route, navigation }) => {
             return null; // Return null if blank or empty
         }
         return (
-            
             <TouchableOpacity
                 key={index}
-                style={selectedEquipment.includes(itemName) ? styles.selectedItem : styles.item}
+                style={[
+                    styles.item,
+                    selectedEquipment.includes(itemName) && styles.selectedItem, // Apply selected style conditionally
+                ]}
                 onPress={() => handleEquipmentSelection(itemName)}
             >
                 <Text style={styles.itemText}>{itemName}</Text>
@@ -75,23 +78,23 @@ const SecondScreen = ({ route, navigation }) => {
 
     return (
         <LinearGradient
-        colors={['#1A1A1A', '#000', '#1A1A1A']}
+        colors={['#293236', '#293236', '#293236']}
         style={styles.gradient}
     >
         <View style={styles.body}>
+                <ScrollView contentContainerStyle={styles.scrollView}>
             <View style={styles.headerContainer}>
                 <Text style={styles.h1}>
                     What equipment is available for you to use? We'll suggest exercises based on what you select.
                 </Text>
             </View>
             <View style={styles.contentContainer}>
-                <ScrollView contentContainerStyle={styles.scrollView}>
                     {equipmentNames}
-                </ScrollView>
             </View>
+                </ScrollView>
             <View style={styles.bottomContainer}>
-                <TouchableOpacity style={styles.button} onPress={handleNext}>
-                    <Text style={styles.buttonText}>Next</Text>
+                <TouchableOpacity style={[styles.button, selectedEquipment.length > 0 && styles.buttonFocused]} onPress={handleNext}>
+                    <Text style={styles.buttonText}>Find Substitute</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -108,16 +111,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         padding: 20,
     },
-    headerContainer: {
-        position: 'absolute',
-        top: 10,
-        left: 0,
-        right: 0,
-        alignItems: 'center',
-    },
     contentContainer: {
-        marginTop: 80,
         flex: 1,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        alignItems: 'center',
     },
     bottomContainer: {
         position: 'absolute',
@@ -126,64 +124,70 @@ const styles = StyleSheet.create({
         right: 0,
         alignItems: 'center',
         height: 80,
-        backgroundColor: '#1a1a1a'
+        backgroundColor: '#293236'
     },
     h1: {
         fontSize: 20,
         color: '#fff',
-        fontWeight: '800',
-        textAlign: 'center',
+        fontWeight: '400',
+        textAlign: 'left',
         padding: 10,
     },
     scrollView: {
+        flex: 1,
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'center',
+        
     },
     item: {
-        height: 150,
+        height: 140,
         width: 150,
-        borderWidth: 1,
+        borderWidth: 2,
         borderColor: 'black',
         justifyContent: 'center',
         alignItems: 'center',
         padding: 8,
-        margin: 5,
-        backgroundColor: '#D9D9D9',
+        margin: 10,
+        backgroundColor: '#293236',
         borderColor: 'white',
-        borderRadius: 5,
+        borderRadius: 8,
     },
     selectedItem: {
-        height: 150,
+        height: 140,
         width: 150,
-        borderWidth: 3,
+        borderWidth: 2,
         borderColor: 'black',
         justifyContent: 'center',
         alignItems: 'center',
         padding: 8,
-        margin: 5,
-        backgroundColor: '#696969',
-        borderColor: 'white',
-        borderRadius: 10,
-        color: 'green',
+        margin: 11,
+        backgroundColor: '#01E4F314',
+        borderColor: '#01E4F3',
+        borderRadius: 8,
     },
     itemText: {
-        color: 'black',
-        fontSize: 18,
-        fontWeight: 'bold',
+        position: 'relative',
+        top: 20,
+        color: 'white',
+        fontSize: 15,
         textAlign: 'center',
     },
     button: {
-        marginTop: 15,
-        backgroundColor: 'gray',
-        width: 200,
-        height: 40,
-        borderRadius: 5,
+        position: 'absolute',
+        marginTop: 10,
+        alignSelf: 'center',
+        backgroundColor: '#028B94',
+        width: 350,
+        height: 50,
+        borderRadius: 20,
         justifyContent: 'center',
-        alignItems: 'center',
+    },
+    buttonFocused: {
+        backgroundColor: '#01E4F3',
     },
     buttonText: {
-        color: 'white',
+        color: '#293236',
         fontSize: 20,
         textAlign: 'center',
         fontWeight: '600',

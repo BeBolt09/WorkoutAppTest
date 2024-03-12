@@ -6,7 +6,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 const FirstScreen = ({ navigation }) => {
     const GOOGLE_API_KEY = process.env.EXPO_PUBLIC_GOOGLE_API_KEY;
     const [inputValue, setInputValue] = useState('');
-    const [geminiOutput1, setgeminiOutput1] = useState("");
+    const [isFocused, setIsFocused] = useState(false); // State to track input focus
+    const [isButtonFocused, setIsButtonFocused] = useState(false); // State to track button focus
 
     const handleButtonPress = async () => {
         try {
@@ -26,61 +27,78 @@ const FirstScreen = ({ navigation }) => {
                 generationConfig,
             });
             const response = result.response;
-            setgeminiOutput1(response.text());
+            navigation.navigate('SecondScreen', { geminiOutput1: response.text(), inputValue });
         } catch (error) {
             console.error('Error generating response:', error);
             handleButtonPress();
         }
     };
 
-    useEffect(() => {
-        if (geminiOutput1) {
-            navigation.navigate('SecondScreen', { geminiOutput1, inputValue });
-        }
-    }, [geminiOutput1, inputValue, navigation]);
-
     return (
         <LinearGradient
-        colors={['#1A1A1A', '#000', '#1A1A1A']}
-        style={styles.gradient}
-    >
-        <View style={styles.body}>
-            <Image
-                source={require('../assets/weight.png')}
-                style={styles.image}
-            />
-            <Text style={styles.h1}>
-                Swap Exercise
-            </Text>
-            <Text style={styles.p}>
-                What exercise are you trying to replace? We'll help you find a substitute!
-            </Text>
-            <Text style={styles.h2}>
-                Exercise
-            </Text>
-            <TextInput
-                onChangeText={setInputValue}
-                value={inputValue}
-                placeholder='ex: Bulgarian Split Squat'
-                placeholderTextColor='gray'
-                style={styles.input}
-            />
-            <TouchableOpacity style={styles.button} onPress={handleButtonPress}>
-                <Text style={styles.buttonText}>Next</Text>
-            </TouchableOpacity>
-        </View>
+            colors={['#293236', '#293236', '#293236']}
+            style={styles.gradient}
+        >
+            <View style={styles.container}>
+                <Image
+                    source={require('../assets/screen1bg.png')}
+                    style={styles.image}
+                />
+                <View style={styles.contentContainer}>
+                    <Text style={styles.h1}>Swap Exercise</Text>
+                    <Text style={styles.p}>What exercise are you trying to replace? We'll help you find a substitute!</Text>
+                    <Text style={styles.h2}>Exercise</Text>
+                    <TextInput
+                        onChangeText={setInputValue}
+                        value={inputValue}
+                        placeholder='ex: Bulgarian Split Squat'
+                        placeholderTextColor='lightgray'
+                        style={[
+                            styles.input,
+                            isFocused && styles.inputFocused, // Apply focused style conditionally
+                        ]}
+                        onFocus={() => {
+                            setIsFocused(true); // Set focus state to true
+                            setIsButtonFocused(true); // Set button focus state to true
+                        }}
+                        onBlur={() => {
+                            setIsFocused(false); // Set focus state to false
+                            setIsButtonFocused(false); // Set button focus state to false
+                        }}
+                    />
+                    <TouchableOpacity
+                        style={[
+                            styles.button,
+                            isButtonFocused && styles.buttonFocused, // Apply focused style conditionally
+                        ]}
+                        onPress={handleButtonPress}
+                    >
+                        <Text style={styles.buttonText}>Next</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
         </LinearGradient>
     );
 };
 
 const styles = StyleSheet.create({
     gradient: {
-        flex: 1,    
-    },
-    body: {
         flex: 1,
-        justifyContent: 'center',
-        padding: 20,
+    },
+    container: {
+        flex: 1,
+        justifyContent: 'top',
+        width: 'auto',
+        elevation: 10, 
+    },
+    contentContainer: {
+        position: 'absolute',
+        top: 168,
+        backgroundColor: '#293236', 
+        borderRadius: 60,
+        width: 395,
+        justifyContent: 'top',
+        textAlign:'left',
     },
     image: {
         position: 'absolute',
@@ -89,59 +107,76 @@ const styles = StyleSheet.create({
         height: 200,
         resizeMode: 'stretch',
         "borderBottomWidth": 20,
+
     },
     h1: {
         position: 'relative',
-        bottom: 80,
-        fontSize: 20,
+        bottom: 70,
+        left: 30,
+        fontSize: 25,
         textAlign: 'left',
         color: '#fff',
-        fontWeight: '700',
-        paddingTop: 40,
-
+        fontWeight: '600',
+        paddingTop: 100,
     },
     h2: {
         position: 'relative',
         bottom: 10,
+        left: 30,
         fontSize: 16,
         justifyContent: 'center',
         textAlign: 'left',
         color: '#fff',
-        fontWeight: '300',
+        fontWeight: '500',
     },
     p: {
         position: 'relative',
         bottom: 60,
-        fontSize: 18,
+        left: 20,
+        padding: 10,
+        fontSize: 19,
         justifyContent: 'center',
         textAlign: 'left',
-        fontWeight: '300',
+        fontWeight: '400',
         color: '#fff',
+        lineHeight: 30,
     },
     input: {
         borderWidth: 1,
         width: 330,
         height: 40,
         alignSelf: 'flex-start',
+        position: 'relative',
+        left: 30,
+        borderWidth: 2,
+        width: 340,
+        height: 55,
         borderRadius: 5,
-        borderColor: '#fff',
-        backgroundColor: 'white',
-        color: 'black',
-        paddingLeft: 5,
+        borderColor: 'gray',
+        backgroundColor: '#293236',
+        color: 'white',
+        paddingLeft: 10,
+        fontSize: 20,
+    },
+    inputFocused: {
+        borderColor: '#01E4F3',
     },
     button: {
-        position: 'absolute',
-        bottom: 60,
+        position: 'relative',
+        top: 140,
         marginTop: 10,
         alignSelf: 'center',
-        backgroundColor: 'gray',
-        width: 200,
-        height: 40,
-        borderRadius: 5,
+        backgroundColor: '#028B94',
+        width: 350,
+        height: 50,
+        borderRadius: 20,
         justifyContent: 'center',
     },
+    buttonFocused: {
+        backgroundColor: '#01E4F3',
+    },
     buttonText: {
-        color: 'white',
+        color: '#293236',
         fontSize: 20,
         textAlign: 'center',
         fontWeight: '600',
