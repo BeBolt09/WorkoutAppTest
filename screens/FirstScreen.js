@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, StatusBar } from 'react-native';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -27,7 +27,7 @@ const FirstScreen = ({ navigation }) => {
                 generationConfig,
             });
             const response = result.response;
-            navigation.navigate('SecondScreen', { geminiOutput1: response.text(), inputValue });
+            navigation.navigate('Select Equipment', { geminiOutput1: response.text(), inputValue });
         } catch (error) {
             console.error('Error generating response:', error);
             handleButtonPress();
@@ -39,6 +39,7 @@ const FirstScreen = ({ navigation }) => {
             colors={['#293236', '#293236', '#293236']}
             style={styles.gradient}
         >
+            <StatusBar backgroundColor="#293236" barStyle="light-content" />
             <View style={styles.container}>
                 <Image
                     source={require('../assets/screen1bg.png')}
@@ -81,6 +82,15 @@ const FirstScreen = ({ navigation }) => {
     );
 };
 
+// Set navigation options for FirstScreen
+FirstScreen.navigationOptions = {
+    headerTitle: 'Custom Header Title', // Set custom header title
+    headerStyle: {
+        backgroundColor: '#000', // Set custom header background color
+    },
+    headerTintColor: '#fff', // Set custom header text color
+};
+
 const styles = StyleSheet.create({
     gradient: {
         flex: 1,
@@ -89,16 +99,17 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'top',
         width: 'auto',
-        elevation: 10, 
+        elevation: 10,
     },
     contentContainer: {
         position: 'absolute',
         top: 168,
-        backgroundColor: '#293236', 
+        backgroundColor: '#293236',
         borderRadius: 60,
         width: 395,
         justifyContent: 'top',
-        textAlign:'left',
+        textAlign: 'left',
+        alignSelf: 'center',
     },
     image: {
         position: 'absolute',
@@ -106,8 +117,7 @@ const styles = StyleSheet.create({
         width: 400,
         height: 200,
         resizeMode: 'stretch',
-        "borderBottomWidth": 20,
-
+        borderBottomWidth: 20,
     },
     h1: {
         position: 'relative',
@@ -171,6 +181,7 @@ const styles = StyleSheet.create({
         height: 50,
         borderRadius: 50,
         justifyContent: 'center',
+        color: '#293236',
     },
     buttonFocused: {
         backgroundColor: '#01E4F3',

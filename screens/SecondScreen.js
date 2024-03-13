@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, Button, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, StatusBar, StyleSheet } from 'react-native';
 import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from "@google/generative-ai";
 import { LinearGradient, RadialGradient } from 'expo-linear-gradient';
 
@@ -52,7 +52,7 @@ const SecondScreen = ({ route, navigation }) => {
     };
 
     const handleNext = () => {
-        navigation.navigate('ThirdScreen', { selectedEquipment, inputValue });
+        navigation.navigate('Results', { selectedEquipment, inputValue });
     };
 
     const equipmentNames = geminiOutput2.split('\n').map((name, index) => {
@@ -81,6 +81,7 @@ const SecondScreen = ({ route, navigation }) => {
         colors={['#293236', '#293236', '#293236']}
         style={styles.gradient}
     >
+    <StatusBar backgroundColor="#293236" barStyle="light-content" />
         <View style={styles.body}>
                 <ScrollView contentContainerStyle={styles.scrollView}>
             <View style={styles.headerContainer}>

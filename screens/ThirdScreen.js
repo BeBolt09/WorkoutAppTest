@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, StyleSheet, TextInput, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, TextInput, ScrollView, StatusBar } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from "@google/generative-ai";
 import { LinearGradient } from 'expo-linear-gradient';
@@ -48,7 +48,7 @@ const ThirdScreen = ({ route, navigation }) => {
         // Handle the selection of the exercise here
         console.log('Selected exercise:', exercise);
         // Navigate to FourthScreen and pass selected exercise as parameter
-        navigation.navigate('FourthScreen', { selectedExercise: exercise });
+        navigation.navigate('Substitute', { selectedExercise: exercise });
     };
 
     const exerciseCards = listOfExercises.split('\n').map((exercise, index) => {
@@ -75,6 +75,7 @@ const ThirdScreen = ({ route, navigation }) => {
             colors={['#293236', '#293236', '#293236']}
             style={styles.gradient}
         >
+        <StatusBar backgroundColor="#293236" barStyle="light-content" />
             <View style={styles.body}>
                 <ScrollView style={styles.scrollView}>
                 <Text style={styles.h1}>{exerciseCards.length} substitutes for {inputValue}</Text>
