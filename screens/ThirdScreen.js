@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     item: {
         flexDirection: 'row',
         alignItems: 'center',
-        width: 340,
+        width: 'auto',
         height: 90,
         borderWidth: 1,
         borderColor: 'white',

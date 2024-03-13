@@ -83,7 +83,9 @@ const SecondScreen = ({ route, navigation }) => {
     >
     <StatusBar backgroundColor="#293236" barStyle="light-content" />
         <View style={styles.body}>
-                <ScrollView contentContainerStyle={styles.scrollView}>
+                <ScrollView contentContainerStyle={styles.scrollView}
+                keyboardShouldPersistTaps="handled"
+                >
             <View style={styles.headerContainer}>
                 <Text style={styles.h1}>
                     What equipment is available for you to use? We'll suggest exercises based on what you select.
@@ -115,7 +117,10 @@ const styles = StyleSheet.create({
     contentContainer: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        alignItems: 'center',
+        align: 'center',
+        width: 400,
+        left: 30,
+        paddingBottom: 80,
     },
     bottomContainer: {
         position: 'absolute',
@@ -124,7 +129,8 @@ const styles = StyleSheet.create({
         right: 0,
         alignItems: 'center',
         height: 80,
-        backgroundColor: '#293236'
+        backgroundColor: '#293236',
+
     },
     h1: {
         fontSize: 20,
@@ -134,11 +140,11 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     scrollView: {
-        flex: 1,
+        flexGrow: 1,
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'center',
-        
+
     },
     item: {
         height: 140,
