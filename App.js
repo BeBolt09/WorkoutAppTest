@@ -15,55 +15,93 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Fit Chain" component={FirstScreen}           
-        options={{
+        <Stack.Screen
+          name="Fit Chain"
+          component={FirstScreen}
+          options={{
             headerStyle: { backgroundColor: '#293236', borderBottomWidth: 0, elevation: 10 },
             headerTintColor: 'white',
             headerTitleAlign: 'center',
             headerTitleStyle: { fontSize: 30 },
-          }}/>
-        <Stack.Screen name="Select Equipment" component={SecondScreen}
-        options={{
+          }}
+        />
+        <Stack.Screen
+          name="Select Equipment"
+          component={SecondScreen}
+          options={({ navigation }) => ({
             headerStyle: { backgroundColor: '#293236', borderBottomWidth: 0, elevation: 10 },
             headerTintColor: 'white',
             headerTitleAlign: 'center',
             headerTitleStyle: { fontSize: 25 },
-            headerBackTitleStyle: { fontSize: 0.01 }, 
-          }}
-         />
-        <Stack.Screen name="Results" component={ThirdScreen}
-        options={{
-          headerStyle: { backgroundColor: '#293236', borderBottomWidth: 0, elevation: 10 },
+            headerBackTitleStyle: { fontSize: 0.01 },
+            headerLeft: () => (
+              <Feather
+                name="chevron-left"
+                size={25}
+                color="white"
+                style={{ marginLeft: 15 }}
+                onPress={() => {
+                  navigation.navigate('Fit Chain');
+                }}
+              />
+            ),
+          })}
+        />
+        <Stack.Screen
+          name="Results"
+          component={ThirdScreen}
+          options={({ navigation }) => ({
+            headerStyle: { backgroundColor: '#293236', borderBottomWidth: 0, elevation: 10 },
             headerTintColor: 'white',
             headerTitleAlign: 'center',
             headerTitleStyle: { fontSize: 25 },
-            headerBackTitleStyle: { fontSize: 0.01 }, 
-          }}
-         />
-      <Stack.Screen
-                name="Substitute"
-                component={FourthScreen}
-                options={({ navigation }) => ({
-                    headerStyle: { backgroundColor: '#293236', borderBottomWidth: 0, elevation: 10 },
-                    headerTintColor: 'white',
-                    headerTitleAlign: 'center',
-                    headerTitleStyle: { fontSize: 25 },
-                    headerBackTitleStyle: { fontSize: 0.01 },
-                    headerRight: () => (
-                        <Feather
-                            name="search"
-                            size={25}
-                            color="white"
-                            style={{ marginRight: 15 }}
-                            onPress={() => {
-                                // Navigate to another component
-                                navigation.navigate('SearchScreen');
-                            }}
-                        />
-                    ),
-                })}
-            />
-            <Stack.Screen name="SearchScreen" component={SearchScreen} /> 
+            headerBackTitleStyle: { fontSize: 0.01 },
+            headerLeft: () => (
+              <Feather
+                name="chevron-left"
+                size={25}
+                color="white"
+                style={{ marginLeft: 15 }}
+                onPress={() => {
+                  navigation.navigate('Select Equipment');
+                }}
+              />
+            ),
+          })}
+        />
+        <Stack.Screen
+          name="Substitute"
+          component={FourthScreen}
+          options={({ navigation }) => ({
+            headerStyle: { backgroundColor: '#293236', borderBottomWidth: 0, elevation: 10 },
+            headerTintColor: 'white',
+            headerTitleAlign: 'center',
+            headerTitleStyle: { fontSize: 25 },
+            headerBackTitleStyle: { fontSize: 0.01 },
+            headerLeft: () => (
+              <Feather
+                name="chevron-left"
+                size={25}
+                color="white"
+                style={{ marginLeft: 15 }}
+                onPress={() => {
+                  navigation.navigate('Results');
+                }}
+              />
+            ),
+            headerRight: () => (
+              <Feather
+                name="search"
+                size={25}
+                color="white"
+                style={{ marginRight: 15 }}
+                onPress={() => {
+                  navigation.navigate('SearchScreen');
+                }}
+              />
+            ),
+          })}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
