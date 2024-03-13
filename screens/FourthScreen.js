@@ -37,6 +37,7 @@ const FourthScreen = ({ route }) => {
             setGeminiInstructions(responseWithoutAsterisks);
         } catch (error) {
             console.error('Error generating response:', error);
+            fetchInstructions();
         }
     };
 
@@ -44,7 +45,7 @@ const FourthScreen = ({ route }) => {
         try {
             const response = await axios.get(`https://www.googleapis.com/youtube/v3/search`, {
                 params: {
-                    key: YOUTUBE_API_KEY,
+                    key: 'AIzaSyD-RwxmbLLb1ejExMcfCPwPKun5mrfJP48',
                     q: selectedExercise + 'Tutorial',
                     part: 'snippet',
                     maxResults: 1,

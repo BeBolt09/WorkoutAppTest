@@ -58,7 +58,6 @@ const SecondScreen = ({ route, navigation }) => {
 
     const equipmentNames = geminiOutput2.split('\n').map((name, index) => {
         const itemName = name.split('. ')[1];
-        // Check if itemName is blank or empty
         if (!itemName || /^\s*$/.test(itemName)) {
             return null; // Return null if blank or empty
         }
