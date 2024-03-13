@@ -115,7 +115,9 @@ const styles = StyleSheet.create({
     contentContainer: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        alignItems: 'center',
+        align: 'center',
+        width: 400,
+        left: 30
     },
     bottomContainer: {
         position: 'absolute',
