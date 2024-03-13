@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, StatusBar } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, StatusBar, KeyboardAvoidingView, Platform } from 'react-native';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -45,9 +45,14 @@ const FirstScreen = ({ navigation }) => {
                     source={require('../assets/screen1bg.png')}
                     style={styles.image}
                 />
-                <View style={styles.contentContainer}>
+                <KeyboardAvoidingView
+                    behavior={Platform.OS === 'ios' ? 'padding' : null}
+                    style={styles.contentContainer}
+                    keyboardVerticalOffset={Platform.OS === 'ios' ? 140 : 0} // Adjust this value as needed
+                >
                     <Text style={styles.h1}>Swap Exercise</Text>
-                    <Text style={styles.p}>What exercise are you trying to replace? We'll help you find a substitute!</Text>
+                    <Text style={styles.p}>What exercise are you trying to replace?</Text>
+                    <Text style={styles.p}>We'll help you find a substitute!</Text>
                     <Text style={styles.h2}>Exercise</Text>
                     <TextInput
                         onChangeText={setInputValue}
@@ -59,51 +64,43 @@ const FirstScreen = ({ navigation }) => {
                             isFocused && styles.inputFocused, // Apply focused style conditionally
                         ]}
                         onFocus={() => {
-                            setIsFocused(true); // Set focus state to true
-                            setIsButtonFocused(true); // Set button focus state to true
+                            setIsFocused(true);
+                            setIsButtonFocused(true);
                         }}
                         onBlur={() => {
-                            setIsFocused(false); // Set focus state to false
-                            setIsButtonFocused(false); // Set button focus state to false
+                            setIsFocused(false);
+                            setIsButtonFocused(false);
                         }}
                     />
                     <TouchableOpacity
                         style={[
                             styles.button,
-                            isButtonFocused && styles.buttonFocused, // Apply focused style conditionally
+                            isButtonFocused && styles.buttonFocused,
                         ]}
                         onPress={handleButtonPress}
                     >
                         <Text style={styles.buttonText}>Next</Text>
                     </TouchableOpacity>
-                </View>
+                </KeyboardAvoidingView>
             </View>
         </LinearGradient>
     );
 };
 
-// Set navigation options for FirstScreen
-FirstScreen.navigationOptions = {
-    headerTitle: 'Custom Header Title', // Set custom header title
-    headerStyle: {
-        backgroundColor: '#000', // Set custom header background color
-    },
-    headerTintColor: '#fff', // Set custom header text color
-};
 
 const styles = StyleSheet.create({
     gradient: {
         flex: 1,
     },
     container: {
+        bottom: 90,
         flex: 1,
-        justifyContent: 'top',
+        justifyContent: 'center',
         width: 'auto',
         elevation: 10,
     },
     contentContainer: {
-        position: 'absolute',
-        top: 168,
+        bottom: 30,
         backgroundColor: '#293236',
         borderRadius: 60,
         width: 395,
@@ -112,12 +109,13 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
     },
     image: {
-        position: 'absolute',
+        position: 'relative',
         top: 0,
-        width: 400,
-        height: 200,
+        width: 500,
+        height: 250,
         resizeMode: 'stretch',
         borderBottomWidth: 20,
+        alignSelf: 'center'
     },
     h1: {
         position: 'relative',
@@ -128,6 +126,7 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontWeight: '600',
         paddingTop: 100,
+        
     },
     h2: {
         position: 'relative',
@@ -142,8 +141,10 @@ const styles = StyleSheet.create({
     p: {
         position: 'relative',
         bottom: 60,
-        left: 20,
-        padding: 10,
+        left: 30,
+        padding: 0,
+        paddingRight: 40,
+        paddingBottom: 0,
         fontSize: 19,
         justifyContent: 'center',
         textAlign: 'left',
