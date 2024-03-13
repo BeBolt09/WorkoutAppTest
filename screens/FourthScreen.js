@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, StatusBar } from 'react-native';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import axios from 'axios';
 import YoutubeIframe from 'react-native-youtube-iframe';
@@ -69,9 +69,10 @@ const FourthScreen = ({ route }) => {
 
     return (
         <LinearGradient
-            colors={['#1A1A1A', '#000', '#1A1A1A']}
+            colors={['#293236', '#293236', '#293236']}
             style={styles.gradient}
         >
+        <StatusBar backgroundColor="#293236" barStyle="light-content" />
             <ScrollView contentContainerStyle={styles.container}>
                 <Text style={styles.title}>{selectedExercise}</Text>
                 {showVideo && (
@@ -104,16 +105,18 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#fff',
         marginBottom: 20,
-        textTransform: 'uppercase',
+        textTransform: 'capitalize',
     },
     videoContainer: {
         width: '100%',
         alignItems: 'center',
     },
     instructionsContainer: {
-        padding: 10,
-        backgroundColor: '#333',
-        borderRadius: 5,
+        padding: 12,
+        width: 390,
+        backgroundColor: '#293236',
+        borderTopWidth: 2,
+        borderColor: 'white',
     },
     instructionsTitle: {
         fontSize: 20,
@@ -125,6 +128,10 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: '#fff',
         marginBottom: 5,
+        paddingBottom: 5,
+        textAlign: 'left',
+        marginLeft: 20,
+        lineHeight: 25,
     },
 });
 

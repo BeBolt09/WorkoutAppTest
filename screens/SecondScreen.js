@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, Button, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, StatusBar, StyleSheet } from 'react-native';
 import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from "@google/generative-ai";
 import { LinearGradient, RadialGradient } from 'expo-linear-gradient';
 
@@ -53,7 +53,7 @@ const SecondScreen = ({ route, navigation }) => {
     };
 
     const handleNext = () => {
-        navigation.navigate('ThirdScreen', { selectedEquipment, inputValue });
+        navigation.navigate('Results', { selectedEquipment, inputValue });
     };
 
     const equipmentNames = geminiOutput2.split('\n').map((name, index) => {
@@ -82,6 +82,7 @@ const SecondScreen = ({ route, navigation }) => {
         colors={['#293236', '#293236', '#293236']}
         style={styles.gradient}
     >
+    <StatusBar backgroundColor="#293236" barStyle="light-content" />
         <View style={styles.body}>
                 <ScrollView contentContainerStyle={styles.scrollView}>
             <View style={styles.headerContainer}>
@@ -113,7 +114,6 @@ const styles = StyleSheet.create({
         padding: 20,
     },
     contentContainer: {
-        flex: 1,
         flexDirection: 'row',
         flexWrap: 'wrap',
         alignItems: 'center',
@@ -144,26 +144,26 @@ const styles = StyleSheet.create({
     item: {
         height: 140,
         width: 150,
-        borderWidth: 2,
+        borderWidth: 1,
         borderColor: 'black',
         justifyContent: 'center',
         alignItems: 'center',
         padding: 8,
-        margin: 10,
-        backgroundColor: '#293236',
+        margin: 11,
+        backgroundColor: '#01E4F310',
         borderColor: 'white',
         borderRadius: 8,
     },
     selectedItem: {
         height: 140,
         width: 150,
-        borderWidth: 2,
+        borderWidth: 1.5,
         borderColor: 'black',
         justifyContent: 'center',
         alignItems: 'center',
         padding: 8,
         margin: 11,
-        backgroundColor: '#01E4F314',
+        backgroundColor: '#01E4F318',
         borderColor: '#01E4F3',
         borderRadius: 8,
     },
@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#028B94',
         width: 350,
         height: 50,
-        borderRadius: 20,
+        borderRadius: 50,
         justifyContent: 'center',
     },
     buttonFocused: {
