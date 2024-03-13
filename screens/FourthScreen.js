@@ -5,16 +5,17 @@ import axios from 'axios';
 import YoutubeIframe from 'react-native-youtube-iframe';
 import { LinearGradient } from 'expo-linear-gradient';
 
-
 const FourthScreen = ({ route }) => {
     const YOUTUBE_API_KEY = process.env.EXPO_PUBLIC_YOUTUBE_API_KEY;
     const { selectedExercise } = route.params;
 
     const [showVideo, setShowVideo] = useState(false);
     const [videoWeShow, setVideo] = useState(null);
+    const [youtubeTitle, setYoutubeTitle] = useState(null); // Added state variable for YouTube title
 
     const GOOGLE_API_KEY = process.env.EXPO_PUBLIC_GOOGLE_API_KEY;
     const [geminiInstructions, setGeminiInstructions] = useState("");
+
     const fetchInstructions = async() => {
         try {
             const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY);
@@ -53,8 +54,9 @@ const FourthScreen = ({ route }) => {
             });
             if (response.data.items.length > 0) {
                 const selectedVideo = response.data.items[0].id.videoId;
+                const title = response.data.items[0].snippet.title; // Extract video title
                 setVideo(selectedVideo);
-                console.log(response.data.items[0].id.videoId)
+                setYoutubeTitle(title); // Set video title in state
                 setShowVideo(true);
             }
         } catch (error) {
@@ -73,13 +75,17 @@ const FourthScreen = ({ route }) => {
             style={styles.gradient}
         >
         <StatusBar backgroundColor="#293236" barStyle="light-content" />
-            <ScrollView contentContainerStyle={styles.container}>
                 <Text style={styles.title}>{selectedExercise}</Text>
                 {showVideo && (
                     <View style={styles.videoContainer}>
                         <YoutubeIframe height={300} width={400} play videoId={videoWeShow} />
                     </View>
                 )}
+
+                {/* Render YouTube video title */}
+                <Text style={styles.youtubeTitle}>{youtubeTitle}</Text>
+                
+            <ScrollView contentContainerStyle={styles.container}>
                 <View style={styles.instructionsContainer}>
                     <Text style={styles.instructionsTitle}>Instructions:</Text>
                     <Text style={styles.instructions}>
@@ -106,6 +112,11 @@ const styles = StyleSheet.create({
         color: '#fff',
         marginBottom: 20,
         textTransform: 'capitalize',
+        textAlign: 'center',
+    },
+    youtubeTitle: {
+        color: 'white',
+        marginBottom: 10,
     },
     videoContainer: {
         width: '100%',
