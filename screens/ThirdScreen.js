@@ -28,7 +28,7 @@ const ThirdScreen = ({ route, navigation }) => {
                     { category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT, threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE },
                 ];
                 const parts = [
-                    { text: `only having access to these pieces of equipment: ${selectedEquipment} Give me a list of exercise names that could substitute this exercise: ${inputValue}. Only give the names of the exercises` },
+                    { text: `only having access to these pieces of equipment: ${selectedEquipment} Give me a list of exercise names that could substitute this exercise: ${inputValue}. Only give the names of the exercises (Don't include '-' or '*' or numbers)` },
                 ];
                 const result = await model.generateContent({
                     contents: [{ role: "user", parts }],
