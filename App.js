@@ -14,10 +14,40 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="FirstScreen" component={FirstScreen} />
-        <Stack.Screen name="SecondScreen" component={SecondScreen} />
-        <Stack.Screen name="ThirdScreen" component={ThirdScreen} />
-        <Stack.Screen name="FourthScreen" component={FourthScreen} />
+        <Stack.Screen name="Fit Chain" component={FirstScreen}           
+        options={{
+            headerStyle: { backgroundColor: '#293236', borderBottomWidth: 0, elevation: 10 },
+            headerTintColor: 'white',
+            headerTitleAlign: 'center',
+            headerTitleStyle: { fontSize: 30 },
+          }}/>
+        <Stack.Screen name="Select Equipment" component={SecondScreen}
+        options={{
+            headerStyle: { backgroundColor: '#293236', borderBottomWidth: 0, elevation: 10 },
+            headerTintColor: 'white',
+            headerTitleAlign: 'center',
+            headerTitleStyle: { fontSize: 25 },
+            headerBackTitleStyle: { fontSize: 0.01 }, 
+          }}
+         />
+        <Stack.Screen name="Results" component={ThirdScreen}
+        options={{
+          headerStyle: { backgroundColor: '#293236', borderBottomWidth: 0, elevation: 10 },
+            headerTintColor: 'white',
+            headerTitleAlign: 'center',
+            headerTitleStyle: { fontSize: 25 },
+            headerBackTitleStyle: { fontSize: 0.01 }, 
+          }}
+         />
+        <Stack.Screen name="Substitute" component={FourthScreen} 
+        options={{
+            headerStyle: { backgroundColor: '#293236', borderBottomWidth: 0, elevation: 10 },
+            headerTintColor: 'white',
+            headerTitleAlign: 'center',
+            headerTitleStyle: { fontSize: 25 },
+            headerBackTitleStyle: { fontSize: 0.01 }, 
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

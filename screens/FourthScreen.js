@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, StatusBar } from 'react-native';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import axios from 'axios';
 import YoutubeIframe from 'react-native-youtube-iframe';
@@ -72,6 +72,7 @@ const FourthScreen = ({ route }) => {
             colors={['#293236', '#293236', '#293236']}
             style={styles.gradient}
         >
+        <StatusBar backgroundColor="#293236" barStyle="light-content" />
             <ScrollView contentContainerStyle={styles.container}>
                 <Text style={styles.title}>{selectedExercise}</Text>
                 {showVideo && (
@@ -128,9 +129,9 @@ const styles = StyleSheet.create({
         color: '#fff',
         marginBottom: 5,
         paddingBottom: 5,
-        textAlign: 'auto',
+        textAlign: 'left',
         marginLeft: 20,
-        lineHeight: 22,
+        lineHeight: 25,
     },
 });
 
