@@ -46,7 +46,7 @@ const FourthScreen = ({ route }) => {
         try {
             const response = await axios.get(`https://www.googleapis.com/youtube/v3/search`, {
                 params: {
-                    key: 'AIzaSyD-RwxmbLLb1ejExMcfCPwPKun5mrfJP48',
+                    key: YOUTUBE_API_KEY,
                     q: selectedExercise + 'Tutorial',
                     part: 'snippet',
                     maxResults: 1,
@@ -66,7 +66,7 @@ const FourthScreen = ({ route }) => {
     };
 
     useEffect(() => {
-        fetchVideo();
+        // fetchVideo(); // ONLY ENABLE THIS WHEN FULL TESTING(WE CAN ONLY FETCH SEARCH 100/Day)
         fetchInstructions();
     }, []); // Empty dependency array to trigger effect only once when component mounts
 
