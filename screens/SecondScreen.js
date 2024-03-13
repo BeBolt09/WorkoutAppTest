@@ -38,6 +38,7 @@ const SecondScreen = ({ route, navigation }) => {
                 setGeminiOutput2(response.text());
             } catch (error) {
                 console.error('Error generating response:', error);
+                equipmentListGen();
             }
         };
         equipmentListGen();

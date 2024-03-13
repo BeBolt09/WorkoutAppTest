@@ -4,7 +4,6 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import axios from 'axios';
 import YoutubeIframe from 'react-native-youtube-iframe';
 import { LinearGradient } from 'expo-linear-gradient';
-import Markdown from 'react-native-markdown-display';
 
 
 const FourthScreen = ({ route }) => {
@@ -53,8 +52,9 @@ const FourthScreen = ({ route }) => {
                 }
             });
             if (response.data.items.length > 0) {
-                const selectedVideo = response.data.items[0];
-                setVideo(selectedVideo.id.videoId);
+                const selectedVideo = response.data.items[0].id.videoId;
+                setVideo(selectedVideo);
+                console.log(response.data.items[0].id.videoId)
                 setShowVideo(true);
             }
         } catch (error) {
