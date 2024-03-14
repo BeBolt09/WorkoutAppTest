@@ -29,24 +29,13 @@ export default function App() {
         />
         <Stack.Screen
           name="Select Equipment"
-          component={SecondScreen}
+          component={NewSecondScreen}
           options={({ navigation }) => ({
             headerStyle: { backgroundColor: '#293236', borderBottomWidth: 0, elevation: 10 },
             headerTintColor: 'white',
             headerTitleAlign: 'center',
             headerTitleStyle: { fontSize: 25 },
             headerBackTitleStyle: { fontSize: 0.01 },
-            headerLeft: () => (
-              <Feather
-                name="chevron-left"
-                size={25}
-                color="white"
-                style={{ marginLeft: 15 }}
-                onPress={() => {
-                  navigation.navigate('Fit Chain');
-                }}
-              />
-            ),
           })}
         />
         <Stack.Screen
@@ -58,17 +47,6 @@ export default function App() {
             headerTitleAlign: 'center',
             headerTitleStyle: { fontSize: 25 },
             headerBackTitleStyle: { fontSize: 0.01 },
-            headerLeft: () => (
-              <Feather
-                name="chevron-left"
-                size={25}
-                color="white"
-                style={{ marginLeft: 15 }}
-                onPress={() => {
-                  navigation.navigate('Select Equipment');
-                }}
-              />
-            ),
           })}
         />
         <Stack.Screen
@@ -80,17 +58,6 @@ export default function App() {
             headerTitleAlign: 'center',
             headerTitleStyle: { fontSize: 25 },
             headerBackTitleStyle: { fontSize: 0.01 },
-            headerLeft: () => (
-              <Feather
-                name="chevron-left"
-                size={25}
-                color="white"
-                style={{ marginLeft: 15 }}
-                onPress={() => {
-                  navigation.navigate('Results');
-                }}
-              />
-            ),
             headerRight: () => (
               <Feather
                 name="search"

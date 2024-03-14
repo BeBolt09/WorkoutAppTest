@@ -85,7 +85,7 @@ const FourthScreen = ({ route }) => {
 
                 {/* Render YouTube video title */}
                 <Text style={styles.youtubeTitle}>{youtubeTitle}</Text>
-                
+                <View style={styles.seperator}></View>
             <ScrollView contentContainerStyle={styles.container}>
                 <View style={styles.instructionsContainer}>
                     <Text style={styles.instructionsTitle}>Instructions:</Text>
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     container: {
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 20,
+        paddingHorizonatl: 20,
     },
     title: {
         fontSize: 24,
@@ -122,13 +122,17 @@ const styles = StyleSheet.create({
     videoContainer: {
         width: '100%',
         alignItems: 'center',
+
+    },
+    seperator: {
+        borderWidth: 1,
+        borderColor: '#fff'
     },
     instructionsContainer: {
         padding: 12,
         width: 390,
         backgroundColor: '#293236',
-        borderTopWidth: 2,
-        borderColor: 'white',
+
     },
     instructionsTitle: {
         fontSize: 20,

@@ -72,7 +72,7 @@ const ThirdScreen = ({ route, navigation }) => {
         <StatusBar backgroundColor="#293236" barStyle="light-content" />
             <View style={styles.body}>
                 <ScrollView style={styles.scrollView}>
-                <Text style={styles.h1}>{exerciseCards.length} substitutes for {inputValue}</Text>
+                <Text style={styles.h1}>{exerciseCards.length} Substitutes for {inputValue}</Text>
                     {exerciseCards}
                 </ScrollView>
             </View>
@@ -87,20 +87,20 @@ const styles = StyleSheet.create({
     body: {
         flex: 1,
         alignItems: 'center',
-        padding: 20,
-        zIndex: 1,
+        paddingHorizontal: 20,
     },
     h1: {
         fontSize: 20,
         color: '#fff',
         fontWeight: '600',
-        marginBottom: 10,
+        marginVertical: 10,
         marginLeft: 10,
         textAlign: 'left',
     },
     scrollView: {
         width: '100%',
         flex: 1,
+        paddingBottom: 10,
     },
     item: {
         flexDirection: 'row',
