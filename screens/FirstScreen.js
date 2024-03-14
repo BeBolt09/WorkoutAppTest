@@ -7,9 +7,22 @@ const FirstScreen = ({ navigation }) => {
     const GOOGLE_API_KEY = process.env.EXPO_PUBLIC_GOOGLE_API_KEY;
     const [inputValue, setInputValue] = useState('');
     const [isFocused, setIsFocused] = useState(false);
+    const [isLoading, setIsLoading] = useState(true); 
+
+    useEffect(() => {
+        // Hide loading overlay after 5 seconds
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 5000);
+
+        return () => clearTimeout(timer);
+    }, []);
 
     const handleButtonPress = async () => {
         try {
+            // Simulate loading delay
+            await new Promise(resolve => setTimeout(resolve, 2000));
+
             const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY);
             const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
             const generationConfig = {
@@ -44,44 +57,50 @@ const FirstScreen = ({ navigation }) => {
                     source={require('../assets/screen1bg.png')}
                     style={styles.image}
                 />
-                <KeyboardAvoidingView
-                    behavior={Platform.OS === 'ios' ? 'padding' : null}
-                    style={styles.contentContainer}
-                    keyboardVerticalOffset={Platform.OS === 'ios' ? 120 : 0} 
-                >
-                    <Text style={styles.h1}>Swap Exercise</Text>
-                    <Text style={styles.p}>What exercise are you trying to replace?</Text>
-                    <Text style={styles.p}>We'll help you find a substitute!</Text>
-                    <Text style={styles.h2}>Exercise</Text>
-                    <TextInput
-                        onChangeText={text => {
-                            setInputValue(text);
-                            setIsFocused(!!text);
-                        }}
-                        value={inputValue}
-                        placeholder='ex: Bulgarian Split Squat'
-                        placeholderTextColor='lightgray'
-                        style={[
-                            styles.input,
-                            isFocused && styles.inputFocused,
-                        ]}
-                    />
-                    <TouchableOpacity
-                        style={[
-                            styles.button,
-                            !inputValue.trim() && styles.buttonDisabled,
-                        ]}
-                        onPress={handleButtonPress}
-                        disabled={!inputValue.trim()}
+                {isLoading && ( 
+                    <View style={styles.loadingOverlay}>
+                        <Text style={styles.loadingText}>Loading...</Text>
+                    </View>
+                )}
+                {!isLoading && ( 
+                    <KeyboardAvoidingView
+                        behavior={Platform.OS === 'ios' ? 'padding' : null}
+                        style={styles.contentContainer}
+                        keyboardVerticalOffset={Platform.OS === 'ios' ? 120 : 0} 
                     >
-                        <Text style={styles.buttonText}>Next</Text>
-                    </TouchableOpacity>
-                </KeyboardAvoidingView>
+                        <Text style={styles.h1}>Swap Exercise</Text>
+                        <Text style={styles.p}>What exercise are you trying to replace?</Text>
+                        <Text style={styles.p}>We'll help you find a substitute!</Text>
+                        <Text style={styles.h2}>Exercise</Text>
+                        <TextInput
+                            onChangeText={text => {
+                                setInputValue(text);
+                                setIsFocused(!!text);
+                            }}
+                            value={inputValue}
+                            placeholder='ex: Bulgarian Split Squat'
+                            placeholderTextColor='lightgray'
+                            style={[
+                                styles.input,
+                                isFocused && styles.inputFocused,
+                            ]}
+                        />
+                        <TouchableOpacity
+                            style={[
+                                styles.button,
+                                !inputValue.trim() && styles.buttonDisabled,
+                            ]}
+                            onPress={handleButtonPress}
+                            disabled={!inputValue.trim()}
+                        >
+                            <Text style={styles.buttonText}>Next</Text>
+                        </TouchableOpacity>
+                    </KeyboardAvoidingView>
+                )}
             </View>
         </LinearGradient>
     );
 };
-
 
 const styles = StyleSheet.create({
     gradient: {
@@ -121,7 +140,6 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontWeight: '600',
         paddingTop: 100,
-        
     },
     h2: {
         position: 'relative',
@@ -179,9 +197,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         color: '#293236',
     },
-    buttonFocused: {
-        backgroundColor: '#01E4F3',
-    },
     buttonDisabled: {
         backgroundColor: '#028B94',
     },
@@ -191,6 +206,18 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: '600',
     },
+    loadingOverlay: {
+        ...StyleSheet.absoluteFillObject,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#293236',
+    },
+    loadingText: {
+        color: 'white',
+        top: 100,
+        fontSize: 40,
+    },
+
 });
 
 export default FirstScreen;
