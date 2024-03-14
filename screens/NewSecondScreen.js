@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, StatusBar, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, StatusBar, StyleSheet, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 const NewSecondScreen = ({ route, navigation }) => {
@@ -7,17 +7,18 @@ const NewSecondScreen = ({ route, navigation }) => {
     const [selectedEquipment, setSelectedEquipment] = useState([]);
 
     const predefinedEquipment = [
-        "Not Sure",
-        "Full Gym Access",
-        "No Equipment",
-        "Dumbbells",
-        "EZ Curl Bar",
-        "Resistance Band",
-        "Pull Up Bar",
-        "Exercise Ball",
-        "Barbell",
-        "Kettle Bell",
-        "Step"
+        { name: "Not Sure", iconGray: require('../assets/QuestionMark_Gray.png'), iconBlue: require('../assets/QuestionMark_Blue.png') },
+        { name: "Full Gym Access", iconGray: require('../assets/GymAccess_Gray.png'), iconBlue: require('../assets/GymAccess_Blue.png') },
+        { name: "No Equipment", iconGray: require('../assets/NoEquipment_Gray.png'), iconBlue: require('../assets/NoEquipment_Blue.png') },
+        { name: "Dumbbells", iconGray: require('../assets/Dumbbell_Gray.png'), iconBlue: require('../assets/Dumbbell_Blue.png') },
+        { name: "EZ Curl Bar", iconGray: require('../assets/EZCurlBar_Gray.png'), iconBlue: require('../assets/EZCurlBar_Blue.png') },
+        { name: "Resistance Band", iconGray: require('../assets/ResistanceBand_Gray.png'), iconBlue: require('../assets/ResistanceBand_Blue.png') },
+        { name: "Pull Up Bar", iconGray: require('../assets/PullUpBar_Gray.png'), iconBlue: require('../assets/PullUpBar_Blue.png') },
+        { name: "Exercise Ball", iconGray: require('../assets/ExerciseBall_Gray.png'), iconBlue: require('../assets/ExerciseBall_Blue.png') },
+        { name: "Bench", iconGray: require('../assets/Bench_Gray.png'), iconBlue: require('../assets/Bench_Blue.png') },
+        { name: "Barbell", iconGray: require('../assets/Barbell_Gray.png'), iconBlue: require('../assets/Barbell_Blue.png') },
+        { name: "Kettle Bell", iconGray: require('../assets/Kettlebell_Gray.png'), iconBlue: require('../assets/Kettlebell_Blue.png') },
+        { name: "Step", iconGray: require('../assets/Step_Gray.png'), iconBlue: require('../assets/Step_Blue.png') },
     ];
 
     const handleEquipmentSelection = (equipment) => {
@@ -32,18 +33,26 @@ const NewSecondScreen = ({ route, navigation }) => {
         navigation.navigate('Results', { selectedEquipment, inputValue });
     };
 
-    const equipmentNames = predefinedEquipment.map((name, index) => (
-        <TouchableOpacity
-            key={index}
-            style={[
-                styles.item,
-                selectedEquipment.includes(name) && styles.selectedItem, // Apply selected style conditionally
-            ]}
-            onPress={() => handleEquipmentSelection(name)}
-        >
-            <Text style={styles.itemText}>{name}</Text>
-        </TouchableOpacity>
-    ));
+    const equipmentNames = predefinedEquipment.map((item, index) => {
+        const isSelected = selectedEquipment.includes(item.name);
+        const iconSource = isSelected ? item.iconBlue : item.iconGray;
+
+        return (
+            <TouchableOpacity
+                key={index}
+                style={[
+                    styles.item,
+                    isSelected && styles.selectedItem,
+                ]}
+                onPress={() => handleEquipmentSelection(item.name)}
+            >
+                <View style={styles.itemContent}>
+                    <Image source={iconSource} style={styles.icon} />
+                    <Text style={[styles.itemText, isSelected && styles.selectedItemText]}>{item.name}</Text>
+                </View>
+            </TouchableOpacity>
+        );
+    });
 
     return (
         <LinearGradient
@@ -79,12 +88,14 @@ const styles = StyleSheet.create({
     body: {
         flex: 1,
         justifyContent: 'center',
-        padding: 20,
+        paddingHorizontal: 20,
     },
     contentContainer: {
         flexDirection: 'row',
         flexWrap: 'wrap',
         alignItems: 'center',
+        paddingBottom: 100,
+        width: 350,
     },
     bottomContainer: {
         position: 'absolute',
@@ -103,10 +114,10 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     scrollView: {
+        flexGrow: 1,
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'center',
-        
     },
     item: {
         height: 140,
@@ -134,12 +145,23 @@ const styles = StyleSheet.create({
         borderColor: '#01E4F3',
         borderRadius: 8,
     },
+    selectedItemText: {
+        color: '#01E4F3',
+    },
     itemText: {
         position: 'relative',
         top: 20,
         color: 'white',
         fontSize: 15,
         textAlign: 'center',
+    },
+    itemContent: {
+        alignItems: 'center',
+    },
+    icon: {
+        width: 50,
+        height: 50,
+        marginBottom: 10,
     },
     button: {
         position: 'absolute',

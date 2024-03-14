@@ -6,8 +6,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 const FirstScreen = ({ navigation }) => {
     const GOOGLE_API_KEY = process.env.EXPO_PUBLIC_GOOGLE_API_KEY;
     const [inputValue, setInputValue] = useState('');
-    const [isFocused, setIsFocused] = useState(false); // State to track input focus
-    const [isButtonFocused, setIsButtonFocused] = useState(false); // State to track button focus
+    const [isFocused, setIsFocused] = useState(false);
+    const [isButtonFocused, setIsButtonFocused] = useState(false);
 
     const handleButtonPress = async () => {
         try {
@@ -48,7 +48,7 @@ const FirstScreen = ({ navigation }) => {
                 <KeyboardAvoidingView
                     behavior={Platform.OS === 'ios' ? 'padding' : null}
                     style={styles.contentContainer}
-                    keyboardVerticalOffset={Platform.OS === 'ios' ? 140 : 0} // Adjust this value as needed
+                    keyboardVerticalOffset={Platform.OS === 'ios' ? 140 : 0} 
                 >
                     <Text style={styles.h1}>Swap Exercise</Text>
                     <Text style={styles.p}>What exercise are you trying to replace?</Text>
@@ -61,7 +61,7 @@ const FirstScreen = ({ navigation }) => {
                         placeholderTextColor='lightgray'
                         style={[
                             styles.input,
-                            isFocused && styles.inputFocused, // Apply focused style conditionally
+                            isFocused && styles.inputFocused,
                         ]}
                         onFocus={() => {
                             setIsFocused(true);
