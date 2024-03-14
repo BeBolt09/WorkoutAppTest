@@ -39,15 +39,14 @@ const ThirdScreen = ({ route, navigation }) => {
     }, [selectedEquipment, inputValue]); 
 
     const handleExerciseSelection = (exercise) => {
-        // Handle the selection of the exercise here
+
         console.log('Selected exercise:', exercise);
-        // Navigate to FourthScreen and pass selected exercise as parameter
-        navigation.navigate('Substitute', { selectedExercise: exercise });
+
+        navigation.navigate('FourthScreen', { selectedExercise: exercise });
     };
 
     const exerciseCards = listOfExercises.split('\n').map((exercise, index) => {
         const cleanedExercise = exercise.replace(/^[-*]\s*/, '');   
-        // Check if the exercise starts with '*', '-', or a number
         const textDecorationStyle = /^[-*\d]/.test(exercise) ? {} : styles.itemText;
         
         return (
@@ -56,7 +55,7 @@ const ThirdScreen = ({ route, navigation }) => {
                     <TextInput
                         value={exercise}
                         onChangeText={text => handleExerciseSelection(text, index)}
-                        style={[styles.itemText, textDecorationStyle]} // Apply conditional style
+                        style={[styles.itemText, textDecorationStyle]}
                     />
                     <AntDesign name="rightcircleo" size={26} color="gray" />
                 </View>
@@ -109,7 +108,7 @@ const styles = StyleSheet.create({
         height: 90,
         borderWidth: 1,
         borderColor: 'white',
-        padding: 8,
+        padding: 12,
         paddingBottom: 40,
         margin: 8,
         backgroundColor: '#01E4F314',

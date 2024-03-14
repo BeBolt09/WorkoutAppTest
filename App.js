@@ -18,19 +18,21 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="Fit Chain"
+          name="FirstScreen"
           component={FirstScreen}
           options={{
-            headerStyle: { backgroundColor: '#293236', borderBottomWidth: 0, elevation: 10 },
+            headerTitle: '',
+            headerStyle: { backgroundColor: '#293236', borderBottomWidth: 0, elevation: 10, height: 50, },
             headerTintColor: 'white',
             headerTitleAlign: 'center',
             headerTitleStyle: { fontSize: 30 },
           }}
         />
         <Stack.Screen
-          name="Select Equipment"
+          name="SecondScreen"
           component={NewSecondScreen}
           options={({ navigation }) => ({
+            headerTitle: 'Select Equipment',
             headerStyle: { backgroundColor: '#293236', borderBottomWidth: 0, elevation: 10 },
             headerTintColor: 'white',
             headerTitleAlign: 'center',
@@ -39,10 +41,11 @@ export default function App() {
           })}
         />
         <Stack.Screen
-          name="Results"
+          name="ThirdScreen"
           component={ThirdScreen}
           options={({ navigation }) => ({
-            headerStyle: { backgroundColor: '#293236', borderBottomWidth: 0, elevation: 10 },
+            headerTitle: 'Results',
+            headerStyle: { backgroundColor: '#293236', borderBottomWidth: 0, elevation: 10,},
             headerTintColor: 'white',
             headerTitleAlign: 'center',
             headerTitleStyle: { fontSize: 25 },
@@ -50,9 +53,10 @@ export default function App() {
           })}
         />
         <Stack.Screen
-          name="Substitute"
+          name="FourthScreen"
           component={FourthScreen}
           options={({ navigation }) => ({
+            headerTitle: 'Substitute',
             headerStyle: { backgroundColor: '#293236', borderBottomWidth: 0, elevation: 10 },
             headerTintColor: 'white',
             headerTitleAlign: 'center',

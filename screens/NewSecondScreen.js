@@ -30,7 +30,9 @@ const NewSecondScreen = ({ route, navigation }) => {
     };
 
     const handleNext = () => {
-        navigation.navigate('Results', { selectedEquipment, inputValue });
+        if (selectedEquipment.length > 0) {
+            navigation.navigate('ThirdScreen', { selectedEquipment, inputValue });
+        }
     };
 
     const equipmentNames = predefinedEquipment.map((item, index) => {
@@ -72,7 +74,7 @@ const NewSecondScreen = ({ route, navigation }) => {
                     </View>
                 </ScrollView>
                 <View style={styles.bottomContainer}>
-                    <TouchableOpacity style={[styles.button, selectedEquipment.length > 0 && styles.buttonFocused]} onPress={handleNext}>
+                    <TouchableOpacity style={[styles.button, selectedEquipment.length > 0 ? styles.buttonFocused : styles.buttonDisabled]} onPress={handleNext} disabled={selectedEquipment.length === 0}>
                         <Text style={styles.buttonText}>Find Substitute</Text>
                     </TouchableOpacity>
                 </View>
@@ -167,7 +169,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         marginTop: 10,
         alignSelf: 'center',
-        backgroundColor: '#028B94',
         width: 350,
         height: 50,
         borderRadius: 50,
@@ -175,6 +176,9 @@ const styles = StyleSheet.create({
     },
     buttonFocused: {
         backgroundColor: '#01E4F3',
+    },
+    buttonDisabled: {
+        backgroundColor: '#028B94',
     },
     buttonText: {
         color: '#293236',

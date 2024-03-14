@@ -7,7 +7,6 @@ const FirstScreen = ({ navigation }) => {
     const GOOGLE_API_KEY = process.env.EXPO_PUBLIC_GOOGLE_API_KEY;
     const [inputValue, setInputValue] = useState('');
     const [isFocused, setIsFocused] = useState(false);
-    const [isButtonFocused, setIsButtonFocused] = useState(false);
 
     const handleButtonPress = async () => {
         try {
@@ -27,7 +26,7 @@ const FirstScreen = ({ navigation }) => {
                 generationConfig,
             });
             const response = result.response;
-            navigation.navigate('Select Equipment', { geminiOutput1: response.text(), inputValue });
+            navigation.navigate('SecondScreen', { geminiOutput1: response.text(), inputValue });
         } catch (error) {
             console.error('Error generating response:', error);
             handleButtonPress();
@@ -48,14 +47,17 @@ const FirstScreen = ({ navigation }) => {
                 <KeyboardAvoidingView
                     behavior={Platform.OS === 'ios' ? 'padding' : null}
                     style={styles.contentContainer}
-                    keyboardVerticalOffset={Platform.OS === 'ios' ? 140 : 0} 
+                    keyboardVerticalOffset={Platform.OS === 'ios' ? 120 : 0} 
                 >
                     <Text style={styles.h1}>Swap Exercise</Text>
                     <Text style={styles.p}>What exercise are you trying to replace?</Text>
                     <Text style={styles.p}>We'll help you find a substitute!</Text>
                     <Text style={styles.h2}>Exercise</Text>
                     <TextInput
-                        onChangeText={setInputValue}
+                        onChangeText={text => {
+                            setInputValue(text);
+                            setIsFocused(!!text);
+                        }}
                         value={inputValue}
                         placeholder='ex: Bulgarian Split Squat'
                         placeholderTextColor='lightgray'
@@ -63,21 +65,14 @@ const FirstScreen = ({ navigation }) => {
                             styles.input,
                             isFocused && styles.inputFocused,
                         ]}
-                        onFocus={() => {
-                            setIsFocused(true);
-                            setIsButtonFocused(true);
-                        }}
-                        onBlur={() => {
-                            setIsFocused(false);
-                            setIsButtonFocused(false);
-                        }}
                     />
                     <TouchableOpacity
                         style={[
                             styles.button,
-                            isButtonFocused && styles.buttonFocused,
+                            !inputValue.trim() && styles.buttonDisabled,
                         ]}
                         onPress={handleButtonPress}
+                        disabled={!inputValue.trim()}
                     >
                         <Text style={styles.buttonText}>Next</Text>
                     </TouchableOpacity>
@@ -93,7 +88,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     container: {
-        bottom: 90,
+        bottom: 115,
         flex: 1,
         justifyContent: 'center',
         width: 'auto',
@@ -174,10 +169,10 @@ const styles = StyleSheet.create({
     },
     button: {
         position: 'relative',
-        top: 140,
+        top: 180,
         marginTop: 10,
         alignSelf: 'center',
-        backgroundColor: '#028B94',
+        backgroundColor: '#01E4F3',
         width: 350,
         height: 50,
         borderRadius: 50,
@@ -186,6 +181,9 @@ const styles = StyleSheet.create({
     },
     buttonFocused: {
         backgroundColor: '#01E4F3',
+    },
+    buttonDisabled: {
+        backgroundColor: '#028B94',
     },
     buttonText: {
         color: '#293236',
