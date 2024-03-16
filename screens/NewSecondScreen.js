@@ -61,7 +61,7 @@ const NewSecondScreen = ({ route, navigation }) => {
             colors={['#293236', '#293236', '#293236']}
             style={styles.gradient}
         >
-            <StatusBar backgroundColor="#293236" barStyle="light-content" />
+            <StatusBar backgroundColor="#313b3f" barStyle="light-content" />
             <View style={styles.body}>
                 <ScrollView contentContainerStyle={styles.scrollView}>
                     <View style={styles.headerContainer}>
@@ -90,14 +90,15 @@ const styles = StyleSheet.create({
     body: {
         flex: 1,
         justifyContent: 'center',
-        paddingHorizontal: 20,
+        paddingHorizontal: 10,
     },
     contentContainer: {
         flexDirection: 'row',
         flexWrap: 'wrap',
         alignItems: 'center',
         paddingBottom: 100,
-        width: 350,
+        width: 390,
+        left: 20,
     },
     bottomContainer: {
         position: 'absolute',
@@ -113,7 +114,9 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontWeight: '400',
         textAlign: 'left',
-        padding: 10,
+        paddingHorizontal: 3,
+        paddingTop: 25,
+        paddingBottom: 20
     },
     scrollView: {
         flexGrow: 1,
@@ -130,9 +133,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 8,
         margin: 11,
-        backgroundColor: '#01E4F310',
+        backgroundColor: '#2a3a40',
         borderColor: 'white',
-        borderRadius: 8,
+        borderRadius: 10,
     },
     selectedItem: {
         height: 140,
@@ -145,32 +148,33 @@ const styles = StyleSheet.create({
         margin: 11,
         backgroundColor: '#01E4F318',
         borderColor: '#01E4F3',
-        borderRadius: 8,
+        borderRadius: 10,
     },
     selectedItemText: {
         color: '#01E4F3',
     },
     itemText: {
         position: 'relative',
-        top: 20,
         color: 'white',
+        top: 12,
         fontSize: 15,
         textAlign: 'center',
+        fontWeight: '700',
     },
     itemContent: {
         alignItems: 'center',
     },
     icon: {
-        width: 50,
-        height: 50,
-        marginBottom: 10,
+        width: 42,
+        height: 42,
+        bottom: 5,
     },
     button: {
         position: 'absolute',
         marginTop: 10,
         alignSelf: 'center',
         width: 350,
-        height: 50,
+        height: 45,
         borderRadius: 50,
         justifyContent: 'center',
     },
@@ -178,7 +182,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#01E4F3',
     },
     buttonDisabled: {
-        backgroundColor: '#028B94',
+        backgroundColor: '#1c6c80',
     },
     buttonText: {
         color: '#293236',
