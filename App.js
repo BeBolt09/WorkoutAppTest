@@ -7,6 +7,7 @@ import FirstScreen from './screens/FirstScreen';
 import SecondScreen from './Components/SecondScreen';
 import ThirdScreen from './screens/ThirdScreen';
 import FourthScreen from './screens/FourthScreen';
+import { Platform } from 'react-native';
 
 import NewSecondScreen from './screens/NewSecondScreen';
 import { Feather } from '@expo/vector-icons';
@@ -17,12 +18,20 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen
+      <Stack.Screen
           name="FirstScreen"
           component={FirstScreen}
           options={{
             headerTitle: '',
-            headerStyle: { backgroundColor: '#293236', borderBottomWidth: 0, elevation: 10, height: 50, },
+            headerStyle: { 
+              backgroundColor: '#313b3f', 
+              borderBottomWidth: 0, 
+              elevation: Platform.OS === 'android' ? 10 : 0, 
+              shadowColor: Platform.OS === 'ios' ? '#000' : 'rgba(0, 0, 0, 0.3)',              shadowOffset: Platform.OS === 'ios' ? { width: 0, height: 2 } : undefined, 
+              shadowOpacity: Platform.OS === 'ios' ? 0.25 : undefined, 
+              shadowRadius: Platform.OS === 'ios' ? 3.84 : undefined, 
+              height: Platform.OS === 'android' ? 12 : 50,
+            },
             headerTintColor: 'white',
             headerTitleAlign: 'center',
             headerTitleStyle: { fontSize: 30 },
@@ -33,11 +42,22 @@ export default function App() {
           component={NewSecondScreen}
           options={({ navigation }) => ({
             headerTitle: 'Select Equipment',
-            headerStyle: { backgroundColor: '#293236', borderBottomWidth: 0, elevation: 10 },
+            headerStyle: { 
+              backgroundColor: '#313b3f', 
+              borderBottomWidth: 0, 
+              elevation: Platform.OS === 'android' ? 10 : 0, 
+              shadowColor: Platform.OS === 'ios' ? '#000' : 'rgba(0, 0, 0, 0.3)',              shadowOffset: Platform.OS === 'ios' ? { width: 0, height: 2 } : undefined, 
+              shadowOpacity: Platform.OS === 'ios' ? 0.25 : undefined, 
+              shadowRadius: Platform.OS === 'ios' ? 3.84 : undefined, 
+              height: Platform.OS === 'android' ? 60 : 110,
+            },            
             headerTintColor: 'white',
             headerTitleAlign: 'center',
             headerTitleStyle: { fontSize: 25 },
             headerBackTitleStyle: { fontSize: 0.01 },
+            headerLeftContainerStyle: { paddingLeft: 17, paddingBottom: 10 },
+            headerRightContainerStyle: { paddingRight: 17,},
+            headerTitleContainerStyle: { paddingBottom: 10 },
           })}
         />
         <Stack.Screen
@@ -45,29 +65,51 @@ export default function App() {
           component={ThirdScreen}
           options={({ navigation }) => ({
             headerTitle: 'Results',
-            headerStyle: { backgroundColor: '#293236', borderBottomWidth: 0, elevation: 10,},
+            headerStyle: { 
+              backgroundColor: '#313b3f', 
+              borderBottomWidth: 0, 
+              elevation: Platform.OS === 'android' ? 10 : 0, 
+              shadowColor: Platform.OS === 'ios' ? '#000' : 'rgba(0, 0, 0, 0.3)',              shadowOffset: Platform.OS === 'ios' ? { width: 0, height: 2 } : undefined, 
+              shadowOpacity: Platform.OS === 'ios' ? 0.25 : undefined, 
+              shadowRadius: Platform.OS === 'ios' ? 3.84 : undefined, 
+              height: Platform.OS === 'android' ? 60 : 110,
+            },              
             headerTintColor: 'white',
             headerTitleAlign: 'center',
             headerTitleStyle: { fontSize: 25 },
             headerBackTitleStyle: { fontSize: 0.01 },
-          })}
+            headerLeftContainerStyle: { paddingLeft: 17, paddingBottom: 10 },
+            headerRightContainerStyle: { paddingRight: 17,},
+            headerTitleContainerStyle: { paddingBottom: 10 },          
+            })}
         />
         <Stack.Screen
           name="FourthScreen"
           component={FourthScreen}
           options={({ navigation }) => ({
-            headerTitle: 'Substitute',
-            headerStyle: { backgroundColor: '#293236', borderBottomWidth: 0, elevation: 10 },
+            headerStyle: { 
+              backgroundColor: '#313b3f', 
+              borderBottomWidth: 0, 
+              elevation: Platform.OS === 'android' ? 10 : 0, 
+              shadowColor: Platform.OS === 'ios' ? '#000' : 'rgba(0, 0, 0, 0.3)',              shadowOffset: Platform.OS === 'ios' ? { width: 0, height: 2 } : undefined, 
+              shadowOpacity: Platform.OS === 'ios' ? 0.25 : undefined, 
+              shadowRadius: Platform.OS === 'ios' ? 3.84 : undefined, 
+              height: Platform.OS === 'android' ? 60 : 110,
+            },              
             headerTintColor: 'white',
             headerTitleAlign: 'center',
             headerTitleStyle: { fontSize: 25 },
             headerBackTitleStyle: { fontSize: 0.01 },
+            headerLeftContainerStyle: { paddingLeft: 17, paddingBottom: 10 },
+            headerRightContainerStyle: { paddingRight: 17,},
+            headerTitleContainerStyle: { paddingBottom: 10 },              
             headerRight: () => (
               <Feather
                 name="search"
-                size={25}
+                size={27}
+                right={8}
                 color="white"
-                style={{ marginRight: 15 }}
+                style={{ right: 15, bottom: 4 }}
                 onPress={() => {
                   navigation.navigate('SearchScreen');
                 }}

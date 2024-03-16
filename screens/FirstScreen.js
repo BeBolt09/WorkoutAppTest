@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, StatusBar, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, StatusBar, KeyboardAvoidingView, Platform, ActivityIndicator } from 'react-native';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -10,10 +10,10 @@ const FirstScreen = ({ navigation }) => {
     const [isLoading, setIsLoading] = useState(true); 
 
     useEffect(() => {
-        // Hide loading overlay after 5 seconds
+        // Hide loading overlay after 2 seconds
         const timer = setTimeout(() => {
             setIsLoading(false);
-        }, 5000);
+        }, 2000);
 
         return () => clearTimeout(timer);
     }, []);
@@ -51,16 +51,18 @@ const FirstScreen = ({ navigation }) => {
             colors={['#293236', '#293236', '#293236']}
             style={styles.gradient}
         >
-            <StatusBar backgroundColor="#293236" barStyle="light-content" />
+            <StatusBar backgroundColor="#313b3f" barStyle="light-content" />
             <View style={styles.container}>
                 <Image
                     source={require('../assets/screen1bg.png')}
                     style={styles.image}
                 />
                 {isLoading && ( 
+                    
                     <View style={styles.loadingOverlay}>
-                        <Text style={styles.loadingText}>Loading...</Text>
+                        <ActivityIndicator size="large" color="#01E4F3" />
                     </View>
+                    
                 )}
                 {!isLoading && ( 
                     <KeyboardAvoidingView
@@ -84,17 +86,21 @@ const FirstScreen = ({ navigation }) => {
                                 styles.input,
                                 isFocused && styles.inputFocused,
                             ]}
+                            keyboardShouldPersistTaps='always'
                         />
-                        <TouchableOpacity
-                            style={[
-                                styles.button,
-                                !inputValue.trim() && styles.buttonDisabled,
-                            ]}
-                            onPress={handleButtonPress}
-                            disabled={!inputValue.trim()}
-                        >
-                            <Text style={styles.buttonText}>Next</Text>
-                        </TouchableOpacity>
+                    <TouchableOpacity
+                        style={[
+                            styles.button,
+                            !inputValue.trim() && styles.buttonDisabled,
+                            Platform.OS === 'ios' && styles.buttonIOS,
+                        ]}
+                        onPress={handleButtonPress}
+                        disabled={!inputValue.trim()}
+                    >
+                        <Text style={styles.buttonText}>Next</Text>
+                    </TouchableOpacity>
+
+
                     </KeyboardAvoidingView>
                 )}
             </View>
@@ -116,15 +122,15 @@ const styles = StyleSheet.create({
     contentContainer: {
         bottom: 30,
         backgroundColor: '#293236',
-        borderRadius: 60,
-        width: 395,
+        borderRadius: 25,
+        width: 393,
         justifyContent: 'top',
         textAlign: 'left',
         alignSelf: 'center',
     },
     image: {
         position: 'relative',
-        top: 0,
+        bottom: 13,
         width: 500,
         height: 250,
         resizeMode: 'stretch',
@@ -134,27 +140,17 @@ const styles = StyleSheet.create({
     h1: {
         position: 'relative',
         bottom: 70,
-        left: 30,
-        fontSize: 25,
+        left: 20,
+        fontSize: 22,
         textAlign: 'left',
         color: '#fff',
         fontWeight: '600',
-        paddingTop: 100,
-    },
-    h2: {
-        position: 'relative',
-        bottom: 10,
-        left: 30,
-        fontSize: 16,
-        justifyContent: 'center',
-        textAlign: 'left',
-        color: '#fff',
-        fontWeight: '500',
+        paddingTop: 90,
     },
     p: {
         position: 'relative',
         bottom: 60,
-        left: 30,
+        left: 20,
         padding: 0,
         paddingRight: 40,
         paddingBottom: 0,
@@ -165,40 +161,54 @@ const styles = StyleSheet.create({
         color: '#fff',
         lineHeight: 30,
     },
+    h2: {
+        position: 'relative',
+        bottom: 10,
+        left: 20,
+        fontSize: 16,
+        justifyContent: 'center',
+        textAlign: 'left',
+        color: '#fff',
+        fontWeight: '600',
+    },
     input: {
         borderWidth: 1,
         width: 330,
-        height: 40,
+        height: 45,
         alignSelf: 'flex-start',
         position: 'relative',
-        left: 30,
+        left: 20,
         borderWidth: 2,
-        width: 340,
-        height: 55,
+        width: 350,
         borderRadius: 5,
         borderColor: 'gray',
         backgroundColor: '#293236',
         color: 'white',
         paddingLeft: 10,
-        fontSize: 20,
+        fontSize: 18,
+        textTransform: 'capitalize'
+        //fontStyle: 'italic',
     },
     inputFocused: {
         borderColor: '#01E4F3',
     },
     button: {
         position: 'relative',
-        top: 180,
+        top: 210,
         marginTop: 10,
         alignSelf: 'center',
         backgroundColor: '#01E4F3',
         width: 350,
-        height: 50,
+        height: 45,
         borderRadius: 50,
         justifyContent: 'center',
         color: '#293236',
     },
+    buttonIOS: {
+        marginTop: 45,
+    },
     buttonDisabled: {
-        backgroundColor: '#028B94',
+        backgroundColor: '#1c6c80',
     },
     buttonText: {
         color: '#293236',
@@ -209,15 +219,10 @@ const styles = StyleSheet.create({
     loadingOverlay: {
         ...StyleSheet.absoluteFillObject,
         justifyContent: 'center',
+        top: 170,
         alignItems: 'center',
         backgroundColor: '#293236',
     },
-    loadingText: {
-        color: 'white',
-        top: 100,
-        fontSize: 40,
-    },
-
 });
 
 export default FirstScreen;

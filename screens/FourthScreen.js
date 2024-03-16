@@ -5,7 +5,7 @@ import axios from 'axios';
 import YoutubeIframe from 'react-native-youtube-iframe';
 import { LinearGradient } from 'expo-linear-gradient';
 
-const FourthScreen = ({ route }) => {
+const FourthScreen = ({ route, navigation }) => {
     const YOUTUBE_API_KEY = process.env.EXPO_PUBLIC_YOUTUBE_API_KEY;
     const { selectedExercise } = route.params;
 
@@ -68,6 +68,11 @@ const FourthScreen = ({ route }) => {
     useEffect(() => {
         // fetchVideo(); // ONLY ENABLE THIS WHEN FULL TESTING(WE CAN ONLY FETCH SEARCH 100/Day)
         fetchInstructions();
+
+        // Dynamically change header title
+        navigation.setOptions({
+            headerTitle: selectedExercise,
+        });
     }, []); // Empty dependency array to trigger effect only once when component mounts
 
     return (
@@ -75,8 +80,7 @@ const FourthScreen = ({ route }) => {
             colors={['#293236', '#293236', '#293236']}
             style={styles.gradient}
         >
-        <StatusBar backgroundColor="#293236" barStyle="light-content" />
-                <Text style={styles.title}>{selectedExercise}</Text>
+        <StatusBar backgroundColor="#313b3f" barStyle="light-content" />
                 {showVideo && (
                     <View style={styles.videoContainer}>
                         <YoutubeIframe height={300} width={400} play videoId={videoWeShow} />
@@ -107,14 +111,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizonatl: 20,
     },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        color: '#fff',
-        marginBottom: 20,
-        textTransform: 'capitalize',
-        textAlign: 'center',
-    },
     youtubeTitle: {
         color: 'white',
         marginBottom: 10,
@@ -136,18 +132,21 @@ const styles = StyleSheet.create({
     },
     instructionsTitle: {
         fontSize: 20,
-        fontWeight: 'bold',
+        fontWeight: '400',
         color: '#fff',
-        marginBottom: 10,
+        marginBottom: 15,
+        marginLeft: 10
     },
     instructions: {
         fontSize: 16,
+        fontWeight: '300',
         color: '#fff',
         marginBottom: 5,
         paddingBottom: 5,
         textAlign: 'left',
-        marginLeft: 20,
+        marginLeft: 10,
         lineHeight: 25,
+        paddingHorizontal: 15,
     },
 });
 

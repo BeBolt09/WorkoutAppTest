@@ -1,8 +1,8 @@
-import { View, Text, TouchableOpacity, StyleSheet, TextInput, ScrollView, StatusBar } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, StatusBar } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from "@google/generative-ai";
 import { LinearGradient } from 'expo-linear-gradient';
-import { AntDesign } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons';
 
 const ThirdScreen = ({ route, navigation }) => {
     const { selectedEquipment, inputValue } = route.params;
@@ -39,9 +39,7 @@ const ThirdScreen = ({ route, navigation }) => {
     }, [selectedEquipment, inputValue]); 
 
     const handleExerciseSelection = (exercise) => {
-
         console.log('Selected exercise:', exercise);
-
         navigation.navigate('FourthScreen', { selectedExercise: exercise });
     };
 
@@ -52,12 +50,13 @@ const ThirdScreen = ({ route, navigation }) => {
         return (
             <TouchableOpacity key={index} onPress={() => handleExerciseSelection(cleanedExercise, index)}>
                 <View style={styles.item}>
-                    <TextInput
-                        value={exercise}
-                        onChangeText={text => handleExerciseSelection(text, index)}
-                        style={[styles.itemText, textDecorationStyle]}
-                    />
-                    <AntDesign name="rightcircleo" size={26} color="gray" />
+                    <Text style={[styles.itemText, textDecorationStyle]}>
+                        {exercise}
+                    </Text>
+                    {/* Wrap arrow icon inside a View with rounded corners */}
+                    <View style={styles.arrowContainer}>
+                        <Entypo name="chevron-thin-right" size={22} color="#b8bac1" />
+                    </View>
                 </View>
             </TouchableOpacity>
         );
@@ -68,10 +67,10 @@ const ThirdScreen = ({ route, navigation }) => {
             colors={['#293236', '#293236', '#293236']}
             style={styles.gradient}
         >
-        <StatusBar backgroundColor="#293236" barStyle="light-content" />
+        <StatusBar backgroundColor="#313b3f" barStyle="light-content" />
             <View style={styles.body}>
                 <ScrollView style={styles.scrollView}>
-                <Text style={styles.h1}>{exerciseCards.length} Substitutes for {inputValue}</Text>
+                <Text style={styles.h1}>{exerciseCards.length} Substitutes for <Text style={styles.inputValue}>{inputValue}</Text></Text>
                     {exerciseCards}
                 </ScrollView>
             </View>
@@ -86,15 +85,19 @@ const styles = StyleSheet.create({
     body: {
         flex: 1,
         alignItems: 'center',
-        paddingHorizontal: 20,
+        paddingHorizontal: 15,
     },
     h1: {
         fontSize: 20,
         color: '#fff',
-        fontWeight: '600',
+        fontWeight: '400',
         marginVertical: 10,
         marginLeft: 10,
         textAlign: 'left',
+        paddingVertical: 10,
+    },
+    inputValue: {
+        textTransform: 'capitalize'
     },
     scrollView: {
         width: '100%',
@@ -111,7 +114,7 @@ const styles = StyleSheet.create({
         padding: 12,
         paddingBottom: 40,
         margin: 8,
-        backgroundColor: '#01E4F314',
+        backgroundColor: '#2a3a40',
         borderRadius: 15,
         elevation: 2,
     },
@@ -123,6 +126,17 @@ const styles = StyleSheet.create({
         textTransform: 'capitalize',
         flex: 1,
         flexWrap: 'wrap',
+    },
+    arrowContainer: {
+        backgroundColor: '#3f4e53',
+        borderRadius: 50, 
+        padding: 0, 
+        marginLeft: 'auto',
+        width: 28,
+        height: 28,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 });
 
