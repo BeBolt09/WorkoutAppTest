@@ -1,17 +1,18 @@
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView, StatusBar } from 'react-native';
 import React, { useState, useEffect } from 'react';
-import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from "@google/generative-ai";
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, StatusBar } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Entypo } from '@expo/vector-icons';
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const ThirdScreen = ({ route, navigation }) => {
     const { selectedEquipment, inputValue } = route.params;
     const [listOfExercises, setListOfExercises] = useState('');
+    const [selectedExercise, setSelectedExercise] = useState(null);
 
     const GOOGLE_API_KEY = process.env.EXPO_PUBLIC_GOOGLE_API_KEY;
 
     useEffect(() => {
-        const GetListOfExercises = async () => {
+        const getListOfExercises = async () => {
             try {
                 const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY);
                 const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
@@ -32,30 +33,31 @@ const ThirdScreen = ({ route, navigation }) => {
                 setListOfExercises(response.text());
             } catch (error) {
                 console.error('Error generating response:', error);
-                GetListOfExercises();
             }
         };
-        GetListOfExercises();
-    }, [selectedEquipment, inputValue]); 
+        getListOfExercises();
+    }, [selectedEquipment, inputValue]);
 
     const handleExerciseSelection = (exercise) => {
-        console.log('Selected exercise:', exercise);
+        setSelectedExercise(exercise);
         navigation.navigate('FourthScreen', { selectedExercise: exercise });
     };
 
     const exerciseCards = listOfExercises.split('\n').map((exercise, index) => {
-        const cleanedExercise = exercise.replace(/^[-*]\s*/, '');   
+        const cleanedExercise = exercise.replace(/^[-*]\s*/, '');
+        const isSelected = cleanedExercise === selectedExercise;
         const textDecorationStyle = /^[-*\d]/.test(exercise) ? {} : styles.itemText;
-        
+        const itemStyle = isSelected ? styles.selectedItem : null;
+        const arrowContainerStyle = isSelected ? [styles.selectedArrowContainer, styles.selectedArrowColor] : styles.arrowContainer;
+
         return (
-            <TouchableOpacity key={index} onPress={() => handleExerciseSelection(cleanedExercise, index)}>
-                <View style={styles.item}>
-                    <Text style={[styles.itemText, textDecorationStyle]}>
+            <TouchableOpacity key={index} onPress={() => handleExerciseSelection(cleanedExercise)}>
+                <View style={[styles.item, itemStyle]}>
+                    <Text style={[styles.itemText, textDecorationStyle]} numberOfLines={1}>
                         {exercise}
                     </Text>
-                    {/* Wrap arrow icon inside a View with rounded corners */}
-                    <View style={styles.arrowContainer}>
-                        <Entypo name="chevron-thin-right" size={22} color="#b8bac1" />
+                    <View style={arrowContainerStyle}>
+                        <Entypo name="chevron-thin-right" size={18} color={isSelected ? '#e7ebed' : '#b8bac1'} />
                     </View>
                 </View>
             </TouchableOpacity>
@@ -67,10 +69,12 @@ const ThirdScreen = ({ route, navigation }) => {
             colors={['#293236', '#293236', '#293236']}
             style={styles.gradient}
         >
-        <StatusBar backgroundColor="#313b3f" barStyle="light-content" />
+            <StatusBar backgroundColor="#313b3f" barStyle="light-content" />
             <View style={styles.body}>
                 <ScrollView style={styles.scrollView}>
-                <Text style={styles.h1}>{exerciseCards.length} Substitutes for <Text style={styles.inputValue}>{inputValue}</Text></Text>
+                    <Text style={styles.h1}>
+                        {exerciseCards.length} Substitutes for <Text style={styles.inputValue}>{inputValue}</Text>
+                    </Text>
                     {exerciseCards}
                 </ScrollView>
             </View>
@@ -80,7 +84,7 @@ const ThirdScreen = ({ route, navigation }) => {
 
 const styles = StyleSheet.create({
     gradient: {
-        flex: 1, 
+        flex: 1,
     },
     body: {
         flex: 1,
@@ -127,16 +131,35 @@ const styles = StyleSheet.create({
         flex: 1,
         flexWrap: 'wrap',
     },
+    selectedItem: {
+        borderColor: '#01E4F3',
+        backgroundColor: '#2c535e',
+        borderWidth: 1.5,
+    },
     arrowContainer: {
         backgroundColor: '#3f4e53',
-        borderRadius: 50, 
-        padding: 0, 
+        borderRadius: 50,
+        padding: 0,
         marginLeft: 'auto',
         width: 28,
         height: 28,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    selectedArrowContainer: {
+        backgroundColor: '#6b868e',
+        borderRadius: 50,
+        padding: 0,
+        marginLeft: 'auto',
+        width: 28,
+        height: 28,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    selectedArrowColor: {
+        color: '#fff',
     },
 });
 
