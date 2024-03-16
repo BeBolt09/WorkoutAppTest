@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, StatusBar } from 'react-native';
+import { View, Image, Text, StyleSheet, ScrollView, StatusBar } from 'react-native';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import axios from 'axios';
 import YoutubeIframe from 'react-native-youtube-iframe';
@@ -12,7 +12,6 @@ const FourthScreen = ({ route }) => {
     const [showVideo, setShowVideo] = useState(false);
     const [videoWeShow, setVideo] = useState(null);
     const [youtubeTitle, setYoutubeTitle] = useState(null); // Added state variable for YouTube title
-
     const GOOGLE_API_KEY = process.env.EXPO_PUBLIC_GOOGLE_API_KEY;
     const [geminiInstructions, setGeminiInstructions] = useState("");
 
@@ -54,19 +53,56 @@ const FourthScreen = ({ route }) => {
                 }
             });
             if (response.data.items.length > 0) {
-                const selectedVideo = response.data.items[0].id.videoId;
-                const title = response.data.items[0].snippet.title; // Extract video title
-                setVideo(selectedVideo);
-                setYoutubeTitle(title); // Set video title in state
-                setShowVideo(true);
+                const videoId = response.data.items[0].id.videoId;
+                const title = response.data.items[0].snippet.title;
+                const channelId = response.data.items[0].snippet.channelId;
+    
+                // Fetch additional video details using videoId
+                const videoDetailsResponse = await axios.get(`https://www.googleapis.com/youtube/v3/videos`, {
+                    params: {
+                        key: YOUTUBE_API_KEY,
+                        id: videoId,
+                        part: 'snippet,statistics',
+                    }
+                });
+    
+                if (videoDetailsResponse.data.items.length > 0) {
+                    const views = videoDetailsResponse.data.items[0].statistics.viewCount;
+                    const datePublished = videoDetailsResponse.data.items[0].snippet.publishedAt;
+    
+                    // Fetch channel information using channelId
+                    const channelResponse = await axios.get(`https://www.googleapis.com/youtube/v3/channels`, {
+                        params: {
+                            key: YOUTUBE_API_KEY,
+                            id: channelId,
+                            part: 'snippet',
+                        }
+                    });
+    
+                    if (channelResponse.data.items.length > 0) {
+                        const channelTitle = channelResponse.data.items[0].snippet.title;
+                        const channelIcon = channelResponse.data.items[0].snippet.thumbnails.default.url;
+    
+                        setVideo({
+                            videoId,
+                            title,
+                            views,
+                            datePublished,
+                            channelTitle,
+                            channelIcon
+                        });
+                        setShowVideo(true);
+                        setYoutubeTitle(title);
+                    }
+                }
             }
         } catch (error) {
             console.error('Error fetching video:', error);
         }
     };
-
+    
     useEffect(() => {
-        // fetchVideo(); // ONLY ENABLE THIS WHEN FULL TESTING(WE CAN ONLY FETCH SEARCH 100/Day)
+        fetchVideo(); // ONLY ENABLE THIS WHEN FULL TESTING(WE CAN ONLY FETCH SEARCH 100/Day)
         fetchInstructions();
     }, []); // Empty dependency array to trigger effect only once when component mounts
 
@@ -79,11 +115,12 @@ const FourthScreen = ({ route }) => {
                 <Text style={styles.title}>{selectedExercise}</Text>
                 {showVideo && (
                     <View style={styles.videoContainer}>
-                        <YoutubeIframe height={300} width={400} play videoId={videoWeShow} />
+                        <YoutubeIframe height={300} width={400} play videoId={videoWeShow.videoId} />
                     </View>
                 )}
 
                 {/* Render YouTube video title */}
+
                 <Text style={styles.youtubeTitle}>{youtubeTitle}</Text>
                 <View style={styles.seperator}></View>
             <ScrollView contentContainerStyle={styles.container}>
