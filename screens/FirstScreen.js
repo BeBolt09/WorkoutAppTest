@@ -68,7 +68,7 @@ const FirstScreen = ({ navigation }) => {
                     <KeyboardAvoidingView
                         behavior={Platform.OS === 'ios' ? 'padding' : null}
                         style={styles.contentContainer}
-                        keyboardVerticalOffset={Platform.OS === 'ios' ? 120 : 0} 
+                        keyboardVerticalOffset={Platform.OS === 'ios' ? -140 : 0} 
                     >
                         <Text style={styles.h1}>Swap Exercise</Text>
                         <Text style={styles.p}>What exercise are you trying to replace?</Text>
