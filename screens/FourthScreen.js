@@ -120,10 +120,13 @@ const FourthScreen = ({ route, navigation }) => {
                 {showVideo && (
                     <View style={styles.videoContainer}>
                         <YoutubeIframe height={300} width={400} play videoId={videoWeShow.videoId} />
+                        <Text>{videoWeShow.channelTitle}</Text>
+                        <Text>{videoWeShow.title}</Text>
+                        <Text>{videoWeShow.views}</Text>
+                        <Text>{videoWeShow.datePublished}</Text>
+                        <Image source={{ uri: videoWeShow.channelIcon }} style={{ width: 100, height: 100 }} />
                     </View>
                 )}
-
-                {/* Render YouTube video title */}
 
                 <Text style={styles.youtubeTitle}>{youtubeTitle}</Text>
                 <View style={styles.seperator}></View>
