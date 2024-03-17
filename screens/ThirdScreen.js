@@ -1,17 +1,18 @@
-import { View, Text, TouchableOpacity, StyleSheet, TextInput, ScrollView, StatusBar } from 'react-native';
 import React, { useState, useEffect } from 'react';
-import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from "@google/generative-ai";
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, StatusBar } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { AntDesign } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons';
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const ThirdScreen = ({ route, navigation }) => {
     const { selectedEquipment, inputValue } = route.params;
     const [listOfExercises, setListOfExercises] = useState('');
+    const [selectedExercise, setSelectedExercise] = useState(null);
 
     const GOOGLE_API_KEY = process.env.EXPO_PUBLIC_GOOGLE_API_KEY;
 
     useEffect(() => {
-        const GetListOfExercises = async () => {
+        const getListOfExercises = async () => {
             try {
                 const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY);
                 const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
@@ -32,32 +33,32 @@ const ThirdScreen = ({ route, navigation }) => {
                 setListOfExercises(response.text());
             } catch (error) {
                 console.error('Error generating response:', error);
-                GetListOfExercises();
             }
         };
-        GetListOfExercises();
-    }, [selectedEquipment, inputValue]); 
+        getListOfExercises();
+    }, [selectedEquipment, inputValue]);
 
     const handleExerciseSelection = (exercise) => {
-
-        console.log('Selected exercise:', exercise);
-
+        setSelectedExercise(exercise);
         navigation.navigate('FourthScreen', { selectedExercise: exercise });
     };
 
     const exerciseCards = listOfExercises.split('\n').map((exercise, index) => {
-        const cleanedExercise = exercise.replace(/^[-*]\s*/, '');   
+        const cleanedExercise = exercise.replace(/^[-*]\s*/, '');
+        const isSelected = cleanedExercise === selectedExercise;
         const textDecorationStyle = /^[-*\d]/.test(exercise) ? {} : styles.itemText;
-        
+        const itemStyle = isSelected ? styles.selectedItem : null;
+        const arrowContainerStyle = isSelected ? [styles.selectedArrowContainer, styles.selectedArrowColor] : styles.arrowContainer;
+
         return (
-            <TouchableOpacity key={index} onPress={() => handleExerciseSelection(cleanedExercise, index)}>
-                <View style={styles.item}>
-                    <TextInput
-                        value={exercise}
-                        onChangeText={text => handleExerciseSelection(text, index)}
-                        style={[styles.itemText, textDecorationStyle]}
-                    />
-                    <AntDesign name="rightcircleo" size={26} color="gray" />
+            <TouchableOpacity key={index} onPress={() => handleExerciseSelection(cleanedExercise)}>
+                <View style={[styles.item, itemStyle]}>
+                    <Text style={[styles.itemText, textDecorationStyle]} numberOfLines={1}>
+                        {exercise}
+                    </Text>
+                    <View style={arrowContainerStyle}>
+                        <Entypo name="chevron-thin-right" size={18} color={isSelected ? '#e7ebed' : '#b8bac1'} />
+                    </View>
                 </View>
             </TouchableOpacity>
         );
@@ -68,10 +69,12 @@ const ThirdScreen = ({ route, navigation }) => {
             colors={['#293236', '#293236', '#293236']}
             style={styles.gradient}
         >
-        <StatusBar backgroundColor="#293236" barStyle="light-content" />
+            <StatusBar backgroundColor="#313b3f" barStyle="light-content" />
             <View style={styles.body}>
                 <ScrollView style={styles.scrollView}>
-                <Text style={styles.h1}>{exerciseCards.length} Substitutes for {inputValue}</Text>
+                    <Text style={styles.h1}>
+                        {exerciseCards.length} Substitutes for <Text style={styles.inputValue}>{inputValue}</Text>
+                    </Text>
                     {exerciseCards}
                 </ScrollView>
             </View>
@@ -81,20 +84,24 @@ const ThirdScreen = ({ route, navigation }) => {
 
 const styles = StyleSheet.create({
     gradient: {
-        flex: 1, 
+        flex: 1,
     },
     body: {
         flex: 1,
         alignItems: 'center',
-        paddingHorizontal: 20,
+        paddingHorizontal: 15,
     },
     h1: {
         fontSize: 20,
         color: '#fff',
-        fontWeight: '600',
+        fontWeight: '400',
         marginVertical: 10,
         marginLeft: 10,
         textAlign: 'left',
+        paddingVertical: 10,
+    },
+    inputValue: {
+        textTransform: 'capitalize'
     },
     scrollView: {
         width: '100%',
@@ -111,7 +118,7 @@ const styles = StyleSheet.create({
         padding: 12,
         paddingBottom: 40,
         margin: 8,
-        backgroundColor: '#01E4F314',
+        backgroundColor: '#2a3a40',
         borderRadius: 15,
         elevation: 2,
     },
@@ -123,6 +130,36 @@ const styles = StyleSheet.create({
         textTransform: 'capitalize',
         flex: 1,
         flexWrap: 'wrap',
+    },
+    selectedItem: {
+        borderColor: '#01E4F3',
+        backgroundColor: '#2c535e',
+        borderWidth: 1.5,
+    },
+    arrowContainer: {
+        backgroundColor: '#3f4e53',
+        borderRadius: 50,
+        padding: 0,
+        marginLeft: 'auto',
+        width: 28,
+        height: 28,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    selectedArrowContainer: {
+        backgroundColor: '#6b868e',
+        borderRadius: 50,
+        padding: 0,
+        marginLeft: 'auto',
+        width: 28,
+        height: 28,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    selectedArrowColor: {
+        color: '#fff',
     },
 });
 
