@@ -24,7 +24,7 @@ const ThirdScreen = ({ route, navigation }) => {
                     maxOutputTokens: 2048,
                 };
                 const parts = [
-                    { text: `only having access to these pieces of equipment: ${selectedEquipment} Give me a list of 10+ exercise names that could substitute this exercise: ${inputValue} And still target the same muscle group. Only give the names of the exercises (Don't include '-' or '*' or numbers)` },
+                    { text: `only having access to these pieces of equipment: ${selectedEquipment} Give me list of exercise names that could substitute this exercise: ${inputValue} And still target the same muscle group. when you give the names of the exercises Don't include numbering or '-' or '*' at the beginning of the exercise names` },
                 ];
                 const result = await model.generateContent({
                     contents: [{ role: "user", parts }],
@@ -32,6 +32,7 @@ const ThirdScreen = ({ route, navigation }) => {
                 });
                 const response = result.response;
                 setListOfExercises(response.text());
+                console.log(response.text())
             } catch (error) {
                 console.error('Error generating response:', error);
             }
