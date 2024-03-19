@@ -3,7 +3,6 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, StatusBar, 
 import { LinearGradient } from 'expo-linear-gradient';
 
 const FirstScreen = ({ navigation }) => {
-    const GOOGLE_API_KEY = process.env.EXPO_PUBLIC_GOOGLE_API_KEY;
     const [inputValue, setInputValue] = useState('');
     const [isFocused, setIsFocused] = useState(false);
     const [isLoading, setIsLoading] = useState(true); 
