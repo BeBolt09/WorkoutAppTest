@@ -7,8 +7,7 @@ import FirstScreen from './screens/FirstScreen';
 import SecondScreen from './Components/SecondScreen';
 import ThirdScreen from './screens/ThirdScreen';
 import FourthScreen from './screens/FourthScreen';
-import { Platform } from 'react-native';
-
+import { Platform, View, StyleSheet } from 'react-native';
 import NewSecondScreen from './screens/NewSecondScreen';
 import { Feather } from '@expo/vector-icons';
 
@@ -16,26 +15,30 @@ const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
+    <View style={styles.container}>
+      <View style={styles.innerContainer}>    
+      <NavigationContainer>
       <Stack.Navigator>
-      <Stack.Screen
+        <Stack.Screen
           name="FirstScreen"
           component={FirstScreen}
-          options={{
+          options={({ navigation }) => ({
             headerTitle: '',
             headerStyle: { 
               backgroundColor: '#313b3f', 
               borderBottomWidth: 0, 
               elevation: Platform.OS === 'android' ? 10 : 0, 
-              shadowColor: Platform.OS === 'ios' ? '#000' : 'rgba(0, 0, 0, 0.3)',              shadowOffset: Platform.OS === 'ios' ? { width: 0, height: 2 } : undefined, 
+              shadowColor: Platform.OS === 'ios' ? '#000' : 'rgba(0, 0, 0, 0.3)',              
+              shadowOffset: Platform.OS === 'ios' ? { width: 0, height: 2 } : undefined, 
               shadowOpacity: Platform.OS === 'ios' ? 0.25 : undefined, 
               shadowRadius: Platform.OS === 'ios' ? 3.84 : undefined, 
               height: Platform.OS === 'android' ? 12 : 50,
+              width: Platform.OS === 'web' ? 390 : undefined,
             },
             headerTintColor: 'white',
             headerTitleAlign: 'center',
             headerTitleStyle: { fontSize: 30 },
-          }}
+          })}
         />
         <Stack.Screen
           name="SecondScreen"
@@ -46,7 +49,8 @@ export default function App() {
               backgroundColor: '#313b3f', 
               borderBottomWidth: 0, 
               elevation: Platform.OS === 'android' ? 10 : 0, 
-              shadowColor: Platform.OS === 'ios' ? '#000' : 'rgba(0, 0, 0, 0.3)',              shadowOffset: Platform.OS === 'ios' ? { width: 0, height: 2 } : undefined, 
+              shadowColor: Platform.OS === 'ios' ? '#000' : 'rgba(0, 0, 0, 0.3)',              
+              shadowOffset: Platform.OS === 'ios' ? { width: 0, height: 2 } : undefined, 
               shadowOpacity: Platform.OS === 'ios' ? 0.25 : undefined, 
               shadowRadius: Platform.OS === 'ios' ? 3.84 : undefined, 
               height: Platform.OS === 'android' ? 60 : 110,
@@ -69,7 +73,8 @@ export default function App() {
               backgroundColor: '#313b3f', 
               borderBottomWidth: 0, 
               elevation: Platform.OS === 'android' ? 10 : 0, 
-              shadowColor: Platform.OS === 'ios' ? '#000' : 'rgba(0, 0, 0, 0.3)',              shadowOffset: Platform.OS === 'ios' ? { width: 0, height: 2 } : undefined, 
+              shadowColor: Platform.OS === 'ios' ? '#000' : 'rgba(0, 0, 0, 0.3)',              
+              shadowOffset: Platform.OS === 'ios' ? { width: 0, height: 2 } : undefined, 
               shadowOpacity: Platform.OS === 'ios' ? 0.25 : undefined, 
               shadowRadius: Platform.OS === 'ios' ? 3.84 : undefined, 
               height: Platform.OS === 'android' ? 60 : 110,
@@ -91,7 +96,8 @@ export default function App() {
               backgroundColor: '#313b3f', 
               borderBottomWidth: 0, 
               elevation: Platform.OS === 'android' ? 10 : 0, 
-              shadowColor: Platform.OS === 'ios' ? '#000' : 'rgba(0, 0, 0, 0.3)',              shadowOffset: Platform.OS === 'ios' ? { width: 0, height: 2 } : undefined, 
+              shadowColor: Platform.OS === 'ios' ? '#000' : 'rgba(0, 0, 0, 0.3)',              
+              shadowOffset: Platform.OS === 'ios' ? { width: 0, height: 2 } : undefined, 
               shadowOpacity: Platform.OS === 'ios' ? 0.25 : undefined, 
               shadowRadius: Platform.OS === 'ios' ? 3.84 : undefined, 
               height: Platform.OS === 'android' ? 60 : 110,
@@ -119,5 +125,22 @@ export default function App() {
         />
       </Stack.Navigator>
     </NavigationContainer>
+    </View>
+    </View>
   );
 }
+//WEB HEADER STYLE
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#191F21',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  innerContainer: {
+    width: Platform.OS === 'web' ? 390 : '100%',
+    alignSelf: 'center',
+    height: '100%',
+    alignContent: 'flex-end',
+  },
+});

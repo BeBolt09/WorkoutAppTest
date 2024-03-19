@@ -8,11 +8,11 @@ const FirstScreen = ({ navigation }) => {
     const [inputValue, setInputValue] = useState('');
     const [isFocused, setIsFocused] = useState(false);
     const [isLoading, setIsLoading] = useState(true); 
+    const isWeb = Platform.OS === 'web'; // Check if app is running in a web browser
 
     useEffect(() => {
-        // Hide loading overlay after 2 seconds
         const timer = setTimeout(() => {
-            setIsLoading(false);
+            setIsLoading(false);c
         }, 2000);
 
         return () => clearTimeout(timer);
@@ -20,7 +20,6 @@ const FirstScreen = ({ navigation }) => {
 
     const handleButtonPress = async () => {
         try {
-            // Simulate loading delay
             await new Promise(resolve => setTimeout(resolve, 2000));
 
             const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY);
@@ -47,68 +46,85 @@ const FirstScreen = ({ navigation }) => {
     };
 
     return (
-        <LinearGradient
-            colors={['#293236', '#293236', '#293236']}
-            style={styles.gradient}
-        >
-            <StatusBar backgroundColor="#313b3f" barStyle="light-content" />
-            <View style={styles.container}>
-                <Image
-                    source={require('../assets/screen1bg.png')}
-                    style={styles.image}
-                />
-                {isLoading && ( 
-                    
-                    <View style={styles.loadingOverlay}>
-                        <ActivityIndicator size="large" color="#01E4F3" />
-                    </View>
-                    
-                )}
-                {!isLoading && ( 
-                    <KeyboardAvoidingView
-                        behavior={Platform.OS === 'ios' ? 'padding' : null}
-                        style={styles.contentContainer}
-                        keyboardVerticalOffset={Platform.OS === 'ios' ? -140 : 0} 
-                    >
-                        <Text style={styles.h1}>Swap Exercise</Text>
-                        <Text style={styles.p}>What exercise are you trying to replace?</Text>
-                        <Text style={styles.p}>We'll help you find a substitute!</Text>
-                        <Text style={styles.h2}>Exercise</Text>
-                        <TextInput
-                            onChangeText={text => {
-                                setInputValue(text);
-                                setIsFocused(!!text);
-                            }}
-                            value={inputValue}
-                            placeholder='ex: Bulgarian Split Squat'
-                            placeholderTextColor='lightgray'
-                            style={[
-                                styles.input,
-                                isFocused && styles.inputFocused,
-                            ]}
-                            keyboardShouldPersistTaps='always'
+        <View style={styles.rootContainer}>
+            <View style={isWeb ? styles.webContainer : styles.mobileContainer}>
+                <LinearGradient
+                    colors={['#293236', '#293236', '#293236']}
+                    style={styles.gradient}
+                >
+                    <StatusBar backgroundColor="#313b3f" barStyle="light-content" />
+                    <View style={styles.container}>
+                        <Image
+                            source={require('../assets/screen1bg.png')}
+                            style={styles.image}
                         />
-                    <TouchableOpacity
-                        style={[
-                            styles.button,
-                            !inputValue.trim() && styles.buttonDisabled,
-                            Platform.OS === 'ios' && styles.buttonIOS,
-                        ]}
-                        onPress={handleButtonPress}
-                        disabled={!inputValue.trim()}
-                    >
-                        <Text style={styles.buttonText}>Next</Text>
-                    </TouchableOpacity>
-
-
-                    </KeyboardAvoidingView>
-                )}
+                        {isLoading && ( 
+                            <View style={styles.loadingOverlay}>
+                                <ActivityIndicator size="large" color="#01E4F3" />
+                            </View>
+                        )}
+                        {!isLoading && ( 
+                            <KeyboardAvoidingView
+                                behavior={Platform.OS === 'ios' ? 'padding' : null}
+                                style={styles.contentContainer}
+                                keyboardVerticalOffset={Platform.OS === 'ios' ? -140 : 0} 
+                            >
+                                <Text style={styles.h1}>Swap Exercise</Text>
+                                <Text style={styles.p}>What exercise are you trying to replace?</Text>
+                                <Text style={styles.p}>We'll help you find a substitute!</Text>
+                                <Text style={styles.h2}>Exercise</Text>
+                                <TextInput
+                                    onChangeText={text => {
+                                        setInputValue(text);
+                                        setIsFocused(!!text);
+                                    }}
+                                    value={inputValue}
+                                    placeholder='ex: Bulgarian Split Squat'
+                                    placeholderTextColor='lightgray'
+                                    style={[
+                                        styles.input,
+                                        isFocused && styles.inputFocused,
+                                    ]}
+                                    keyboardShouldPersistTaps='always'
+                                />
+                                <TouchableOpacity
+                                    style={[
+                                        styles.button,
+                                        !inputValue.trim() && styles.buttonDisabled,
+                                        Platform.OS === 'ios' && styles.buttonIOS,
+                                    ]}
+                                    onPress={handleButtonPress}
+                                    disabled={!inputValue.trim()}
+                                >
+                                    <Text style={styles.buttonText}>Next</Text>
+                                </TouchableOpacity>
+                            </KeyboardAvoidingView>
+                        )}
+                    </View>
+                </LinearGradient>
             </View>
-        </LinearGradient>
+        </View>
     );
 };
 
 const styles = StyleSheet.create({
+    rootContainer: {
+        backgroundColor: '#191F21',
+        flex: 1,
+    },
+    webContainer: {
+        width: 370,
+        height: 844,
+        overflow: 'hidden',
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignSelf: 'center',
+    },
+    mobileContainer: {
+        flex: 1,
+    },
     gradient: {
         flex: 1,
     },
@@ -116,14 +132,14 @@ const styles = StyleSheet.create({
         bottom: 115,
         flex: 1,
         justifyContent: 'center',
-        width: 'auto',
+        width: '100%',
         elevation: 10,
     },
     contentContainer: {
         bottom: 30,
         backgroundColor: '#293236',
         borderRadius: 25,
-        width: 393,
+        width: '100%',
         justifyContent: 'top',
         textAlign: 'left',
         alignSelf: 'center',
@@ -131,11 +147,11 @@ const styles = StyleSheet.create({
     image: {
         position: 'relative',
         bottom: 13,
-        width: 500,
+        width: '100%',
         height: 250,
         resizeMode: 'stretch',
         borderBottomWidth: 20,
-        alignSelf: 'center'
+        alignSelf: 'center',
     },
     h1: {
         position: 'relative',
@@ -179,14 +195,14 @@ const styles = StyleSheet.create({
         position: 'relative',
         left: 20,
         borderWidth: 2,
-        width: 350,
+        width: '90%',
         borderRadius: 5,
         borderColor: 'gray',
         backgroundColor: '#293236',
         color: 'white',
         paddingLeft: 10,
         fontSize: 18,
-        textTransform: 'capitalize'
+        textTransform: 'capitalize',
         //fontStyle: 'italic',
     },
     inputFocused: {
@@ -198,7 +214,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
         alignSelf: 'center',
         backgroundColor: '#01E4F3',
-        width: 350,
+        width: '90%',
         height: 45,
         borderRadius: 50,
         justifyContent: 'center',
