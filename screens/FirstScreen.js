@@ -12,7 +12,7 @@ const FirstScreen = ({ navigation }) => {
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            setIsLoading(false);c
+            setIsLoading(false);
         }, 2000);
 
         return () => clearTimeout(timer);
