@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, StatusBar, StyleSheet, Image } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, StatusBar, StyleSheet, Image, Platform } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 const NewSecondScreen = ({ route, navigation }) => {
     const { inputValue } = route.params;
     const [selectedEquipment, setSelectedEquipment] = useState([]);
+    const isWeb = Platform.OS === 'web'; // Check if app is running in a web browser
 
     const predefinedEquipment = [
         { name: "Not Sure", iconGray: require('../assets/QuestionMark_Gray.png'), iconBlue: require('../assets/QuestionMark_Blue.png') },
@@ -57,35 +58,56 @@ const NewSecondScreen = ({ route, navigation }) => {
     });
 
     return (
-        <LinearGradient
-            colors={['#293236', '#293236', '#293236']}
-            style={styles.gradient}
-        >
-            <StatusBar backgroundColor="#313b3f" barStyle="light-content" />
-            <View style={styles.body}>
-                <ScrollView contentContainerStyle={styles.scrollView}>
-                    <View style={styles.headerContainer}>
-                        <Text style={styles.h1}>
-                            What equipment is available for you to use? We'll suggest exercises based on what you select.
-                        </Text>
+        <View style={styles.rootContainer}>
+            <View style={isWeb ? styles.webContainer : styles.mobileContainer}>
+                <LinearGradient
+                    colors={['#293236', '#293236', '#293236']}
+                    style={styles.gradient}
+                >
+                    <StatusBar backgroundColor="#313b3f" barStyle="light-content" />
+                    <View style={styles.body}>
+                        <ScrollView contentContainerStyle={styles.scrollView}>
+                            <View style={styles.headerContainer}>
+                                <Text style={styles.h1}>
+                                    What equipment is available for you to use? We'll suggest exercises based on what you select.
+                                </Text>
+                            </View>
+                            <View style={styles.contentContainer}>
+                                {equipmentNames}
+                            </View>
+                        </ScrollView>
+                        <View style={styles.bottomContainer}>
+                            <TouchableOpacity style={[styles.button, selectedEquipment.length > 0 ? styles.buttonFocused : styles.buttonDisabled]} onPress={handleNext} disabled={selectedEquipment.length === 0}>
+                                <Text style={styles.buttonText}>Find Substitute</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                    <View style={styles.contentContainer}>
-                        {equipmentNames}
-                    </View>
-                </ScrollView>
-                <View style={styles.bottomContainer}>
-                    <TouchableOpacity style={[styles.button, selectedEquipment.length > 0 ? styles.buttonFocused : styles.buttonDisabled]} onPress={handleNext} disabled={selectedEquipment.length === 0}>
-                        <Text style={styles.buttonText}>Find Substitute</Text>
-                    </TouchableOpacity>
-                </View>
+                </LinearGradient>
             </View>
-        </LinearGradient>
+        </View>
     );
 }
 
 const styles = StyleSheet.create({
+    rootContainer: {
+        backgroundColor: '#191F21',
+        flex: 1,
+    },
+    webContainer: {
+        width: 390,
+        height: 844,
+        overflow: 'hidden',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignSelf: 'center',
+        paddingHorizontal: 10
+    },
+    mobileContainer: {
+        flex: 1,
+    },
     gradient: {
-        flex: 1,       
+        flex: 1,
     },
     body: {
         flex: 1,
@@ -116,7 +138,9 @@ const styles = StyleSheet.create({
         textAlign: 'left',
         paddingHorizontal: 3,
         paddingTop: 25,
-        paddingBottom: 20
+        paddingBottom: 20,
+        width: 350, 
+        flexWrap: 'wrap', 
     },
     scrollView: {
         flexGrow: 1,

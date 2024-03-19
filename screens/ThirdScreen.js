@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView, StatusBar } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, StatusBar, Platform } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Entypo } from '@expo/vector-icons';
 import { GoogleGenerativeAI } from "@google/generative-ai";
@@ -8,6 +8,7 @@ const ThirdScreen = ({ route, navigation }) => {
     const { selectedEquipment, inputValue } = route.params;
     const [listOfExercises, setListOfExercises] = useState('');
     const [selectedExercise, setSelectedExercise] = useState(null);
+    const isWeb = Platform.OS === 'web'; // Check if app is running in a web browser
 
     const GOOGLE_API_KEY = process.env.EXPO_PUBLIC_GOOGLE_API_KEY;
 
@@ -65,38 +66,58 @@ const ThirdScreen = ({ route, navigation }) => {
     });
 
     return (
-        <LinearGradient
-            colors={['#293236', '#293236', '#293236']}
-            style={styles.gradient}
-        >
-            <StatusBar backgroundColor="#313b3f" barStyle="light-content" />
-            <View style={styles.body}>
-                <ScrollView style={styles.scrollView}>
-                    <Text style={styles.h1}>
-                        {exerciseCards.length} Substitutes for <Text style={styles.inputValue}>{inputValue}</Text>
-                    </Text>
-                    {exerciseCards}
-                </ScrollView>
+        <View style={styles.rootContainer}>
+            <View style={isWeb ? styles.webContainer : styles.mobileContainer}>
+                <LinearGradient
+                    colors={['#293236', '#293236', '#293236']}
+                    style={styles.gradient}
+                >
+                    <StatusBar backgroundColor="#313b3f" barStyle="light-content" />
+                    <View style={styles.body}>
+                        <ScrollView style={styles.scrollView}>
+                            <Text style={styles.h1}>
+                                {exerciseCards.length} Substitutes for <Text style={styles.inputValue}>{inputValue}</Text>
+                            </Text>
+                            {exerciseCards}
+                        </ScrollView>
+                    </View>
+                </LinearGradient>
             </View>
-        </LinearGradient>
+        </View>
     );
 };
 
 const styles = StyleSheet.create({
+    rootContainer: {
+        backgroundColor: '#191F21',
+        flex: 1,
+    },
+    webContainer: {
+        width: 390,
+        height: 844,
+        overflow: 'hidden',
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignSelf: 'center',
+    },
+    mobileContainer: {
+        flex: 1,
+    },
     gradient: {
         flex: 1,
     },
     body: {
         flex: 1,
-        alignItems: 'center',
-        paddingHorizontal: 15,
+        alignSelf: 'center',
     },
     h1: {
         fontSize: 20,
         color: '#fff',
         fontWeight: '400',
         marginVertical: 10,
-        marginLeft: 10,
+        marginLeft: '5%',
         textAlign: 'left',
         paddingVertical: 10,
     },
@@ -104,18 +125,19 @@ const styles = StyleSheet.create({
         textTransform: 'capitalize'
     },
     scrollView: {
-        width: '100%',
+        width: 390,
         flex: 1,
         paddingBottom: 10,
     },
     item: {
         flexDirection: 'row',
         alignItems: 'center',
-        width: 'auto',
+        alignSelf: 'center',
+        width: '90%',
         height: 90,
         borderWidth: 1,
         borderColor: 'white',
-        padding: 12,
+        padding: '5%',
         paddingBottom: 40,
         margin: 8,
         backgroundColor: '#2a3a40',
