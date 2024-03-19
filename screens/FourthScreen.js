@@ -124,7 +124,7 @@ const FourthScreen = ({ route, navigation }) => {
     };
 
     useEffect(() => {
-        // fetchVideo(); // ONLY ENABLE THIS WHEN FULL TESTING(WE CAN ONLY FETCH SEARCH 100/Day)
+       // fetchVideo(); // ONLY ENABLE THIS WHEN FULL TESTING(WE CAN ONLY FETCH SEARCH 100/Day)
         fetchInstructions();
         
         navigation.setOptions({
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
     },
     webContainer: {
         width: 390,
-        height: 844,
+        height: 660,
         overflow: 'hidden',
         display: 'flex',
         justifyContent: 'center',
@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
     container: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingHorizontal: 20,
+        paddingHorizontal: '5%',
     },
     videoContainer: {
         width: '100%',
@@ -236,7 +236,8 @@ const styles = StyleSheet.create({
     },
     instructionsContainer: {
         bottom: '5%',
-        padding: 12,
+        paddingTop: '10%',
+        padding: '5%',
         width: '100%',
         backgroundColor: '#293236',
     },

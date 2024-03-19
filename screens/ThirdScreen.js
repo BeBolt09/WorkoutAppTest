@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     },
     webContainer: {
         width: 390,
-        height: 844,
+        height: 660,
         overflow: 'hidden',
         display: 'flex',
         flexWrap: 'wrap',
