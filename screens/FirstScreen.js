@@ -19,31 +19,7 @@ const FirstScreen = ({ navigation }) => {
     }, []);
 
     const handleButtonPress = async () => {
-        try {
-            // Simulate loading delay
-            await new Promise(resolve => setTimeout(resolve, 2000));
-
-            const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY);
-            const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
-            const generationConfig = {
-                temperature: 0.0,
-                topK: 1,
-                topP: 1,
-                maxOutputTokens: 2048,
-            };
-            const parts = [
-                { text: `Give me a List of 10 exercises names that can substitute this exercise: ${inputValue}` },
-            ];
-            const result = await model.generateContent({
-                contents: [{ role: "user", parts }],
-                generationConfig,
-            });
-            const response = result.response;
-            navigation.navigate('SecondScreen', { geminiOutput1: response.text(), inputValue });
-        } catch (error) {
-            console.error('Error generating response:', error);
-            handleButtonPress();
-        }
+            navigation.navigate('SecondScreen', { inputValue });
     };
 
     return (
