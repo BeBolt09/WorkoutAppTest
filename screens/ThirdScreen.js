@@ -24,7 +24,7 @@ const ThirdScreen = ({ route, navigation }) => {
                     maxOutputTokens: 2048,
                 };
                 const parts = [
-                    { text: `only having access to these pieces of equipment: ${selectedEquipment} Give me list of exercise names that could substitute this exercise: ${inputValue} And still target the same muscle group. when you give the names of the exercises Don't include numbering or '-' or '*' at the beginning of the exercise names` },
+                    { text: `only having access to these pieces of equipment: ${selectedEquipment} Give me list of exercise names that could substitute this exercise: ${inputValue} And still target the same muscle group. ONLY give the NAMES of the exercises, DON'T include numbering or '-' or '*'.` },
                 ];
                 const result = await model.generateContent({
                     contents: [{ role: "user", parts }],
