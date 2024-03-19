@@ -124,7 +124,7 @@ const FourthScreen = ({ route, navigation }) => {
     };
 
     useEffect(() => {
-       // fetchVideo(); // ONLY ENABLE THIS WHEN FULL TESTING(WE CAN ONLY FETCH SEARCH 100/Day)
+        fetchVideo(); // ONLY ENABLE THIS WHEN FULL TESTING(WE CAN ONLY FETCH SEARCH 100/Day)
         fetchInstructions();
         
         navigation.setOptions({

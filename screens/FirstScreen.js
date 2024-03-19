@@ -19,6 +19,7 @@ const FirstScreen = ({ navigation }) => {
     }, []);
 
     const handleButtonPress = async () => {
+
         try {
             await new Promise(resolve => setTimeout(resolve, 2000));
 
@@ -43,6 +44,9 @@ const FirstScreen = ({ navigation }) => {
             console.error('Error generating response:', error);
             handleButtonPress();
         }
+
+            navigation.navigate('SecondScreen', { inputValue });
+
     };
 
     return (
