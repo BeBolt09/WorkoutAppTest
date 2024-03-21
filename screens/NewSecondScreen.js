@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     },
     webContainer: {
         width: 390,
-        height: 660,
+        height: 510,
         overflow: 'hidden',
         display: 'flex',
         justifyContent: 'center',
@@ -112,15 +112,14 @@ const styles = StyleSheet.create({
     body: {
         flex: 1,
         justifyContent: 'center',
-        paddingHorizontal: 10,
     },
     contentContainer: {
         flexDirection: 'row',
         flexWrap: 'wrap',
         alignItems: 'center',
         paddingBottom: 100,
-        width: 390,
-        left: 20,
+        width: '100%',
+        marginLeft: '5%'
     },
     bottomContainer: {
         position: 'absolute',
@@ -197,7 +196,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         marginTop: 10,
         alignSelf: 'center',
-        width: 350,
+        width: '85%',
         height: 45,
         borderRadius: 50,
         justifyContent: 'center',
