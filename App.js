@@ -59,7 +59,7 @@ export default function App() {
             headerTitleAlign: 'center',
             headerTitleStyle: { fontSize: 25 },
             headerBackTitleStyle: { fontSize: 0.01 },
-            headerLeftContainerStyle: { paddingLeft: 17, paddingBottom: 10 },
+            headerLeftContainerStyle: { paddingLeft: '5%', paddingBottom: 10 },
             headerRightContainerStyle: { paddingRight: 17,},
             headerTitleContainerStyle: { paddingBottom: 10 },
           })}
@@ -83,7 +83,7 @@ export default function App() {
             headerTitleAlign: 'center',
             headerTitleStyle: { fontSize: 25 },
             headerBackTitleStyle: { fontSize: 0.01 },
-            headerLeftContainerStyle: { paddingLeft: 17, paddingBottom: 10 },
+            headerLeftContainerStyle: { paddingLeft: '5%', paddingBottom: 10 },
             headerRightContainerStyle: { paddingRight: 17,},
             headerTitleContainerStyle: { paddingBottom: 10 },          
             })}
@@ -106,7 +106,7 @@ export default function App() {
             headerTitleAlign: 'center',
             headerTitleStyle: { fontSize: 25 },
             headerBackTitleStyle: { fontSize: 0.01 },
-            headerLeftContainerStyle: { paddingLeft: 17, paddingBottom: 10 },
+            headerLeftContainerStyle: { paddingLeft: '5%', paddingBottom: 10 },
             headerRightContainerStyle: { paddingRight: 17,},
             headerTitleContainerStyle: { paddingBottom: 10 },              
             headerRight: () => (
@@ -115,7 +115,7 @@ export default function App() {
                 size={27}
                 right={8}
                 color="white"
-                style={{ right: 15, bottom: 4 }}
+                style={{ right: '9%', bottom: 4 }}
                 onPress={() => {
                   navigation.navigate('SearchScreen');
                 }}

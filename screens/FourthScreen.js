@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
     },
     webContainer: {
         width: 390,
-        height: 660,
+        height: 510,
         overflow: 'hidden',
         display: 'flex',
         justifyContent: 'center',
@@ -204,14 +204,14 @@ const styles = StyleSheet.create({
     videoInfoContainer: {
         flexDirection: 'row',
         alignItems: 'top',
-        bottom: '16%'
+        bottom: '15%'
     },
     channelIcon: {
-        width: 50,
-        height: 50,
-        borderRadius: 25,
+        width: 60,
+        height: 60,
+        borderRadius: 30,
         marginRight: "3%",
-        marginLeft: "3%",
+        marginLeft: "7%",
     },
     channelTitle: {
         fontSize: 14,
@@ -229,17 +229,20 @@ const styles = StyleSheet.create({
         color: 'white',
     },
     separator: {
-        bottom: '3%',
+        paddingBottom: '0%',
         borderWidth: 0.5,
         borderColor: '#fff',
         marginBottom: '0%',
+        bottom: Platform.OS === 'web' ? '10%' : "0%",
     },
     instructionsContainer: {
-        bottom: '5%',
-        paddingTop: '10%',
+        bottom:  Platform.OS === 'web' ? '10%' : "0%",
+        paddingTop: '15%',
         padding: '5%',
         width: '100%',
         backgroundColor: '#293236',
+        marginLeft: "7%",
+
     },
     instructionsTitle: {
         fontSize: 20,
