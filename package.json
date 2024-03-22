@@ -24,6 +24,7 @@
     "react-native": "0.73.4",
     "react-native-gesture-handler": "~2.14.0",
     "react-native-markdown-display": "^7.0.2",
+    "react-native-radial-gradient": "^1.1.4",
     "react-native-web": "~0.19.6",
     "react-native-web-webview": "^1.0.2",
     "react-native-webview": "^13.8.1",
