@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView, StatusBar, Platform } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, StatusBar, Platform } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Entypo } from '@expo/vector-icons';
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { GlobalStyles, ThirdScreenStyles } from '../Styles';
 
 const ThirdScreen = ({ route, navigation }) => {
     const { selectedEquipment, inputValue } = route.params;
     const [listOfExercises, setListOfExercises] = useState('');
     const [selectedExercise, setSelectedExercise] = useState(null);
-    const isWeb = Platform.OS === 'web'; // Check if app is running in a web browser
+    const isWeb = Platform.OS === 'web';
 
     const GOOGLE_API_KEY = process.env.EXPO_PUBLIC_GOOGLE_API_KEY;
 
@@ -48,14 +49,14 @@ const ThirdScreen = ({ route, navigation }) => {
     const exerciseCards = listOfExercises.split('\n').map((exercise, index) => {
         const cleanedExercise = exercise.replace(/^[-*]\s*/, '');
         const isSelected = cleanedExercise === selectedExercise;
-        const textDecorationStyle = /^[-*\d]/.test(exercise) ? {} : styles.itemText;
-        const itemStyle = isSelected ? styles.selectedItem : null;
-        const arrowContainerStyle = isSelected ? [styles.selectedArrowContainer, styles.selectedArrowColor] : styles.arrowContainer;
+        const textDecorationStyle = /^[-*\d]/.test(exercise) ? {} : ThirdScreenStyles.itemText; 
+        const itemStyle = isSelected ? ThirdScreenStyles.selectedItem : null; 
+        const arrowContainerStyle = isSelected ? [ThirdScreenStyles.selectedArrowContainer, ThirdScreenStyles.selectedArrowColor] : ThirdScreenStyles.arrowContainer; 
 
         return (
             <TouchableOpacity key={index} onPress={() => handleExerciseSelection(cleanedExercise)}>
-                <View style={[styles.item, itemStyle]}>
-                    <Text style={[styles.itemText, textDecorationStyle]} numberOfLines={1}>
+                <View style={[ThirdScreenStyles.item, itemStyle]}> 
+                    <Text style={[ThirdScreenStyles.itemText, textDecorationStyle]} numberOfLines={1}> 
                         {exercise}
                     </Text>
                     <View style={arrowContainerStyle}>
@@ -67,17 +68,17 @@ const ThirdScreen = ({ route, navigation }) => {
     });
 
     return (
-        <View style={styles.rootContainer}>
-            <View style={isWeb ? styles.webContainer : styles.mobileContainer}>
+        <View style={GlobalStyles.rootContainer}> 
+            <View style={isWeb ? GlobalStyles.webContainer : GlobalStyles.mobileContainer}> 
                 <LinearGradient
-                    colors={['#293236', '#293236', '#293236']}
-                    style={styles.gradient}
+                    colors={GlobalStyles.gradient.colors}
+                    style={GlobalStyles.gradient} 
                 >
                     <StatusBar backgroundColor="#313b3f" barStyle="light-content" />
-                    <View style={styles.body}>
-                        <ScrollView style={styles.scrollView}>
-                            <Text style={styles.h1}>
-                                {exerciseCards.length} Substitutes for <Text style={styles.inputValue}>{inputValue}</Text>
+                    <View style={ThirdScreenStyles.body}> 
+                        <ScrollView style={ThirdScreenStyles.scrollView}> 
+                            <Text style={ThirdScreenStyles.h2}>
+                                {exerciseCards.length} Substitutes for <Text style={ThirdScreenStyles.inputValue}>{inputValue}</Text>
                             </Text>
                             {exerciseCards}
                         </ScrollView>
@@ -87,103 +88,5 @@ const ThirdScreen = ({ route, navigation }) => {
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    rootContainer: {
-        backgroundColor: '#191F21',
-        flex: 1,
-    },
-    webContainer: {
-        width: 390,
-        height: 510,
-        overflow: 'hidden',
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        alignItems: 'center',
-        alignSelf: 'center',
-    },
-    mobileContainer: {
-        flex: 1,
-    },
-    gradient: {
-        flex: 1,
-    },
-    body: {
-        flex: 1,
-        alignSelf: 'center',
-    },
-    h1: {
-        fontSize: 20,
-        color: '#fff',
-        fontWeight: '400',
-        marginVertical: 10,
-        marginLeft: '7%',
-        textAlign: 'left',
-        paddingVertical: 10,
-    },
-    inputValue: {
-        textTransform: 'capitalize'
-    },
-    scrollView: {
-        width: 390,
-        flex: 1,
-        paddingBottom: 10,
-    },
-    item: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        alignSelf: 'center',
-        width: '85%',
-        height: 90,
-        borderWidth: 1,
-        borderColor: 'white',
-        padding: '5%',
-        paddingBottom: 40,
-        margin: 8,
-        backgroundColor: '#2a3a40',
-        borderRadius: 15,
-        elevation: 2,
-    },
-    itemText: {
-        color: 'white',
-        fontSize: 18,
-        fontWeight: '600',
-        textAlign: 'left',
-        textTransform: 'capitalize',
-        flex: 1,
-        flexWrap: 'wrap',
-    },
-    selectedItem: {
-        borderColor: '#01E4F3',
-        backgroundColor: '#2c535e',
-        borderWidth: 1.5,
-    },
-    arrowContainer: {
-        backgroundColor: '#3f4e53',
-        borderRadius: 50,
-        padding: 0,
-        marginLeft: 'auto',
-        width: 28,
-        height: 28,
-        alignSelf: 'center',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    selectedArrowContainer: {
-        backgroundColor: '#6b868e',
-        borderRadius: 50,
-        padding: 0,
-        marginLeft: 'auto',
-        width: 28,
-        height: 28,
-        alignSelf: 'center',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    selectedArrowColor: {
-        color: '#fff',
-    },
-});
 
 export default ThirdScreen;

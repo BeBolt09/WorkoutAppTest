@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { View, Image, Text, StyleSheet, ScrollView, StatusBar, Platform } from 'react-native';
+import { View, Image, Text, ScrollView, StatusBar, Platform } from 'react-native';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import axios from 'axios';
 import YoutubeIframe from 'react-native-youtube-iframe';
 import { LinearGradient } from 'expo-linear-gradient';
+import { GlobalStyles, FourthScreenStyles } from '../Styles';
 
 const FourthScreen = ({ route, navigation }) => {
     const YOUTUBE_API_KEY = process.env.EXPO_PUBLIC_YOUTUBE_API_KEY;
@@ -133,32 +134,32 @@ const FourthScreen = ({ route, navigation }) => {
     }, []); // Empty dependency array to trigger effect only once when component mounts
 
     return (
-        <View style={styles.rootContainer}>
-            <View style={Platform.OS === 'web' ? styles.webContainer : styles.mobileContainer}>
+        <View style={GlobalStyles.rootContainer}>
+            <View style={Platform.OS === 'web' ? GlobalStyles.webContainer : GlobalStyles.mobileContainer}>
                 <LinearGradient
-                    colors={['#293236', '#293236', '#293236']}
-                    style={styles.gradient}
+                    colors={GlobalStyles.gradient.colors}
+                    style={GlobalStyles.gradient}
                 >
                     <StatusBar backgroundColor="#313b3f" barStyle="light-content" />
                     {showVideo && (
-                        <View style={styles.videoContainer}>
-                            <YoutubeIframe height={300} width={400} play videoId={videoWeShow.videoId} />
-                            <View style={styles.videoInfoContainer}>
-                                <Image source={{ uri: videoWeShow.channelIcon }} style={styles.channelIcon} />
-                                <View style={styles.videoTextContainer}>
-                                    <Text style={styles.videoTitle}>{videoWeShow.title}</Text>
-                                    <Text style={styles.channelTitle}>{videoWeShow.channelTitle}</Text>
-                                    <Text style={styles.videoDetails}>{videoWeShow.views} • {videoWeShow.datePublished}</Text>
+                        <View style={FourthScreenStyles.videoContainer}>
+                            <YoutubeIframe height={300} width={Platform.OS === 'web' ? 370 : 400} play videoId={videoWeShow.videoId} />
+                            <View style={FourthScreenStyles.videoInfoContainer}>
+                                <Image source={{ uri: videoWeShow.channelIcon }} style={FourthScreenStyles.channelIcon} />
+                                <View style={FourthScreenStyles.videoTextContainer}>
+                                    <Text style={FourthScreenStyles.videoTitle}>{videoWeShow.title}</Text>
+                                    <Text style={FourthScreenStyles.channelTitle}>{videoWeShow.channelTitle}</Text>
+                                    <Text style={FourthScreenStyles.videoDetails}>{videoWeShow.views} • {videoWeShow.datePublished}</Text>
                                 </View>
                             </View>
                         </View>
                     )}
 
-                    <View style={styles.separator}></View>
-                    <ScrollView contentContainerStyle={styles.container}>
-                        <View style={styles.instructionsContainer}>
-                            <Text style={styles.instructionsTitle}>Instructions:</Text>
-                            <Text style={styles.instructions}>
+                    <View style={FourthScreenStyles.separator}></View>
+                    <ScrollView contentContainerStyle={FourthScreenStyles.container}>
+                        <View style={FourthScreenStyles.instructionsContainer}>
+                            <Text style={FourthScreenStyles.instructionsTitle}>Instructions:</Text>
+                            <Text style={FourthScreenStyles.instructions}>
                                 {geminiInstructions}
                             </Text>
                         </View>
@@ -168,98 +169,5 @@ const FourthScreen = ({ route, navigation }) => {
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    rootContainer: {
-        backgroundColor: '#191F21',
-        flex: 1,
-    },
-    webContainer: {
-        width: 390,
-        height: 510,
-        overflow: 'hidden',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        alignSelf: 'center',
-    },
-    mobileContainer: {
-        flex: 1,
-    },
-    gradient: {
-        flex: 1,
-    },
-    container: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingHorizontal: '5%',
-    },
-    videoContainer: {
-        width: '100%',
-        alignItems: 'center',
-    },
-    videoTextContainer: {
-        flex: 1,
-    },
-    videoInfoContainer: {
-        flexDirection: 'row',
-        alignItems: 'top',
-        bottom: '15%'
-    },
-    channelIcon: {
-        width: 60,
-        height: 60,
-        borderRadius: 30,
-        marginRight: "3%",
-        marginLeft: "7%",
-    },
-    channelTitle: {
-        fontSize: 14,
-        fontWeight: '400',
-        color: 'white',
-    },
-    videoTitle: {
-        color: 'white',
-        marginBottom: '2%',
-        fontSize: 18,
-        fontWeight: '600',
-    },
-    videoDetails: {
-        fontSize: 14,
-        color: 'white',
-    },
-    separator: {
-        paddingBottom: '0%',
-        borderWidth: 0.5,
-        borderColor: '#fff',
-        marginBottom: '0%',
-        bottom: Platform.OS === 'web' ? '10%' : "0%",
-    },
-    instructionsContainer: {
-        bottom:  Platform.OS === 'web' ? '10%' : "0%",
-        paddingTop: '15%',
-        padding: '5%',
-        width: '100%',
-        backgroundColor: '#293236',
-        marginLeft: "7%",
-
-    },
-    instructionsTitle: {
-        fontSize: 20,
-        fontWeight: '400',
-        color: '#fff',
-        marginBottom: 15,
-        right: '5%'
-    },
-    instructions: {
-        fontSize: 16,
-        fontWeight: '400',
-        color: '#fff',
-        marginBottom: 5,
-        paddingBottom: 5,
-        textAlign: 'left',
-        lineHeight: 25,
-    },
-});
 
 export default FourthScreen;

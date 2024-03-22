@@ -1,4 +1,4 @@
-// import InitialDemo from './Components/InintialDemo'
+//App.js
 
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
@@ -32,7 +32,7 @@ export default function App() {
               shadowOffset: Platform.OS === 'ios' ? { width: 0, height: 2 } : undefined, 
               shadowOpacity: Platform.OS === 'ios' ? 0.25 : undefined, 
               shadowRadius: Platform.OS === 'ios' ? 3.84 : undefined, 
-              height: Platform.OS === 'android' ? 12 : 50,
+              height: Platform.OS === 'web' ? 0 : (Platform.OS === 'android' ? 12 : 50),
               width: Platform.OS === 'web' ? 390 : undefined,
             },
             headerTintColor: 'white',
@@ -52,15 +52,17 @@ export default function App() {
               shadowColor: Platform.OS === 'ios' ? '#000' : 'rgba(0, 0, 0, 0.3)',              
               shadowOffset: Platform.OS === 'ios' ? { width: 0, height: 2 } : undefined, 
               shadowOpacity: Platform.OS === 'ios' ? 0.25 : undefined, 
-              shadowRadius: Platform.OS === 'ios' ? 3.84 : undefined, 
-              height: Platform.OS === 'android' ? 60 : 110,
+              shadowRadius: Platform.OS === 'ios' ? 3.84 : undefined,
+              height: Platform.OS === 'web' ? 60 : (Platform.OS === 'android' ? 60 : 110), 
+              
             },            
             headerTintColor: 'white',
             headerTitleAlign: 'center',
             headerTitleStyle: { fontSize: 25 },
             headerBackTitleStyle: { fontSize: 0.01 },
-            headerLeftContainerStyle: { paddingLeft: '5%', paddingBottom: 10 },
-            headerRightContainerStyle: { paddingRight: 17,},
+            headerLeftContainerStyle: { paddingLeft: Platform.OS === 'web' ? '1%' : '5%', 
+                                        paddingBottom: 10 },
+            headerRightContainerStyle: { paddingRight: Platform.OS === 'web' ? '1%' : 17 },
             headerTitleContainerStyle: { paddingBottom: 10 },
           })}
         />
@@ -77,14 +79,15 @@ export default function App() {
               shadowOffset: Platform.OS === 'ios' ? { width: 0, height: 2 } : undefined, 
               shadowOpacity: Platform.OS === 'ios' ? 0.25 : undefined, 
               shadowRadius: Platform.OS === 'ios' ? 3.84 : undefined, 
-              height: Platform.OS === 'android' ? 60 : 110,
+              height: Platform.OS === 'web' ? 60 : (Platform.OS === 'android' ? 60 : 110), 
             },              
             headerTintColor: 'white',
             headerTitleAlign: 'center',
             headerTitleStyle: { fontSize: 25 },
             headerBackTitleStyle: { fontSize: 0.01 },
-            headerLeftContainerStyle: { paddingLeft: '5%', paddingBottom: 10 },
-            headerRightContainerStyle: { paddingRight: 17,},
+            headerLeftContainerStyle: { paddingLeft: Platform.OS === 'web' ? '1%' : '5%',
+                                        paddingBottom: 10 },
+            headerRightContainerStyle: { paddingRight: Platform.OS === 'web' ? '1%' : 17 },
             headerTitleContainerStyle: { paddingBottom: 10 },          
             })}
         />
@@ -100,14 +103,14 @@ export default function App() {
               shadowOffset: Platform.OS === 'ios' ? { width: 0, height: 2 } : undefined, 
               shadowOpacity: Platform.OS === 'ios' ? 0.25 : undefined, 
               shadowRadius: Platform.OS === 'ios' ? 3.84 : undefined, 
-              height: Platform.OS === 'android' ? 60 : 110,
+              height: Platform.OS === 'web' ? 60 : (Platform.OS === 'android' ? 60 : 110), 
             },              
             headerTintColor: 'white',
             headerTitleAlign: 'center',
             headerTitleStyle: { fontSize: 25 },
             headerBackTitleStyle: { fontSize: 0.01 },
-            headerLeftContainerStyle: { paddingLeft: '5%', paddingBottom: 10 },
-            headerRightContainerStyle: { paddingRight: 17,},
+            headerLeftContainerStyle: { paddingLeft: Platform.OS === 'web' ? '1%' : '5%', paddingBottom: 10 },
+            headerRightContainerStyle: { paddingRight: Platform.OS === 'web' ? '1%' : 17 },
             headerTitleContainerStyle: { paddingBottom: 10 },              
             headerRight: () => (
               <Feather
@@ -138,7 +141,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   innerContainer: {
-    width: Platform.OS === 'web' ? 390 : '100%',
+    width: Platform.OS === 'web' ? 340 : '100%',  
     alignSelf: 'center',
     height: '100%',
     alignContent: 'flex-end',
