@@ -405,5 +405,36 @@ const FourthScreenStyles = StyleSheet.create({
       textAlign: 'left',
       lineHeight: 25,
   },
+  tabContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    backgroundColor: '#293236',
+    height: 50,
+  },
+  tab: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: 'fff',
+},
+activeTab: {
+    borderBottomWidth: 1.5,
+    borderBottomColor: 'white',
+  },
+  tabText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#fff',
+    paddingBottom: '2%'
+  },
+  imageContainer: {
+      backgroundColor: '#293236',
+      height: '100%'
+  },
+  muscleTab: {
+      backgroundColor: '#293236',
+  },
 });
+
 export { GlobalStyles ,FirstScreenStyles, NewSecondScreenStyles, ThirdScreenStyles, FourthScreenStyles };
