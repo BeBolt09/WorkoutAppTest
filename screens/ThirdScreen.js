@@ -36,6 +36,7 @@ const ThirdScreen = ({ route, navigation }) => {
                 console.log(response.text())
             } catch (error) {
                 console.error('Error generating response:', error);
+                getListOfExercises();
             }
         };
         getListOfExercises();
