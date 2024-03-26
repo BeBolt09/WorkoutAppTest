@@ -84,6 +84,7 @@ const FourthScreen = ({ route, navigation }) => {
 
     const [showVideo, setShowVideo] = useState(false);
     const [videoWeShow, setVideo] = useState(null);
+    const [youtubeTitle, setYoutubeTitle] = useState(null);
     const GOOGLE_API_KEY = process.env.EXPO_PUBLIC_GOOGLE_API_KEY;
     const [geminiInstructions, setGeminiInstructions] = useState("");
     
