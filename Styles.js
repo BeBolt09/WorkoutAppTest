@@ -421,6 +421,7 @@ const FourthScreenStyles = StyleSheet.create({
 activeTab: {
     borderBottomWidth: 1.5,
     borderBottomColor: 'white',
+    //textDecorationStyle: 'none'
   },
   tabText: {
     fontSize: 16,
