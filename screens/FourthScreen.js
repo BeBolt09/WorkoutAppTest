@@ -224,8 +224,8 @@ const FourthScreen = ({ route, navigation }) => {
 
         {displayMuscles && <View style={FourthScreenStyles.imageContainer}>
             <MuscleGroupImage muscleGroup={muscleGroup}/>
-        </View>}
         <Text style={FourthScreenStyles.targetedAreaText}>Targeted Area:<Text style={FourthScreenStyles.muscleText}> {muscleGroup}</Text></Text>
+        </View>}
         
     </>
     );
