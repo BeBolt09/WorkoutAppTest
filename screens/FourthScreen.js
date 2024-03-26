@@ -199,19 +199,19 @@ const FourthScreen = ({ route, navigation }) => {
 
     return (
     <>
-        <View style={styles.container}>
-            <TouchableOpacity
-                style={[styles.tab, activeTab === 'Tab1' && styles.activeTab]}
-                onPress={() => handleTabPress('Tab1')}
-            >
-                <Text style={styles.tabText}>Video Instructions</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-                style={[styles.tab, activeTab === 'Tab2' && styles.activeTab]}
-                onPress={() => handleTabPress('Tab2')}
-            >
-                <Text style={styles.tabText}>Muscles</Text>
-            </TouchableOpacity>
+        <View style={FourthScreenStyles.tabContainer}>
+        <TouchableOpacity
+    style={[FourthScreenStyles.tab, activeTab === 'Tab1' && FourthScreenStyles.activeTab]}
+    onPress={() => handleTabPress('Tab1')}
+>
+    <Text style={[FourthScreenStyles.tabText, activeTab === 'Tab1' && FourthScreenStyles.activeTabText]}>Video Instructions</Text>
+</TouchableOpacity>
+<TouchableOpacity
+    style={[FourthScreenStyles.tab, activeTab === 'Tab2' && FourthScreenStyles.activeTab]}
+    onPress={() => handleTabPress('Tab2')}
+>
+    <Text style={[FourthScreenStyles.tabText, activeTab === 'Tab2' && FourthScreenStyles.activeTabText]}>Muscles</Text>
+</TouchableOpacity>
         </View>
     
         {displayVideo &&    <View style={GlobalStyles.rootContainer}>
@@ -248,35 +248,11 @@ const FourthScreen = ({ route, navigation }) => {
             </View>
         </View>}
 
-        {displayMuscles && <View>
+        {displayMuscles && <View style={FourthScreenStyles.imageContainer}>
             <MuscleGroupImage muscleGroup={muscleGroup}/>
         </View>}
     </>
     );
 };
-
-
-const styles = StyleSheet.create({
-    container: {
-      flexDirection: 'row',
-      justifyContent: 'space-around',
-      alignItems: 'center',
-      backgroundColor: '#eee',
-      height: 50,
-    },
-    tab: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    activeTab: {
-      borderBottomWidth: 2,
-      borderBottomColor: 'blue',
-    },
-    tabText: {
-      fontSize: 16,
-      fontWeight: 'bold',
-    },
-  });
 
 export default FourthScreen;

@@ -14,6 +14,10 @@ const MuscleGroupImage = ({ muscleGroup }) => {
       const response = await axios.get(
         `https://muscle-group-image-generator.p.rapidapi.com/getImage?muscleGroups=${muscleGroup}`,
         {
+          params: {
+            color: '1,228,243',  
+            transparentBackground: '1', 
+          },
           headers: {
             'X-RapidAPI-Key': '485940b71bmsh643dd5fbc0bef25p1b23acjsnb16aee981e44',
             'X-RapidAPI-Host': 'muscle-group-image-generator.p.rapidapi.com',
@@ -36,8 +40,9 @@ const MuscleGroupImage = ({ muscleGroup }) => {
   return image ? (
     <Image
       source={{ uri: `data:image/jpeg;base64,${image}` }}
-      style={{ width: 200, height: 200 }} // Adjust dimensions as needed
+      style={{ width: 400, height: 400 }} // Adjust dimensions as needed
       resizeMode="contain" // or other appropriate resizeMode
+
     />
   ) : null;
 };

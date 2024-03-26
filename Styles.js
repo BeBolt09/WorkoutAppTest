@@ -435,6 +435,38 @@ activeTab: {
   muscleTab: {
       backgroundColor: '#293236',
   },
+  //------MUSCLE TAB-------------
+  tabContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    backgroundColor: '#eee',
+    height: 50,
+  },
+  tab: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#293236',
+    height: '100%',
+  },
+  activeTab: {
+    borderBottomWidth: 2,
+    borderBottomColor: '#01E4F3',
+    backgroundColor: '#2c535e'
+  },
+  tabText: {
+      fontSize: 16,
+      fontWeight: 'bold',
+      color: '#fff',
+  },
+  activeTabText: {
+      color: '#01E4F3',
+  },
+  imageContainer: {
+      backgroundColor: '#293236',
+      height: '100%',
+  },
 });
 
 export { GlobalStyles ,FirstScreenStyles, NewSecondScreenStyles, ThirdScreenStyles, FourthScreenStyles };
