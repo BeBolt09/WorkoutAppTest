@@ -17,6 +17,7 @@ import { GlobalStyles, FourthScreenStyles } from "../Styles";
 import MuscleGroupImage from "../Components/MuscleGen";
 
 const FourthScreen = ({ route, navigation }) => {
+
   const YOUTUBE_API_KEY = process.env.EXPO_PUBLIC_YOUTUBE_API_KEY;
   const { selectedExercise } = route.params;
 
@@ -77,6 +78,50 @@ const FourthScreen = ({ route, navigation }) => {
             maxResults: 1,
             type: "video",
           },
+
+    const YOUTUBE_API_KEY = process.env.EXPO_PUBLIC_YOUTUBE_API_KEY;
+    const { selectedExercise } = route.params;
+
+    const [showVideo, setShowVideo] = useState(false);
+    const [videoWeShow, setVideo] = useState(null);
+    const GOOGLE_API_KEY = process.env.EXPO_PUBLIC_GOOGLE_API_KEY;
+    const [geminiInstructions, setGeminiInstructions] = useState("");
+    
+    const [displayVideo,setDisplayVideo] = useState(true)
+    const [displayMuscles,setDisplayMuscles] = useState(false)
+
+    const [activeTab, setActiveTab] = useState('Tab1');
+
+    const handleTabPress = (tabName) => {
+      setActiveTab(tabName);
+      setDisplayVideo(!displayVideo);
+      setDisplayMuscles(!displayMuscles);
+    };
+
+    const fetchInstructions = async () => {
+        try {
+            const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY);
+            const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+            const generationConfig = {
+                temperature: 0.0,
+                topK: 1,
+                topP: 1,
+                maxOutputTokens: 2048,
+            };
+            const parts = [
+                { text: `step by step instructions on how to perform : ${selectedExercise}, NO TIPS OR ANY ADDITIONAL INFORMATION` },
+            ];
+            const result = await model.generateContent({
+                contents: [{ role: "user", parts }],
+                generationConfig,
+            });
+            const response = result.response;
+            const responseWithoutAsterisks = response.text().split("*").join("");
+            setGeminiInstructions(responseWithoutAsterisks);
+        } catch (error) {
+            console.error('Error generating response:', error);
+            fetchInstructions();
+
         }
       );
       if (response.data.items.length > 0) {
