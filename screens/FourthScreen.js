@@ -1,20 +1,11 @@
-import React, { useState, useEffect } from "react";
-import {
-  View,
-  TouchableOpacity,
-  Image,
-  Text,
-  ScrollView,
-  StatusBar,
-  Platform,
-  StyleSheet,
-} from "react-native";
+import React, { useState, useEffect } from 'react';
+import { View, TouchableOpacity, Image, Text, ScrollView, StatusBar, Platform , StyleSheet } from 'react-native';
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import axios from "axios";
-import YoutubeIframe from "react-native-youtube-iframe";
-import { LinearGradient } from "expo-linear-gradient";
-import { GlobalStyles, FourthScreenStyles } from "../Styles";
-import MuscleGroupImage from "../Components/MuscleGen";
+import axios from 'axios';
+import YoutubeIframe from 'react-native-youtube-iframe';
+import { LinearGradient } from 'expo-linear-gradient';
+import { GlobalStyles, FourthScreenStyles } from '../Styles';
+import MuscleGroupImage from '../Components/MuscleGen';
 
 const FourthScreen = ({ route, navigation }) => {
 
@@ -87,17 +78,6 @@ const FourthScreen = ({ route, navigation }) => {
     const [youtubeTitle, setYoutubeTitle] = useState(null);
     const GOOGLE_API_KEY = process.env.EXPO_PUBLIC_GOOGLE_API_KEY;
     const [geminiInstructions, setGeminiInstructions] = useState("");
-    
-    const [displayVideo,setDisplayVideo] = useState(true)
-    const [displayMuscles,setDisplayMuscles] = useState(false)
-
-    const [activeTab, setActiveTab] = useState('Tab1');
-
-    const handleTabPress = (tabName) => {
-      setActiveTab(tabName);
-      setDisplayVideo(!displayVideo);
-      setDisplayMuscles(!displayMuscles);
-    };
 
     const fetchInstructions = async () => {
         try {
@@ -209,118 +189,95 @@ const FourthScreen = ({ route, navigation }) => {
     }
   };
 
-  useEffect(() => {
-    //fetchVideo(); // ONLY ENABLE THIS WHEN FULL TESTING(WE CAN ONLY FETCH SEARCH 100/Day)
-    fetchInstructions();
+    useEffect(() => {
+        // fetchVideo(); // ONLY ENABLE THIS WHEN FULL TESTING(WE CAN ONLY FETCH SEARCH 100/Day)
+        fetchInstructions();
+        
+        navigation.setOptions({
+            headerTitle: selectedExercise,
+        });
+    }, []); 
 
-    navigation.setOptions({
-      headerTitle: selectedExercise,
-    });
-  }, []);
-
-  return (
+    return (
     <>
-      <View style={FourthScreenStyles.tabContainer}>
-        <TouchableOpacity
-          style={[
-            FourthScreenStyles.tab,
-            activeTab === "Tab1" && FourthScreenStyles.activeTab,
-          ]}
-          onPress={() => handleTabPress("Tab1")}
-        >
-          <Text
-            style={[
-              FourthScreenStyles.tabText,
-              activeTab === "Tab1" && FourthScreenStyles.activeTab,
-            ]}
-          >
-            Video
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={[
-            FourthScreenStyles.tab,
-            activeTab === "Tab2" && FourthScreenStyles.activeTab,
-          ]}
-          onPress={() => handleTabPress("Tab2")}
-        >
-          <Text
-            style={[
-              FourthScreenStyles.tabText,
-              activeTab === "Tab2" && FourthScreenStyles.activeTab,
-            ]}
-          >
-            Muscles
-          </Text>
-        </TouchableOpacity>
-      </View>
-      {displayVideo && (
-        <View style={GlobalStyles.rootContainer}>
-          <View
-            style={
-              Platform.OS === "web"
-                ? GlobalStyles.webContainer
-                : GlobalStyles.mobileContainer
-            }
-          >
-            <LinearGradient
-              colors={GlobalStyles.gradient.colors}
-              style={GlobalStyles.gradient}
+        <View style={styles.container}>
+            <TouchableOpacity
+                style={[styles.tab, activeTab === 'Tab1' && styles.activeTab]}
+                onPress={() => handleTabPress('Tab1')}
             >
-              <StatusBar backgroundColor="#313b3f" barStyle="light-content" />
-              {showVideo && (
-                <View style={FourthScreenStyles.videoContainer}>
-                  <YoutubeIframe
-                    height={300}
-                    width={Platform.OS === "web" ? 370 : 400}
-                    play
-                    videoId={videoWeShow.videoId}
-                  />
-                  <View style={FourthScreenStyles.videoInfoContainer}>
-                    <Image
-                      source={{ uri: videoWeShow.channelIcon }}
-                      style={FourthScreenStyles.channelIcon}
-                    />
-                    <View style={FourthScreenStyles.videoTextContainer}>
-                      <Text style={FourthScreenStyles.videoTitle}>
-                        {videoWeShow.title}
-                      </Text>
-                      <Text style={FourthScreenStyles.channelTitle}>
-                        {videoWeShow.channelTitle}
-                      </Text>
-                      <Text style={FourthScreenStyles.videoDetails}>
-                        {videoWeShow.views} • {videoWeShow.datePublished}
-                      </Text>
-                    </View>
-                  </View>
-                </View>
-              )}
-
-              <View style={FourthScreenStyles.separator}></View>
-              <ScrollView contentContainerStyle={FourthScreenStyles.container}>
-                <View style={FourthScreenStyles.instructionsContainer}>
-                  <Text style={FourthScreenStyles.instructionsTitle}>
-                    Instructions:
-                  </Text>
-                  <Text style={FourthScreenStyles.instructions}>
-                    {geminiInstructions}
-                  </Text>
-                </View>
-              </ScrollView>
-            </LinearGradient>
-          </View>
+                <Text style={styles.tabText}>Video Instructions</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={[styles.tab, activeTab === 'Tab2' && styles.activeTab]}
+                onPress={() => handleTabPress('Tab2')}
+            >
+                <Text style={styles.tabText}>Muscles</Text>
+            </TouchableOpacity>
         </View>
-      )}
-      <View style={FourthScreenStyles.muscleTab}>
-        {displayMuscles && (
-          <View style={FourthScreenStyles.imageContainer}>
-            <MuscleGroupImage />
-          </View>
-        )}
-      </View>
+    
+        {displayVideo &&    <View style={GlobalStyles.rootContainer}>
+            <View style={Platform.OS === 'web' ? GlobalStyles.webContainer : GlobalStyles.mobileContainer}>
+                <LinearGradient
+                    colors={GlobalStyles.gradient.colors}
+                    style={GlobalStyles.gradient}
+                >
+                    <StatusBar backgroundColor="#313b3f" barStyle="light-content" />
+                    {showVideo && (
+                        <View style={FourthScreenStyles.videoContainer}>
+                            <YoutubeIframe height={300} width={Platform.OS === 'web' ? 370 : 400} play videoId={videoWeShow.videoId} />
+                            <View style={FourthScreenStyles.videoInfoContainer}>
+                                <Image source={{ uri: videoWeShow.channelIcon }} style={FourthScreenStyles.channelIcon} />
+                                <View style={FourthScreenStyles.videoTextContainer}>
+                                    <Text style={FourthScreenStyles.videoTitle}>{videoWeShow.title}</Text>
+                                    <Text style={FourthScreenStyles.channelTitle}>{videoWeShow.channelTitle}</Text>
+                                    <Text style={FourthScreenStyles.videoDetails}>{videoWeShow.views} • {videoWeShow.datePublished}</Text>
+                                </View>
+                            </View>
+                        </View>
+                    )}
+
+                    <View style={FourthScreenStyles.separator}></View>
+                    <ScrollView contentContainerStyle={FourthScreenStyles.container}>
+                        <View style={FourthScreenStyles.instructionsContainer}>
+                            <Text style={FourthScreenStyles.instructionsTitle}>Instructions:</Text>
+                            <Text style={FourthScreenStyles.instructions}>
+                                {geminiInstructions}
+                            </Text>
+                        </View>
+                    </ScrollView>
+                </LinearGradient>
+            </View>
+        </View>}
+
+        {displayMuscles && <View>
+            <MuscleGroupImage/>
+        </View>}
     </>
-  );
+    );
 };
+
+
+const styles = StyleSheet.create({
+    container: {
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      alignItems: 'center',
+      backgroundColor: '#eee',
+      height: 50,
+    },
+    tab: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    activeTab: {
+      borderBottomWidth: 2,
+      borderBottomColor: 'blue',
+    },
+    tabText: {
+      fontSize: 16,
+      fontWeight: 'bold',
+    },
+  });
 
 export default FourthScreen;
