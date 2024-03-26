@@ -469,9 +469,8 @@ activeTab: {
   },
   targetedAreaText: {
     color: '#fff',
-    bottom: '45%',
     paddingHorizontal: '7.5%',
-    fontSize:20,
+    fontSize: 20,
     fontWeight: '300'
   },
   muscleText: {
