@@ -134,10 +134,37 @@ const FourthScreen = ({ route, navigation }) => {
             return yearsDiff + ' years ago';
         }
     };
+    const [muscleGroup,setMuscleGroup] = useState('');
+    const fetchMuscleGroup = async () => {
+      try {
+          const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY);
+          const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+          const generationConfig = {
+              temperature: 0.0,
+              topK: 1,
+              topP: 1,
+              maxOutputTokens: 2048,
+          };
+          const parts = [
+              { text: `Main muscle group (Make sure it is a specific muscle group) is targeted when doing ${selectedExercise} (Your response example: 'shoulders') ALL LOWER CASE` },
+          ];
+          const result = await model.generateContent({
+              contents: [{ role: "user", parts }],
+              generationConfig,
+          });
+          const response = result.response;
+          const responseWithoutAsterisks = response.text().split("*").join("");
+          setMuscleGroup(responseWithoutAsterisks);
+      } catch (error) {
+          console.error('Error generating response:', error);
+          fetchMuscleGroup();
+      }
+  };
 
     useEffect(() => {
         // fetchVideo(); // ONLY ENABLE THIS WHEN FULL TESTING(WE CAN ONLY FETCH SEARCH 100/Day)
         fetchInstructions();
+        fetchMuscleGroup();
         
         navigation.setOptions({
             headerTitle: selectedExercise,
@@ -196,7 +223,7 @@ const FourthScreen = ({ route, navigation }) => {
         </View>}
 
         {displayMuscles && <View>
-            <MuscleGroupImage/>
+            <MuscleGroupImage muscleGroup={muscleGroup}/>
         </View>}
     </>
     );
