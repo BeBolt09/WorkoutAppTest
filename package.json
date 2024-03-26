@@ -34,7 +34,9 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
-    "expo-cli": "^6.3.10"
+    "babel-plugin-inline-dotenv": "^1.7.0",
+    "expo-cli": "^6.3.10",
+    "react-native-dotenv": "^3.4.11"
   },
   "private": true
 }
