@@ -40,8 +40,8 @@ const MuscleGroupImage = ({ muscleGroup }) => {
   return image ? (
     <Image
       source={{ uri: `data:image/jpeg;base64,${image}` }}
-      style={{ width: 400, height: 400 }} // Adjust dimensions as needed
-      resizeMode="contain" // or other appropriate resizeMode
+      style={{ width: '100%', height: 400 }}
+      resizeMode='cover'
 
     />
   ) : null;

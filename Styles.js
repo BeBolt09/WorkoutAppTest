@@ -467,6 +467,18 @@ activeTab: {
       backgroundColor: '#293236',
       height: '100%',
   },
+  targetedAreaText: {
+    color: '#fff',
+    bottom: '45%',
+    paddingHorizontal: '7.5%',
+    fontSize:20,
+    fontWeight: '300'
+  },
+  muscleText: {
+    color: '#01E4F3',
+    textTransform: 'uppercase',
+    fontWeight: '600'
+  }
 });
 
 export { GlobalStyles ,FirstScreenStyles, NewSecondScreenStyles, ThirdScreenStyles, FourthScreenStyles };
