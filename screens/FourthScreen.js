@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { View, Image, Text, ScrollView, StatusBar, Platform } from 'react-native';
+import { View, TouchableOpacity, Image, Text, ScrollView, StatusBar, Platform , StyleSheet } from 'react-native';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import axios from 'axios';
 import YoutubeIframe from 'react-native-youtube-iframe';
 import { LinearGradient } from 'expo-linear-gradient';
 import { GlobalStyles, FourthScreenStyles } from '../Styles';
+import MuscleGroupImage from '../Components/MuscleGen';
 
 const FourthScreen = ({ route, navigation }) => {
     const YOUTUBE_API_KEY = process.env.EXPO_PUBLIC_YOUTUBE_API_KEY;
@@ -15,6 +16,17 @@ const FourthScreen = ({ route, navigation }) => {
     const [youtubeTitle, setYoutubeTitle] = useState(null);
     const GOOGLE_API_KEY = process.env.EXPO_PUBLIC_GOOGLE_API_KEY;
     const [geminiInstructions, setGeminiInstructions] = useState("");
+    
+    const [displayVideo,setDisplayVideo] = useState(true)
+    const [displayMuscles,setDisplayMuscles] = useState(false)
+
+    const [activeTab, setActiveTab] = useState('Tab1');
+
+    const handleTabPress = (tabName) => {
+      setActiveTab(tabName);
+      setDisplayVideo(!displayVideo);
+      setDisplayMuscles(!displayMuscles);
+    };
 
     const fetchInstructions = async () => {
         try {
@@ -125,16 +137,32 @@ const FourthScreen = ({ route, navigation }) => {
     };
 
     useEffect(() => {
-        fetchVideo(); // ONLY ENABLE THIS WHEN FULL TESTING(WE CAN ONLY FETCH SEARCH 100/Day)
+        // fetchVideo(); // ONLY ENABLE THIS WHEN FULL TESTING(WE CAN ONLY FETCH SEARCH 100/Day)
         fetchInstructions();
         
         navigation.setOptions({
             headerTitle: selectedExercise,
         });
-    }, []); // Empty dependency array to trigger effect only once when component mounts
+    }, []); 
 
     return (
-        <View style={GlobalStyles.rootContainer}>
+    <>
+        <View style={styles.container}>
+            <TouchableOpacity
+                style={[styles.tab, activeTab === 'Tab1' && styles.activeTab]}
+                onPress={() => handleTabPress('Tab1')}
+            >
+                <Text style={styles.tabText}>Video Instructions</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={[styles.tab, activeTab === 'Tab2' && styles.activeTab]}
+                onPress={() => handleTabPress('Tab2')}
+            >
+                <Text style={styles.tabText}>Muscles</Text>
+            </TouchableOpacity>
+        </View>
+    
+        {displayVideo &&    <View style={GlobalStyles.rootContainer}>
             <View style={Platform.OS === 'web' ? GlobalStyles.webContainer : GlobalStyles.mobileContainer}>
                 <LinearGradient
                     colors={GlobalStyles.gradient.colors}
@@ -166,8 +194,37 @@ const FourthScreen = ({ route, navigation }) => {
                     </ScrollView>
                 </LinearGradient>
             </View>
-        </View>
+        </View>}
+
+        {displayMuscles && <View>
+            <MuscleGroupImage/>
+        </View>}
+    </>
     );
 };
+
+
+const styles = StyleSheet.create({
+    container: {
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      alignItems: 'center',
+      backgroundColor: '#eee',
+      height: 50,
+    },
+    tab: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    activeTab: {
+      borderBottomWidth: 2,
+      borderBottomColor: 'blue',
+    },
+    tabText: {
+      fontSize: 16,
+      fontWeight: 'bold',
+    },
+  });
 
 export default FourthScreen;
