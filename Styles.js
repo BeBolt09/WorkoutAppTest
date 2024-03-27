@@ -2,20 +2,25 @@
 
 import { StyleSheet, Platform } from 'react-native';
 
+
 const GlobalStyles = StyleSheet.create({
   rootContainer: {
     backgroundColor: '#191F21',
     flex: 1,
 },
   webContainer: {
-    width: 390,
-    height: 510,
+    maxWidth: 400,
+    height: '100%',
+    //height: 510,
     overflow: 'hidden',
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
+    borderBottomLeftRadius: 50,
+    borderBottomRightRadius: 50,
+    
   },
   mobileContainer: {
       flex: 1,
@@ -28,17 +33,18 @@ const GlobalStyles = StyleSheet.create({
 
 const FirstScreenStyles = StyleSheet.create({
   webContainer: {
-    width: 390,
-    height: 565,
+    maxWidth: 400,
+    height: '100%',
     overflow: 'hidden',
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
+    borderRadius: 50,
   },
     container: {
-        bottom: '15%',
+        bottom: '20%',
         flex: 1,
         justifyContent: 'center',
         width: '100%',
@@ -55,9 +61,9 @@ const FirstScreenStyles = StyleSheet.create({
     },
     image: {
         position: 'relative',
-        bottom: '2%',
-        width: '100%',
-        height: Platform.OS === 'web' ? '50%' : '30%',
+        //bottom: '0%',
+        width:Platform.OS === 'web' ? 400 : '100%',
+        height: Platform.OS === 'web' ? '30%' : '30%',
         resizeMode: 'stretch',
         alignSelf: 'center',
     },
@@ -68,21 +74,21 @@ const FirstScreenStyles = StyleSheet.create({
         fontSize: 22,
         textAlign: 'left',
         color: '#fff',
-        fontWeight: Platform.OS === 'web' ? '400' : '600',
-        paddingTop: '25%',
+        fontWeight: Platform.OS === 'web' ? '500' : '600',
+        paddingTop: '25%',       
     },
     h2: {
         position: 'relative',
         bottom: '18%',
         marginHorizontal: Platform.OS === 'web' ? '0%' : '5%',
-        paddingHorizontal: Platform.OS === 'web' ? '1%' : '0%',
+        paddingHorizontal: Platform.OS === 'web' ? '0%' : '0%',
         marginLeft: '7.5%',
         fontSize: 19,
         justifyContent: 'center',
         textAlign: 'left',
-        fontWeight: Platform.OS === 'web' ? '100' : '400',
+        fontWeight: Platform.OS === 'web' ? '300' : '400',
         color: '#fff',
-        lineHeight: Platform.OS === 'web' ? 25 : 30,
+        lineHeight: Platform.OS === 'web' ? 28 : 30,
         width: Platform.OS === 'web' ? '100%' : undefined,
     },
     h3: {
@@ -93,8 +99,10 @@ const FirstScreenStyles = StyleSheet.create({
         justifyContent: 'center',
         textAlign: 'left',
         color: '#fff',
-        fontWeight: Platform.OS === 'web' ? '300' : '600',
+        fontWeight: Platform.OS === 'web' ? '400' : '600',
         bottom: Platform.OS === 'web' ? '11%' : '1%',
+        paddingTop: Platform.OS === 'web' ? '7%' : '0%',
+        paddingBottom: '2%',
     },
     input: {
         borderWidth: 1,
@@ -117,8 +125,8 @@ const FirstScreenStyles = StyleSheet.create({
         borderColor: '#01E4F3',
     },
     button: {
-        position: 'relative',
-        top: Platform.OS === 'web' ? '24%' : '67%',        
+        position: 'absolute',
+        bottom: Platform.OS === 'web' ? '5%' : '5%',        
         marginTop: 10,
         alignSelf: 'center',
         backgroundColor: '#01E4F3',
@@ -127,7 +135,6 @@ const FirstScreenStyles = StyleSheet.create({
         borderRadius: 50,
         justifyContent: 'center',
         color: '#293236',
-        
     },
     buttonIOS: {
         marginTop: 45,
@@ -145,6 +152,7 @@ const FirstScreenStyles = StyleSheet.create({
         ...StyleSheet.absoluteFillObject,
         justifyContent: 'center',
         top: 170,
+        height: '100%',
         alignItems: 'center',
         backgroundColor: '#293236',
     },
@@ -165,13 +173,15 @@ const NewSecondScreenStyles = StyleSheet.create({
     },
     h2: {
       position: 'relative',
-      paddingHorizontal: Platform.OS === 'web' ? '29%' : '4%',
-      marginLeft: Platform.OS === 'web' ? '3.5%' : undefined,
+      paddingHorizontal: Platform.OS === 'web' ? '28%' : '4%',
+      marginLeft: Platform.OS === 'web' ? '2.5%' : undefined,
       paddingVertical:Platform.OS === 'web' ? '2%' : '5%',
       fontSize: 19,
       textAlign: 'left',
       fontWeight: Platform.OS === 'web' ? '200' :'400',
       color: '#fff',
+      lineHeight: Platform.OS === 'web' ? 25 : 27,
+
     },
     contentContainer: {
         flexDirection: 'row',
@@ -179,11 +189,11 @@ const NewSecondScreenStyles = StyleSheet.create({
         alignItems: 'center',
         paddingBottom: 100,
         width: '100%',
-        marginLeft: Platform.OS === 'web' ? '23%' : '10%',
+        marginLeft: Platform.OS === 'web' ? '15%' : '10%',
     },
     item: {
-        height: Platform.OS === 'web' ? 120 : 140,
-        width: Platform.OS === 'web' ? 130 : 150,
+        height: Platform.OS === 'web' ? 135 : 145,
+        width: Platform.OS === 'web' ? 145 : 155,
         borderWidth: 1,
         justifyContent: 'center',
         alignItems: 'center',
@@ -194,8 +204,8 @@ const NewSecondScreenStyles = StyleSheet.create({
         borderRadius: 10,
     },
     selectedItem: {
-        height: Platform.OS === 'web' ? 120 : 140,
-        width: Platform.OS === 'web' ? 130 : 150,
+        height: Platform.OS === 'web' ? 135 : 145,
+        width: Platform.OS === 'web' ? 145 : 155,
         borderWidth: 1.5,
         justifyContent: 'center',
         alignItems: 'center',
@@ -212,9 +222,9 @@ const NewSecondScreenStyles = StyleSheet.create({
         position: 'relative',
         color: 'white',
         top: 12,
-        fontSize: 15,
+        fontSize: 17,
         textAlign: 'center',
-        fontWeight: '700',
+        fontWeight: Platform.OS === 'web' ? '400' : '700',
     },
     itemContent: {
         alignItems: 'center',
@@ -226,18 +236,19 @@ const NewSecondScreenStyles = StyleSheet.create({
     },
     bottomContainer: {
         position: 'absolute',
-        bottom: 20,
+        bottom: 0,
         left: 0,
         right: 0,
         alignItems: 'center',
-        height: 80,
+        height: 90,
         backgroundColor: '#293236',
     },
     button: {
         position: 'absolute',
+        bottom: Platform.OS === 'web' ? '48%' : '50%',        
         marginTop: Platform.OS === 'web' ? 23 : 10,
         alignSelf: 'center',
-        width: Platform.OS === 'web' ? '75%' : '85%',
+        width: '85%',
         height: 45,
         borderRadius: 50,
         justifyContent: 'center',
@@ -266,7 +277,7 @@ const ThirdScreenStyles = StyleSheet.create({
       color: '#fff',
       fontWeight: Platform.OS === 'web' ? '200' : '400',
       marginVertical: 10,
-      marginLeft: Platform.OS === 'web' ? '13%' : '7%',
+      marginLeft: Platform.OS === 'web' ? '10%' : '7%',
       textAlign: 'left',
       paddingVertical: 10,
   },
@@ -274,7 +285,7 @@ const ThirdScreenStyles = StyleSheet.create({
       textTransform: 'capitalize'
   },
   scrollView: {
-      width: 390,
+      width: 400,
       flex: 1,
       paddingBottom: 10,
   },
@@ -282,7 +293,7 @@ const ThirdScreenStyles = StyleSheet.create({
       flexDirection: 'row',
       alignItems: 'center',
       alignSelf: 'center',
-      width: Platform.OS === 'web' ? '75%' : '85%',
+      width: Platform.OS === 'web' ? '80%' : '85%',
       height: 90,
       borderWidth: 1,
       borderColor: 'white',
@@ -295,7 +306,7 @@ const ThirdScreenStyles = StyleSheet.create({
   },
   itemText: {
       color: 'white',
-      fontSize: 18,
+      fontSize: 22,
       fontWeight: Platform.OS === 'web' ? '400' : '600',
       textAlign: 'left',
       textTransform: 'capitalize',
@@ -341,16 +352,18 @@ const FourthScreenStyles = StyleSheet.create({
       paddingHorizontal: '5%',
   },
   videoContainer: {
-      width: '100%',
-      alignItems: 'center',
+    width: '100%',
+    alignItems: 'center',
+    zIndex: 0
   },
   videoTextContainer: {
       flex: 1,
   },
   videoInfoContainer: {
+      paddingTop: '10%',
       flexDirection: 'row',
       alignItems: 'center',
-      bottom: '15%',
+      bottom: '1%',
   },
   channelIcon: {
       width: Platform.OS === 'web' ? 50 : 60,
@@ -375,8 +388,9 @@ const FourthScreenStyles = StyleSheet.create({
       color: 'white',
   },
   separator: {
-      paddingBottom: '0%',
-      borderWidth: 0.5,
+    marginTop: '10%',
+      borderWidth: 1,
+      width: 400,
       borderColor: '#fff',
       marginBottom: '0%',
       bottom: Platform.OS === 'web' ? '10%' : '0%',
@@ -418,10 +432,6 @@ const FourthScreenStyles = StyleSheet.create({
     alignItems: 'center',
     color: 'fff',
 },
-activeTab: {
-    borderBottomWidth: 1.5,
-    borderBottomColor: 'white',
-  },
   tabText: {
     fontSize: 16,
     fontWeight: 'bold',
@@ -466,6 +476,7 @@ activeTab: {
   imageContainer: {
       backgroundColor: '#293236',
       height: '100%',
+      paddingHorizontal: Platform.OS === 'web' ? '3%' : '0%',
   },
   targetedAreaText: {
     color: '#fff',
