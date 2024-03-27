@@ -111,10 +111,14 @@ const FourthScreen = ({ route, navigation }) => {
         }
     };
 
+    
+
     const formatViews = (views) => {
         const numViews = parseInt(views);
-        if (numViews >= 1000) {
-            return (numViews / 1000).toFixed(0) + 'k views';
+        if (numViews >= 1000000) {
+            return (numViews / 1000000).toFixed(1) + 'M views';
+        } else if (numViews >= 1000) {
+            return (numViews / 1000).toFixed(0) + 'K views';
         } else {
             return numViews + ' views';
         }
@@ -188,7 +192,7 @@ const FourthScreen = ({ route, navigation }) => {
   };
 
     useEffect(() => {
-        // fetchVideo(); // ONLY ENABLE THIS WHEN FULL TESTING(WE CAN ONLY FETCH SEARCH 100/Day)
+        fetchVideo(); // ONLY ENABLE THIS WHEN FULL TESTING(WE CAN ONLY FETCH SEARCH 100/Day)
         fetchInstructions();
         fetchMuscleGroup();
         
@@ -204,7 +208,7 @@ const FourthScreen = ({ route, navigation }) => {
     style={[FourthScreenStyles.tab, activeTab === 'Tab1' && FourthScreenStyles.activeTab]}
     onPress={() => handleTabPress('Tab1')}
 >
-    <Text style={[FourthScreenStyles.tabText, activeTab === 'Tab1' && FourthScreenStyles.activeTabText]}>Video Instructions</Text>
+    <Text style={[FourthScreenStyles.tabText, activeTab === 'Tab1' && FourthScreenStyles.activeTabText]}>Video</Text>
 </TouchableOpacity>
 <TouchableOpacity
     style={[FourthScreenStyles.tab, activeTab === 'Tab2' && FourthScreenStyles.activeTab]}
@@ -221,9 +225,13 @@ const FourthScreen = ({ route, navigation }) => {
                     style={GlobalStyles.gradient}
                 >
                     <StatusBar backgroundColor="#313b3f" barStyle="light-content" />
-                    {showVideo && (
+                    
+                    <ScrollView contentContainerStyle={FourthScreenStyles.container}>
+                    {
+                        
+                        showVideo && (
                         <View style={FourthScreenStyles.videoContainer}>
-                            <YoutubeIframe height={300} width={Platform.OS === 'web' ? 370 : 400} play videoId={videoWeShow.videoId} />
+                            <YoutubeIframe height={300} width={400} play videoId={videoWeShow.videoId} />
                             <View style={FourthScreenStyles.videoInfoContainer}>
                                 <Image source={{ uri: videoWeShow.channelIcon }} style={FourthScreenStyles.channelIcon} />
                                 <View style={FourthScreenStyles.videoTextContainer}>
@@ -236,7 +244,6 @@ const FourthScreen = ({ route, navigation }) => {
                     )}
 
                     <View style={FourthScreenStyles.separator}></View>
-                    <ScrollView contentContainerStyle={FourthScreenStyles.container}>
                         <View style={FourthScreenStyles.instructionsContainer}>
                             <Text style={FourthScreenStyles.instructionsTitle}>Instructions:</Text>
                             <Text style={FourthScreenStyles.instructions}>
@@ -252,7 +259,6 @@ const FourthScreen = ({ route, navigation }) => {
             <MuscleGroupImage muscleGroup={muscleGroup}/>
         <Text style={FourthScreenStyles.targetedAreaText}>Targeted Area:<Text style={FourthScreenStyles.muscleText}> {muscleGroup}</Text></Text>
         </View>}
-        
     </>
     );
 };

@@ -65,6 +65,9 @@ const FirstScreen = ({ navigation }) => {
                                     ]}
                                     keyboardShouldPersistTaps='always'
                                 />
+                            </KeyboardAvoidingView>
+                        )}
+                    </View>
                                 <TouchableOpacity
                                     style={[
                                         FirstScreenStyles.button,
@@ -76,9 +79,6 @@ const FirstScreen = ({ navigation }) => {
                                 >
                                     <Text style={FirstScreenStyles.buttonText}>Next</Text>
                                 </TouchableOpacity>
-                            </KeyboardAvoidingView>
-                        )}
-                    </View>
                 </LinearGradient>
             </View>
         </View>
