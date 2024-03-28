@@ -176,7 +176,7 @@ const FourthScreen = ({ route, navigation }) => {
               "shoulders",
               "shoulders_back",
               "shoulders_front",
-              "triceps"` },
+              "triceps",` },
           ];
           const result = await model.generateContent({
               contents: [{ role: "user", parts }],
@@ -231,7 +231,7 @@ const FourthScreen = ({ route, navigation }) => {
                         
                         showVideo && (
                         <View style={FourthScreenStyles.videoContainer}>
-                            <YoutubeIframe height={300} width={400} play videoId={videoWeShow.videoId} />
+                            <YoutubeIframe height={225} width={400} play videoId={videoWeShow.videoId} />
                             <View style={FourthScreenStyles.videoInfoContainer}>
                                 <Image source={{ uri: videoWeShow.channelIcon }} style={FourthScreenStyles.channelIcon} />
                                 <View style={FourthScreenStyles.videoTextContainer}>

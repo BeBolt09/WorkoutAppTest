@@ -67,8 +67,8 @@ export default function App() {
                       : Platform.OS === "android"
                       ? 60
                       : 110,
-                  borderTopLeftRadius: 50,
-                  borderTopRightRadius: 50,
+                  borderTopLeftRadius: 40,
+                  borderTopRightRadius: 40,
                 },
                 headerTintColor: "white",
                 headerTitleAlign: "center",
@@ -107,8 +107,8 @@ export default function App() {
                       : Platform.OS === "android"
                       ? 60
                       : 110,
-                  borderTopLeftRadius: 50,
-                  borderTopRightRadius: 50,
+                  borderTopLeftRadius: 40,
+                  borderTopRightRadius: 40,
                 },
                 headerTintColor: "white",
                 headerTitleAlign: "center",
@@ -146,17 +146,19 @@ export default function App() {
                       : Platform.OS === "android"
                       ? 60
                       : 110,
+                  borderTopLeftRadius: 40,
+                  borderTopRightRadius: 40,
                 },
                 headerTintColor: "white",
                 headerTitleAlign: "center",
                 headerTitleStyle: { fontSize: 25 },
                 headerBackTitleStyle: { fontSize: 0.01 },
                 headerLeftContainerStyle: {
-                  paddingLeft: Platform.OS === "web" ? "1%" : "5%",
+                  paddingLeft: Platform.OS === "web" ? "5%" : "5%",
                   paddingBottom: Platform.OS === "web" ? "1%" : "2%",
                 },
                 headerRightContainerStyle: {
-                  paddingRight: Platform.OS === "web" ? "1%" : 17,
+                  paddingRight: Platform.OS === "web" ? "5%" : "5%"
                 },
                 headerTitleContainerStyle: {
                   paddingBottom: Platform.OS === "web" ? "1%" : "2%",
@@ -196,7 +198,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     height: "100%",
     alignContent: "flex-end",
-    borderTopLeftRadius: 50,
-    borderTopRightRadius: 50,
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
   },
 });
