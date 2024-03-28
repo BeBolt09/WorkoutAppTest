@@ -128,58 +128,57 @@ export default function App() {
               })}
             />
             <Stack.Screen
-                name="FourthScreen"
-                component={FourthScreen}
-                options={({ navigation }) => ({
-                    headerStyle: {
-                        backgroundColor: "#313b3f",
-                        borderBottomWidth: 0,
-                        elevation: Platform.OS === "android" ? 10 : 0,
-                        shadowColor:
-                            Platform.OS === "ios" ? "#000" : "rgba(0, 0, 0, 0.3)",
-                        shadowOffset:
-                            Platform.OS === "ios" ? { width: 0, height: 2 } : undefined,
-                        shadowOpacity: Platform.OS === "ios" ? 0.25 : undefined,
-                        shadowRadius: Platform.OS === "ios" ? 3.84 : undefined,
-                        height:
-                            Platform.OS === "web"
-                            ? 60
-                            : Platform.OS === "android"
-                            ? 60
-                            : 110,
-                    },
-                    headerTintColor: "white",
-                    headerTitleAlign: "center",
-                    headerTitleStyle: { fontSize: 25 },
-                    headerBackTitleStyle: { fontSize: 0.01 },
-                    headerLeftContainerStyle: {
-                        paddingLeft: Platform.OS === "web" ? "1%" : "5%",
-                        paddingBottom: Platform.OS === "web" ? "1%" : "2%",
-                    },
-                    headerRightContainerStyle: {
-                        paddingRight: Platform.OS === "web" ? "1%" : 17,
-                    },
-                    headerTitleContainerStyle: {
-                        paddingBottom: Platform.OS === "web" ? "1%" : "2%",
-                    },
-                    headerRight: () => (
-                        <Feather
-                            name="search"
-                            size={27}
-                            right={8}
-                            color="white"
-                            style={{ right: "9%", bottom: 4 }}
-                            onPress={() => {
-                                navigation.navigate("SearchScreen");
-                            }}
-                        />
-                    ),
-                })}
+              name="FourthScreen"
+              component={FourthScreen}
+              options={({ navigation }) => ({
+                headerStyle: {
+                  backgroundColor: "#313b3f",
+                  borderBottomWidth: 0,
+                  elevation: Platform.OS === "android" ? 10 : 0,
+                  shadowColor:
+                    Platform.OS === "ios" ? "#000" : "rgba(0, 0, 0, 0.3)",
+                  shadowOffset:
+                    Platform.OS === "ios" ? { width: 0, height: 2 } : undefined,
+                  shadowOpacity: Platform.OS === "ios" ? 0.25 : undefined,
+                  shadowRadius: Platform.OS === "ios" ? 3.84 : undefined,
+                  height:
+                    Platform.OS === "web"
+                      ? 60
+                      : Platform.OS === "android"
+                      ? 60
+                      : 110,
+                  borderTopLeftRadius: 50,
+                  borderTopRightRadius: 50,
+                },
+                headerTintColor: "white",
+                headerTitleAlign: "center",
+                headerTitleStyle: { fontSize: 25 },
+                headerBackTitleStyle: { fontSize: 0.01 },
+                headerLeftContainerStyle: {
+                  paddingLeft: Platform.OS === "web" ? "5%" : "5%",
+                  paddingBottom: Platform.OS === "web" ? "1%" : "2%",
+                },
+                headerRightContainerStyle: {
+                  paddingRight: Platform.OS === "web" ? "5%" : "5%",
+                },
+                headerTitleContainerStyle: {
+                  paddingBottom: Platform.OS === "web" ? "1%" : "2%",
+                },
+                headerRight: () => (
+                  <Feather
+                    name="search"
+                    size={27}
+                    right={8}
+                    color="white"
+                    style={{ right: "9%", bottom: 4 }}
+                    onPress={() => {
+                      navigation.navigate("SearchScreen");
+                    }}
+                  />
+                ),
+              })}
             />
-            <Stack.Screen
-            component={SearchScreen}
-            name='SearchScreen'
-            />
+            <Stack.Screen component={SearchScreen} name="SearchScreen" />
           </Stack.Navigator>
         </NavigationContainer>
       </View>
