@@ -1,3 +1,5 @@
+//FourthScreen.js
+
 import React, { useState, useEffect } from "react";
 import {
   View,
@@ -7,7 +9,6 @@ import {
   ScrollView,
   StatusBar,
   Platform,
-  StyleSheet,
 } from "react-native";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import axios from "axios";
@@ -322,7 +323,6 @@ const FourthScreen = ({ route, navigation }) => {
           </View>
         </View>
       )}
-
       {displayMuscles && (
         <View style={FourthScreenStyles.imageContainer}>
           <MuscleGroupImage muscleGroup={muscleGroup} />
@@ -332,6 +332,7 @@ const FourthScreen = ({ route, navigation }) => {
           </Text>
         </View>
       )}
+
     </>
   );
 };

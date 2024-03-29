@@ -499,17 +499,17 @@ const FourthScreenStyles = StyleSheet.create({
 
 const SearchScreenStyles = StyleSheet.create({
   body: {
-    width: Platform.OS === "web" ? 400 : 0,
+    width: Platform.OS === "web" ? 400 : "100%",
   },
   input: {
     borderWidth: 1,
     height: 45,
     alignSelf: "center",
     marginHorizontal: "5%",
-    right: Platform.OS === "web" ? 5 : 30,
+    right: Platform.OS === "web" ? 5 : 20,
     borderWidth: 2,
     width: 300,
-    bottom: 7,
+    top: Platform.OS === "web" ? 5 : 20,
     borderRadius: 50,
     borderColor: "gray",
     backgroundColor: "#293236",
@@ -518,6 +518,34 @@ const SearchScreenStyles = StyleSheet.create({
     fontSize: 18,
     textTransform: "capitalize",
     paddingHorizontal: Platform.OS === "web" ? "10%" : 0,
+  },
+  inputContainer: {
+    right: Platform.OS === "web" ? '9%' : 12,
+    top: Platform.OS === "web" ? '38%' : 0,
+  },
+  searchButton: {
+    position: "absolute",
+    zIndex: 1,
+    //top: 3,
+    top: Platform.OS === "web" ? '20%' :  '66%',
+    marginLeft: Platform.OS === "web" ? "15%" : "9%",
+  },
+  XButton: {
+    position: "absolute",
+    zIndex: 1,
+    top: Platform.OS === "web" ? '15%' : '60%',
+    right: Platform.OS === "web" ? "14%" : '19%',
+  },
+  cancelButton: {
+    position: "absolute",
+    top: Platform.OS === "web" ? "30%" : '73%',
+    alignSelf: 'flex-end',
+    left: Platform.OS === "web" ? '90%' : "86%",
+    height: 20,
+  },
+  cancelButtonText: {
+    color: '#fff',
+    textAlign: 'right',
   },
   inputFocused: {
     borderColor: "#01E4F3",
@@ -545,19 +573,6 @@ const SearchScreenStyles = StyleSheet.create({
   },
   buttonDisabled: {
     backgroundColor: "#1c6c80",
-  },
-  searchButton: {
-    position: "absolute",
-    zIndex: 1,
-    //top: 3,
-    bottom: Platform.OS === "web" ? 10 :  18,
-    marginLeft: Platform.OS === "web" ? "5%" : "0%",
-  },
-  XButton: {
-    position: "absolute",
-    zIndex: 1,
-    top: Platform.OS === "web" ? 6 : 1,
-    right: Platform.OS === "web" ? "2%" : "18%",
   },
 });
 

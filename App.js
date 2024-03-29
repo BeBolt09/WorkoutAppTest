@@ -71,8 +71,8 @@ export default function App() {
                       : Platform.OS === "android"
                       ? 60
                       : 110,
-                      borderTopLeftRadius: Platform.OS === "web" ? 50 :  0,
-                  borderTopRightRadius: Platform.OS === "web" ? 50 :  0,
+                  borderTopLeftRadius: 50,
+                  borderTopRightRadius: 50,
                 },
                 headerTintColor: "white",
                 headerTitleAlign: "center",
@@ -111,8 +111,8 @@ export default function App() {
                       : Platform.OS === "android"
                       ? 60
                       : 110,
-                      borderTopLeftRadius: Platform.OS === "web" ? 50 :  0,
-                  borderTopRightRadius: Platform.OS === "web" ? 50 :  0,
+                  borderTopLeftRadius: 50,
+                  borderTopRightRadius: 50,
                 },
                 headerTintColor: "white",
                 headerTitleAlign: "center",
@@ -150,8 +150,8 @@ export default function App() {
                       : Platform.OS === "android"
                       ? 60
                       : 110,
-                      borderTopLeftRadius: Platform.OS === "web" ? 50 :  0,
-                  borderTopRightRadius: Platform.OS === "web" ? 50 :  0,
+                  borderTopLeftRadius: 50,
+                  borderTopRightRadius: 50,
                 },
                 headerTintColor: "white",
                 headerTitleAlign: "center",
@@ -163,6 +163,7 @@ export default function App() {
                 },
                 headerRightContainerStyle: {
                   paddingRight: Platform.OS === "web" ? "5%" : "5%",
+                  paddingTop: Platform.OS === "web" ? "2%" : "0%",
                 },
                 headerTitleContainerStyle: {
                   paddingBottom: Platform.OS === "web" ? "1%" : "2%",
@@ -173,7 +174,7 @@ export default function App() {
                     size={27}
                     right={8}
                     color="white"
-                    style={{ right: "9%", bottom: Platform.OS === "web" ? 1 : 4 }}
+                    style={{ right: "9%", bottom: 4 }}
                     onPress={() => {
                       navigation.navigate("SearchScreen");
                     }}
@@ -190,52 +191,24 @@ export default function App() {
                   backgroundColor: "#313b3f",
                   borderBottomWidth: 0,
                   elevation: Platform.OS === "android" ? 10 : 0,
-                  shadowColor: Platform.OS === "ios" ? "#000" : "rgba(0, 0, 0, 0.3)",
-                  shadowOffset: Platform.OS === "ios" ? { width: 0, height: 2 } : undefined,
+                  shadowColor:
+                    Platform.OS === "ios" ? "#000" : "rgba(0, 0, 0, 0.3)",
+                  shadowOffset:
+                    Platform.OS === "ios" ? { width: 0, height: 2 } : undefined,
                   shadowOpacity: Platform.OS === "ios" ? 0.25 : undefined,
                   shadowRadius: Platform.OS === "ios" ? 3.84 : undefined,
-                  height: Platform.OS === "web" ? 60 : Platform.OS === "android" ? 60 : 110,
-                  borderTopLeftRadius: Platform.OS === "web" ? 50 :  0,
-                  borderTopRightRadius: Platform.OS === "web" ? 50 :  0,
+                  height:
+                    Platform.OS === "web"
+                      ? 0
+                      : Platform.OS === "android"
+                      ? 12
+                      : 50,
                 },
                 headerTintColor: "white",
                 headerTitleAlign: "center",
-                headerBackTitle: false,
-                headerLeftContainerStyle: {
-                  paddingLeft: Platform.OS === "web" ? "5%" : "5%",
-                  paddingBottom: Platform.OS === "web" ? "1%" : "1%",
-                },
-                headerRightContainerStyle: {
-                  paddingRight: Platform.OS === "web" ? "5%" : "5%",
-                },
-                headerTitleContainerStyle: {
-                  paddingBottom: Platform.OS === "web" ? "1%" : "0%",
-                },
-                headerLeft: () => null,
-
-                headerTitle: () => (
-                  <View style={SearchScreenStyles.inputContainer}>
-                    <TouchableOpacity
-                      onPress={() => navigation.navigate("SecondScreen", { inputValue: searchText })}
-                      style={SearchScreenStyles.searchButton}
-                    >
-                      <Feather name="search" size={24} color="white" />
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      onPress={() => setSearchText("")}
-                      style={SearchScreenStyles.XButton}
-                    >
-                    <Feather name="x" size={28} color="white" />
-                    </TouchableOpacity>
-                    <TextInput
-                      placeholder="Swap exercise"
-                      placeholderTextColor="gray"
-                      value={searchText}
-                      onChangeText={setSearchText}
-                      style={SearchScreenStyles.input}                 
-                    />
-                  </View>
-                ),
+                headerTitleStyle: { fontSize: 30 },
+                headerLeft: null,
+                
               })}
             />
           </Stack.Navigator>
@@ -259,7 +232,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     height: "100%",
     alignContent: "flex-end",
-    borderTopLeftRadius: Platform.OS === "web" ? 50 :  0,
-    borderTopRightRadius: Platform.OS === "web" ? 50 :  0,
+    borderTopLeftRadius: 50,
+    borderTopRightRadius: 50,
   },
 });
