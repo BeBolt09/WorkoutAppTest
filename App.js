@@ -71,8 +71,8 @@ export default function App() {
                       : Platform.OS === "android"
                       ? 60
                       : 110,
-                  borderTopLeftRadius: 50,
-                  borderTopRightRadius: 50,
+                  borderTopLeftRadius: Platform.OS === "web" ? 50 : 0,
+                  borderTopRightRadius: Platform.OS === "web" ? 50 : 0,
                 },
                 headerTintColor: "white",
                 headerTitleAlign: "center",
@@ -111,8 +111,8 @@ export default function App() {
                       : Platform.OS === "android"
                       ? 60
                       : 110,
-                  borderTopLeftRadius: 50,
-                  borderTopRightRadius: 50,
+                  borderTopLeftRadius: Platform.OS === "web" ? 50 : 0,
+                  borderTopRightRadius: Platform.OS === "web" ? 50 : 0,
                 },
                 headerTintColor: "white",
                 headerTitleAlign: "center",
@@ -150,8 +150,8 @@ export default function App() {
                       : Platform.OS === "android"
                       ? 60
                       : 110,
-                  borderTopLeftRadius: 50,
-                  borderTopRightRadius: 50,
+                  borderTopLeftRadius: Platform.OS === "web" ? 50 : 0,
+                  borderTopRightRadius: Platform.OS === "web" ? 50 : 0,
                 },
                 headerTintColor: "white",
                 headerTitleAlign: "center",
