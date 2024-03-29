@@ -10,15 +10,14 @@ const GlobalStyles = StyleSheet.create({
   webContainer: {
     maxWidth: 400,
     height: "100%",
-    //height: 510,
     overflow: "hidden",
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "center",
     alignItems: "center",
     alignSelf: "center",
-    borderBottomLeftRadius: 50,
-    borderBottomRightRadius: 50,
+    borderBottomLeftRadius: Platform.OS === "web" ? 50 : 0,
+    borderBottomRightRadius: Platform.OS === "web" ? 50 : 0,
   },
   mobileContainer: {
     flex: 1,
@@ -346,7 +345,7 @@ const FourthScreenStyles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     paddingHorizontal: "5%",
-    top: Platform.OS === "web" ? '0%' : '0%',
+    top: Platform.OS === "web" ? "0%" : "0%",
   },
   videoContainer: {
     position: "absolute",
@@ -498,10 +497,75 @@ const FourthScreenStyles = StyleSheet.create({
   },
 });
 
+const SearchScreenStyles = StyleSheet.create({
+  body: {
+    width: Platform.OS === "web" ? 400 : 0,
+  },
+  input: {
+    borderWidth: 1,
+    height: 45,
+    alignSelf: "center",
+    marginHorizontal: "5%",
+    right: Platform.OS === "web" ? 5 : 30,
+    borderWidth: 2,
+    width: 300,
+    bottom: 7,
+    borderRadius: 50,
+    borderColor: "gray",
+    backgroundColor: "#293236",
+    color: "white",
+    paddingLeft: 40,
+    fontSize: 18,
+    textTransform: "capitalize",
+    paddingHorizontal: Platform.OS === "web" ? "10%" : 0,
+  },
+  inputFocused: {
+    borderColor: "#01E4F3",
+  },
+  button: {
+    position: "absolute",
+    bottom: Platform.OS === "web" ? "5%" : "5%",
+    marginTop: 10,
+    alignSelf: "center",
+    backgroundColor: "#01E4F3",
+    width: "85%",
+    height: 45,
+    borderRadius: 50,
+    justifyContent: "center",
+    color: "#293236",
+  },
+  buttonText: {
+    color: Platform.OS === "web" ? "#293236" : "#293236",
+    fontSize: 20,
+    textAlign: "center",
+    fontWeight: "600",
+  },
+  buttonIOS: {
+    marginTop: 45,
+  },
+  buttonDisabled: {
+    backgroundColor: "#1c6c80",
+  },
+  searchButton: {
+    position: "absolute",
+    zIndex: 1,
+    //top: 3,
+    bottom: Platform.OS === "web" ? 10 :  18,
+    marginLeft: Platform.OS === "web" ? "5%" : "0%",
+  },
+  XButton: {
+    position: "absolute",
+    zIndex: 1,
+    top: Platform.OS === "web" ? 6 : 1,
+    right: Platform.OS === "web" ? "2%" : "18%",
+  },
+});
+
 export {
   GlobalStyles,
   FirstScreenStyles,
   NewSecondScreenStyles,
   ThirdScreenStyles,
   FourthScreenStyles,
+  SearchScreenStyles,
 };
