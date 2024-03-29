@@ -14,3 +14,10 @@ Get rid to white appearing behind the upper corners in web view
 Round bottom corners of muscle tab in web view
 
 italisize placeholder text?
+
+
+
+======================================================================================
+Command to build web:
+    npx expo export -p web
+======================================================================================
