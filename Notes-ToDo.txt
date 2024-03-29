@@ -1,0 +1,16 @@
+HEY SEBASTIEN, I'M MAKING SOME NOTES HERE AS A REMINDER OF STUFF I HAVE YET TO GET TO, 
+FEEL FREE TO ADD YOUR NOTES IF YOU WANT - Cheers! Tommy 😎
+======================================================================================
+======================================================================================
+
+(MAY NEED YOUR HELP FOR THIS!) - Populate youtube video after navigating with the search button time around 
+
+Make FourthScreen tabs halfscreen width and to the left side
+
+Search button on SearchScreen needs to be disabled when there's no text in input
+
+Get rid to white appearing behind the upper corners in web view
+
+Round bottom corners of muscle tab in web view
+
+italisize placeholder text?
