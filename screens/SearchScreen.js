@@ -85,7 +85,7 @@ const SearchScreen = ({ navigation }) => {
               </TouchableOpacity>
             </View>
             {!isValidExercise && inputValue.trim() !== "" && (
-                  <Text style={FirstScreenStyles.errorText}>
+                  <Text style={SearchScreenStyles.errorText}>
                     • Please enter a valid exercise
                   </Text>
                 )}
