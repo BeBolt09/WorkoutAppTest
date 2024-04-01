@@ -51,7 +51,7 @@ const SearchScreen = ({ navigation }) => {
               </TouchableOpacity>
               <TextInput
                 placeholder="Swap exercise"
-                placeholderTextColor="lightgray"
+                placeholderTextColor="gray"
                 style={SearchScreenStyles.input}
                 onChangeText={setInputValue}
                 value={inputValue}

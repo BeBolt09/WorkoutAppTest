@@ -7,11 +7,14 @@ import FirstScreen from "./screens/FirstScreen";
 import SecondScreen from "./Components/SecondScreen";
 import ThirdScreen from "./screens/ThirdScreen";
 import FourthScreen from "./screens/FourthScreen";
-import { Platform, View, StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import {
+  Platform,
+  View,
+  StyleSheet,
+} from "react-native";
 import NewSecondScreen from "./screens/NewSecondScreen";
 import { Feather } from "@expo/vector-icons";
 import SearchScreen from "./screens/SearchScreen";
-import { SearchScreenStyles } from "./Styles";
 
 const Stack = createStackNavigator();
 
@@ -71,8 +74,7 @@ export default function App() {
                       : Platform.OS === "android"
                       ? 60
                       : 110,
-                  borderTopLeftRadius: Platform.OS === "web" ? 50 : 0,
-                  borderTopRightRadius: Platform.OS === "web" ? 50 : 0,
+
                 },
                 headerTintColor: "white",
                 headerTitleAlign: "center",
@@ -111,8 +113,7 @@ export default function App() {
                       : Platform.OS === "android"
                       ? 60
                       : 110,
-                  borderTopLeftRadius: Platform.OS === "web" ? 50 : 0,
-                  borderTopRightRadius: Platform.OS === "web" ? 50 : 0,
+
                 },
                 headerTintColor: "white",
                 headerTitleAlign: "center",
@@ -150,8 +151,7 @@ export default function App() {
                       : Platform.OS === "android"
                       ? 60
                       : 110,
-                  borderTopLeftRadius: Platform.OS === "web" ? 50 : 0,
-                  borderTopRightRadius: Platform.OS === "web" ? 50 : 0,
+
                 },
                 headerTintColor: "white",
                 headerTitleAlign: "center",
@@ -208,7 +208,6 @@ export default function App() {
                 headerTitleAlign: "center",
                 headerTitleStyle: { fontSize: 30 },
                 headerLeft: null,
-                
               })}
             />
           </Stack.Navigator>
@@ -232,7 +231,6 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     height: "100%",
     alignContent: "flex-end",
-    borderTopLeftRadius: 50,
-    borderTopRightRadius: 50,
+
   },
 });

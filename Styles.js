@@ -16,8 +16,6 @@ const GlobalStyles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     alignSelf: "center",
-    borderBottomLeftRadius: Platform.OS === "web" ? 50 : 0,
-    borderBottomRightRadius: Platform.OS === "web" ? 50 : 0,
   },
   mobileContainer: {
     flex: 1,
@@ -29,6 +27,16 @@ const GlobalStyles = StyleSheet.create({
 });
 
 const FirstScreenStyles = StyleSheet.create({
+  logospin: {
+    width: 100,
+    height: 100,
+    top: '15%',
+  },
+  logo: {
+    width: 350,
+    height: 70,
+    top: '17%',
+  },
   webContainer: {
     maxWidth: 400,
     height: "100%",
@@ -38,7 +46,6 @@ const FirstScreenStyles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     alignSelf: "center",
-    borderRadius: 50,
   },
   container: {
     bottom: "20%",
@@ -101,6 +108,12 @@ const FirstScreenStyles = StyleSheet.create({
     paddingTop: Platform.OS === "web" ? "7%" : "0%",
     paddingBottom: "2%",
   },
+  errorText: {
+    color: '#ff6067',
+    marginLeft: "7.5%",
+    paddingTop: "3%",
+    fontSize: 16,
+  },
   input: {
     borderWidth: 1,
     height: 45,
@@ -115,7 +128,7 @@ const FirstScreenStyles = StyleSheet.create({
     color: "white",
     paddingLeft: 10,
     fontSize: 18,
-    textTransform: "capitalize",
+    textTransform: 'capitalize',
     bottom: Platform.OS === "web" ? "10%" : "0%",
   },
   inputFocused: {
@@ -148,7 +161,6 @@ const FirstScreenStyles = StyleSheet.create({
   loadingOverlay: {
     ...StyleSheet.absoluteFillObject,
     justifyContent: "center",
-    top: 170,
     height: "100%",
     alignItems: "center",
     backgroundColor: "#293236",
@@ -520,32 +532,32 @@ const SearchScreenStyles = StyleSheet.create({
     paddingHorizontal: Platform.OS === "web" ? "10%" : 0,
   },
   inputContainer: {
-    right: Platform.OS === "web" ? '9%' : 12,
-    top: Platform.OS === "web" ? '38%' : 0,
+    right: Platform.OS === "web" ? "9%" : 12,
+    top: Platform.OS === "web" ? "38%" : 0,
   },
   searchButton: {
     position: "absolute",
     zIndex: 1,
     //top: 3,
-    top: Platform.OS === "web" ? '20%' :  '66%',
+    top: Platform.OS === "web" ? "20%" : "66%",
     marginLeft: Platform.OS === "web" ? "15%" : "9%",
   },
   XButton: {
     position: "absolute",
     zIndex: 1,
-    top: Platform.OS === "web" ? '15%' : '60%',
-    right: Platform.OS === "web" ? "14%" : '19%',
+    top: Platform.OS === "web" ? "15%" : "60%",
+    right: Platform.OS === "web" ? "14%" : "19%",
   },
   cancelButton: {
     position: "absolute",
-    top: Platform.OS === "web" ? "30%" : '73%',
-    alignSelf: 'flex-end',
-    left: Platform.OS === "web" ? '90%' : "86%",
+    top: Platform.OS === "web" ? "30%" : "73%",
+    alignSelf: "flex-end",
+    left: Platform.OS === "web" ? "90%" : "86%",
     height: 20,
   },
   cancelButtonText: {
-    color: '#fff',
-    textAlign: 'right',
+    color: "#fff",
+    textAlign: "right",
   },
   inputFocused: {
     borderColor: "#01E4F3",
