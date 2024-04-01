@@ -217,7 +217,7 @@ const FourthScreen = ({ route, navigation }) => {
   };
 
   useEffect(() => {
-    fetchVideo(); // ONLY ENABLE THIS WHEN FULL TESTING(WE CAN ONLY FETCH SEARCH 100/Day)
+    //fetchVideo(); // ONLY ENABLE THIS WHEN FULL TESTING(WE CAN ONLY FETCH SEARCH 100/Day)
     fetchInstructions();
     fetchMuscleGroup();
 
@@ -282,7 +282,7 @@ const FourthScreen = ({ route, navigation }) => {
                 <View style={FourthScreenStyles.videoContainer}>
                   <YoutubeIframe
                     height={225}
-                    width={ Platform.OS === "web" ? '100%' : 400}
+                    width={Platform.OS === "web" ? "100%" : 400}
                     play
                     videoId={videoWeShow.videoId}
                   />
@@ -332,7 +332,6 @@ const FourthScreen = ({ route, navigation }) => {
           </Text>
         </View>
       )}
-
     </>
   );
 };
