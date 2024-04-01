@@ -27,15 +27,20 @@ const GlobalStyles = StyleSheet.create({
 });
 
 const FirstScreenStyles = StyleSheet.create({
-  logospin: {
+  logoArrows: {
     width: 100,
     height: 100,
-    top: '15%',
+    top: '16%',
+  },
+  logoDumbbell: {
+    width: 34.34,
+    height: 44.24,
+    top: '6.9%',
   },
   logo: {
-    width: 350,
+    width: 220,
     height: 70,
-    top: '17%',
+    top: '12%',
   },
   webContainer: {
     maxWidth: 400,
@@ -85,14 +90,14 @@ const FirstScreenStyles = StyleSheet.create({
     position: "relative",
     bottom: "18%",
     marginHorizontal: Platform.OS === "web" ? "0%" : "5%",
-    paddingHorizontal: Platform.OS === "web" ? "0%" : "0%",
-    marginLeft: "7.5%",
+    paddingHorizontal: Platform.OS === "web" ? "7%" : "0%",
+    marginLeft: Platform.OS === "web" ? "0%" : "7.5%",
     fontSize: 19,
     justifyContent: "center",
     textAlign: "left",
     fontWeight: Platform.OS === "web" ? "300" : "400",
     color: "#fff",
-    lineHeight: Platform.OS === "web" ? 28 : 30,
+    lineHeight: Platform.OS === "web" ? 28 : 28,
     width: Platform.OS === "web" ? "100%" : undefined,
   },
   h3: {
@@ -585,6 +590,12 @@ const SearchScreenStyles = StyleSheet.create({
   },
   buttonDisabled: {
     backgroundColor: "#1c6c80",
+  },
+  errorText: {
+    color: '#ff6067',
+    marginLeft: "7.5%",
+    paddingTop: "7%",
+    fontSize: 16,
   },
 });
 

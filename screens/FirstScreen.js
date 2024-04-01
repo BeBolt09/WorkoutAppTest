@@ -14,8 +14,9 @@ import {
 import validExercises from "../Components/validExercises";
 import { LinearGradient } from "expo-linear-gradient";
 import { GlobalStyles, FirstScreenStyles } from "../Styles";
-import LogoSpin from "../assets/Logo_Spin.png";
-import LogoStay from "../assets/Logo_Stay.png";
+import LogoArrows from "../assets/Logo_Arrows.png";
+import LogoDumbbell from "../assets/Logo_Dumbbell.png";
+import Logo from "../assets/Logo_Name.png";
 
 const FirstScreen = ({ navigation }) => {
   const [inputValue, setInputValue] = useState("");
@@ -69,7 +70,7 @@ const FirstScreen = ({ navigation }) => {
 
   const spin = rotation.interpolate({
     inputRange: [0, 1],
-    outputRange: ["0deg", "-540deg"],
+    outputRange: ["0deg", "900deg"],
   });
 
   return (
@@ -92,14 +93,18 @@ const FirstScreen = ({ navigation }) => {
             {isLoading && (
               <View style={FirstScreenStyles.loadingOverlay}>
                 <Animated.Image
-                  source={LogoSpin}
+                  source={LogoArrows}
                   style={[
-                    FirstScreenStyles.logospin,
+                    FirstScreenStyles.logoArrows,
                     { transform: [{ rotate: spin }] },
                   ]}
                 />
                 <Image
-                  source={LogoStay}
+                  source={LogoDumbbell}
+                  style={FirstScreenStyles.logoDumbbell}
+                ></Image>
+                <Image
+                  source={Logo}
                   style={FirstScreenStyles.logo}
                 ></Image>
               </View>
@@ -115,7 +120,7 @@ const FirstScreen = ({ navigation }) => {
                   What exercise are you trying to replace?
                 </Text>
                 <Text style={FirstScreenStyles.h2}>
-                  We'll help you find a substitute!
+                  We'll help you find a substitute that targets the same muscle group!
                 </Text>
                 <Text style={FirstScreenStyles.h3}>Exercise</Text>
                 <TextInput
