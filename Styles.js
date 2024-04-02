@@ -113,12 +113,7 @@ const FirstScreenStyles = StyleSheet.create({
     paddingTop: Platform.OS === "web" ? "7%" : "0%",
     paddingBottom: "2%",
   },
-  errorText: {
-    color: '#ff6067',
-    marginLeft: "7.5%",
-    paddingTop: "3%",
-    fontSize: 16,
-  },
+
   input: {
     borderWidth: 1,
     height: 45,
@@ -142,8 +137,14 @@ const FirstScreenStyles = StyleSheet.create({
   inputError: {
     borderColor: "#ff6067",
   },
+  errorText: {
+    color: '#ff6067',
+    marginLeft: "7.5%",
+    bottom: Platform.OS === "web" ? "15%" :'5%',
+    fontSize: 16,
+  },
   errorIcon: {
-    bottom: Platform.OS === "web" ? "21%" :  "12%",
+    bottom: Platform.OS === "web" ? "20%" :  "11%",
     left: "82%",
     width: 30,
     height: 30,
