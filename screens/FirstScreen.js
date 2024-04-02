@@ -103,10 +103,7 @@ const FirstScreen = ({ navigation }) => {
                   source={LogoDumbbell}
                   style={FirstScreenStyles.logoDumbbell}
                 ></Image>
-                <Image
-                  source={Logo}
-                  style={FirstScreenStyles.logo}
-                ></Image>
+                <Image source={Logo} style={FirstScreenStyles.logo}></Image>
               </View>
             )}
             {!isLoading && (
@@ -120,29 +117,33 @@ const FirstScreen = ({ navigation }) => {
                   What exercise are you trying to replace?
                 </Text>
                 <Text style={FirstScreenStyles.h2}>
-                  We'll help you find a substitute that targets the same muscle group!
+                  We'll help you find a substitute that targets the same muscle
+                  group!
                 </Text>
                 <Text style={FirstScreenStyles.h3}>Exercise</Text>
                 <TextInput
-                  onChangeText={(text) => {
-                    setInputValue(text);
-                    setIsFocused(!!text);
-                    setIsValidExercise(true); // Reset validation on input change
-                  }}
-                  value={inputValue}
-                  placeholder="ex: Bulgarian Split Squat"
-                  placeholderTextColor="gray"
-                  style={[
-                    FirstScreenStyles.input,
-                    isFocused && FirstScreenStyles.inputFocused,
-                  ]}
-                  keyboardShouldPersistTaps="always"
-                />
-                {!isValidExercise && inputValue.trim() !== "" && (
-                  <Text style={FirstScreenStyles.errorText}>
-                    • Please enter a valid exercise
-                  </Text>
-                )}
+  onChangeText={(text) => {
+    setInputValue(text);
+    setIsFocused(!!text);
+    setIsValidExercise(true);
+  }}
+  value={inputValue}
+  placeholder="ex: Bulgarian Split Squat"
+  placeholderTextColor="gray"
+  style={[
+    FirstScreenStyles.input,
+    isFocused && FirstScreenStyles.inputFocused,
+    !isValidExercise && inputValue.trim() !== "" && FirstScreenStyles.inputError,
+  ]}
+  keyboardShouldPersistTaps="always"
+/>
+{!isValidExercise && inputValue.trim() !== "" && (
+  <Image
+    source={require("../assets/error_icon.png")}
+    style={FirstScreenStyles.errorIcon}
+  />
+)}
+
               </KeyboardAvoidingView>
             )}
           </View>

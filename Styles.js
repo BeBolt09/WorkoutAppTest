@@ -139,6 +139,15 @@ const FirstScreenStyles = StyleSheet.create({
   inputFocused: {
     borderColor: "#01E4F3",
   },
+  inputError: {
+    borderColor: "#ff6067",
+  },
+  errorIcon: {
+    bottom: Platform.OS === "web" ? "21%" :  "12%",
+    left: "82%",
+    width: 30,
+    height: 30,
+  },
   button: {
     position: "absolute",
     bottom: Platform.OS === "web" ? "5%" : "5%",
@@ -375,7 +384,6 @@ const FourthScreenStyles = StyleSheet.create({
     shadowOffset: Platform.OS === "ios" ? { width: 0, height: 2 } : undefined,
     shadowOpacity: Platform.OS === "ios" ? 0.25 : undefined,
     shadowRadius: Platform.OS === "ios" ? 3.84 : undefined,
-    borderBottomWidth: 1.5,
     width: 400,
     borderBottomColor: "#000",
   },
