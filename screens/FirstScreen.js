@@ -143,6 +143,11 @@ const FirstScreen = ({ navigation }) => {
     style={FirstScreenStyles.errorIcon}
   />
 )}
+{!isValidExercise && inputValue.trim() !== "" && (
+                  <Text style={FirstScreenStyles.errorText}>
+                    • Please enter a valid exercise
+                  </Text>
+                )}
 
               </KeyboardAvoidingView>
             )}
