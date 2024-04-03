@@ -138,7 +138,7 @@ const FirstScreenStyles = StyleSheet.create({
     borderColor: "#ff6067",
   },
   errorText: {
-    color: '#ff6067',
+    color: '#FDABB1',
     marginLeft: "7.5%",
     bottom: Platform.OS === "web" ? "15%" :'5%',
     fontSize: 16,
@@ -482,8 +482,12 @@ const FourthScreenStyles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
-    backgroundColor: "#eee",
     height: 50,
+    width: '40%'
+  },
+  tabContainerWapper: {
+    width: '100%',
+    backgroundColor: "#293236",
   },
   tab: {
     flex: 1,
@@ -495,10 +499,9 @@ const FourthScreenStyles = StyleSheet.create({
   activeTab: {
     borderBottomWidth: 2,
     borderBottomColor: "#01E4F3",
-    backgroundColor: "#2c535e",
   },
   tabText: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: "bold",
     color: "#fff",
   },
@@ -601,10 +604,13 @@ const SearchScreenStyles = StyleSheet.create({
     backgroundColor: "#1c6c80",
   },
   errorText: {
-    color: '#ff6067',
+    color: '#FDABB1',
     marginLeft: "7.5%",
     paddingTop: "7%",
     fontSize: 16,
+  },
+  inputError: {
+    borderColor: "#ff6067",
   },
 });
 

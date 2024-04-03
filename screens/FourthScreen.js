@@ -217,7 +217,7 @@ const FourthScreen = ({ route, navigation }) => {
   };
 
   useEffect(() => {
-    fetchVideo(); // ONLY ENABLE THIS WHEN FULL TESTING(WE CAN ONLY FETCH SEARCH 100/Day)
+    //fetchVideo(); // ONLY ENABLE THIS WHEN FULL TESTING(WE CAN ONLY FETCH SEARCH 100/Day)
     fetchInstructions();
     fetchMuscleGroup();
 
@@ -228,41 +228,42 @@ const FourthScreen = ({ route, navigation }) => {
 
   return (
     <>
-      <View style={FourthScreenStyles.tabContainer}>
-        <TouchableOpacity
-          style={[
-            FourthScreenStyles.tab,
-            activeTab === "Tab1" && FourthScreenStyles.activeTab,
-          ]}
-          onPress={() => handleTabPress("Tab1")}
-        >
-          <Text
+      <View style={FourthScreenStyles.tabContainerWapper}>
+        <View style={FourthScreenStyles.tabContainer}>
+          <TouchableOpacity
             style={[
-              FourthScreenStyles.tabText,
-              activeTab === "Tab1" && FourthScreenStyles.activeTabText,
+              FourthScreenStyles.tab,
+              activeTab === "Tab1" && FourthScreenStyles.activeTab,
             ]}
+            onPress={() => handleTabPress("Tab1")}
           >
-            Video
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            FourthScreenStyles.tab,
-            activeTab === "Tab2" && FourthScreenStyles.activeTab,
-          ]}
-          onPress={() => handleTabPress("Tab2")}
-        >
-          <Text
+            <Text
+              style={[
+                FourthScreenStyles.tabText,
+                activeTab === "Tab1" && FourthScreenStyles.activeTabText,
+              ]}
+            >
+              VIDEO
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
             style={[
-              FourthScreenStyles.tabText,
-              activeTab === "Tab2" && FourthScreenStyles.activeTabText,
+              FourthScreenStyles.tab,
+              activeTab === "Tab2" && FourthScreenStyles.activeTab,
             ]}
+            onPress={() => handleTabPress("Tab2")}
           >
-            Muscles
-          </Text>
-        </TouchableOpacity>
+            <Text
+              style={[
+                FourthScreenStyles.tabText,
+                activeTab === "Tab2" && FourthScreenStyles.activeTabText,
+              ]}
+            >
+              MUSCLE
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
-
       {displayVideo && (
         <View style={GlobalStyles.rootContainer}>
           <View

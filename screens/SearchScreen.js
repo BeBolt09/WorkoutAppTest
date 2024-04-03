@@ -67,12 +67,20 @@ const SearchScreen = ({ navigation }) => {
                 <Feather name="x" size={28} color="white" />
               </TouchableOpacity>
               <TextInput
-                placeholder="Swap exercise"
-                placeholderTextColor="gray"
-                style={SearchScreenStyles.input}
-                onChangeText={setInputValue}
-                value={inputValue}
-              />
+  placeholder="Swap exercise"
+  placeholderTextColor="gray"
+  style={[
+    SearchScreenStyles.input,
+    isFocused && SearchScreenStyles.inputFocused,
+    !isValidExercise && inputValue.trim() !== "" && SearchScreenStyles.inputError,
+  ]}
+  onChangeText={(text) => {
+    setInputValue(text);
+    setIsFocused(!!text);
+    setIsValidExercise(true);
+  }}
+  value={inputValue}
+/>
               <TouchableOpacity
                 style={SearchScreenStyles.cancelButton}
                 onPress={() =>
