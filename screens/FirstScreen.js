@@ -1,3 +1,5 @@
+//FirstScreen.js
+
 import React, { useState, useEffect } from "react";
 import {
   View,
@@ -70,7 +72,7 @@ const FirstScreen = ({ navigation }) => {
 
   const spin = rotation.interpolate({
     inputRange: [0, 1],
-    outputRange: ["0deg", "900deg"],
+    outputRange: ["0deg", "1300deg"],
   });
 
   return (
