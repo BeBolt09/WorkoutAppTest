@@ -2,8 +2,17 @@ const validExercises = [
 //Stair Master
 "Stair Master", "stair master", "Stair master", "stair Master",
 
+//Stair Climber
+"Stair Climber", "stair climber", "Stair climber", "stair Climber",
+
+//Arc Trainer
+"Arc Trainer", "arc trainer", "Arc trainer", "arc Trainer",
+
 //Elliptical
 "Elliptical", "elliptical",
+
+//Treadmill
+"Treadmill", "treadmill",
 
 //Run
 "Run", "Running", "run", "running",
@@ -68,11 +77,23 @@ const validExercises = [
 //Rowing Machine
 "Rowing Machine", "rowing machine", "Rowing machine", "rowing Machine",
 
+//Tire Flip
+"Tire Flip", "tire flip", "Tire flip", "tire Flip", "Tire Flips", "tire flips", "Tire flips", "tire Flips",
+
+//Sledgehammer Swing
+"Sledgehammer", "sledgehammer", "Sledgehammer Swing", "sledgehammer swing", "Sledgehammer swing", "sledgehammer Swing", "Sledgehammer Swings", "sledgehammer swings", "Sledgehammer swings", "sledgehammer Swings",
+
+//Ball Slam
+"Ball Slam", "ball slam", "Ball slam", "ball Slam", "Ball Slams", "ball slams", "Ball slams", "ball Slams",
+
 //Hiking
 "Hike", "hike", "Hiking", "hiking",
 
 //Curl
 "Curl", "curl", "Curls", "curls",
+ 
+//Snatch
+"Snatch", "snatch", "Snatches", "snatches",
 
 //Dumbbell Curl
 "Dumbbell Curl", "dumbbell curl", "Dumbbell curl", "dumbbell Curl", "Dumbbell Curls", "dumbbell curls", "Dumbbell curls", "dumbbell Curls",
@@ -86,11 +107,20 @@ const validExercises = [
 //Tricep Dip
 "Tricep Dip", "tricep dip", "Tricep dip", "tricep Dip", "Tricep Dips", "tricep dips", "Tricep dips", "tricep Dips",
 
+//Pelvic Tilt
+"Pelvic Tilt", "pelvic tilt", "Pelvic tilt", "pelvic Tilt", "Pelvic Tilts", "pelvic tilts", "Pelvic tilts", "pelvic Tilts",
+
+//Muscle Up
+"Muscle Up", "muscle up", "Muscle up", "muscle Up", "Muscle Ups", "muscle ups", "Muscle ups", "muscle Ups",
+
 //High Knee
 "High Knee", "high knee", "High knee", "high Knee", "High Knees", "high knees", "High knees", "high Knees",
 
 //Russian Twist
 "Russian Twist", "russian twist", "Russian twist", "russian Twist", "Russian Twists", "russian twists", "Russian twists", "russian Twists",
+
+//Kettlebell Swing
+"Kettlebell Swing", "kettlebell swing", "Kettlebell swing", "kettlebell Swing", "Kettlebell Swings", "kettlebell swings", "Kettlebell swings", "kettlebell Swings",
 
 //Leg Press
 "Leg Press", "leg press", "Leg press", "leg Press", "Leg Presses", "leg presses", "Leg presses", "leg Presses",
@@ -103,6 +133,12 @@ const validExercises = [
 
 //Crunch
 "Crunch", "crunch", "Crunches", "crunches",
+
+//Split Squat
+"Split Squat", "split squat", "Split squat", "split Squat", "Split Squats", "split squats", "Split squats", "split Squats",
+
+//Bulgarian Split Squat
+"Bulgarian Split Squat", "bulgarian split squat", "Bulgarian split squat", "bulgarian Split Squat", "Bulgarian Split Squats", "bulgarian split squats", "Bulgarian split squats", "bulgarian Split Squats",
 
 //Burpee
 "Burpee", "burpee", "Burpees", "burpees",
@@ -124,6 +160,15 @@ const validExercises = [
 
 //Judo
 "Judo", "judo",
+
+//Sled
+"Sled", "sled",
+
+//Prowler Push
+"Prowler Push", "prowler push", "Prowler push", "prowler Push", "Prowler Pushes", "prowler pushes", "Prowler pushes", "prowler Pushes", 
+
+//Prowler Sled
+"Prowler Sled", "prowler sled", "Prowler sled", "prowler Sled",
 
 //Taekwondo
 "Taekwondo", "taekwondo",
@@ -167,11 +212,17 @@ const validExercises = [
 //Wall Sit
 "Wall Sit", "wall sit", "Wall sit", "wall Sit", "Wall Sits", "wall sits", "Wall sits", "wall Sits",
 
+//Bird Dog
+"Bird Dog", "bird dog", "Bird dog", "bird Dog", "Bird Dogs", "bird dogs", "Bird dogs", "bird Dogs",
+
 //Sit-Ups
 "Sit-Ups", "sit-ups", "Sit-Ups", "sit-ups", "Sit-Up", "sit-up", "Sit Ups", "sit ups", "Sit Ups", "sit ups", "Sit Up", "sit up",
 
 //Chest Fly
 "Chest Fly", "chest fly", "Chest fly", "chest Fly", "Chest Flies", "chest flies", "Chest flies", "chest Flies",
+
+//Chest Dip
+"Chest Dip", "chest dip", "Chest dip", "chest Dip", "Chest Dips", "chest dips", "Chest dips", "chest Dips",
 
 //Bent-Over Row
 "Bent-Over Row", "bent-over row", "Bent-Over Rows", "bent-over rows",
@@ -185,26 +236,47 @@ const validExercises = [
 //Front Squat
 "Front Squat", "front squat", "Front squat", "front Squat", "Front Squats", "front squats", "Front squats", "front Squats",
 
+//Superman
+"Superman", "superman", "Supermans", "supermans",
+
+//Ab Wheel
+"Ab Wheel", "ab wheel", "Ab wheel", "ab Wheel",
+
+//Ab Roller
+"Ab Roller", "ab roller", "Ab roller", "ab Roller",
+
+//Inverted Row
+"Inverted Row", "inverted row", "Inverted row", "inverted Row", "Inverted Rows", "inverted rows", "Inverted rows", "inverted Rows",
+
 //Romanian Deadlift
 "Romanian Deadlift", "romanian deadlift", "Romanian deadlift", "romanian Deadlift", "Romanian Deadlifts", "romanian deadlifts", "Romanian deadlifts", "romanian Deadlifts",
 
 //Incline Bench Press
 "Incline Bench Press", "incline bench press", "Incline Bench Presses", "incline bench presses",
 
+//Incline Dumbbell Press
+"Incline Dumbbell Press", "incline dumbbell press", "Incline dumbbell press", "incline Dumbbell Press", "Incline Dumbbell Presses", "incline dumbbell presses", "Incline dumbbell presses", "incline Dumbbell Presses",
+
 //Decline Bench Press
 "Decline Bench Press", "decline bench press", "Decline bench press", "decline Bench Press", "Decline Bench Presses", "decline bench presses", "Decline bench presses", "decline Bench Presses",
+
+//Decline Dumbbell Press
+"Decline Dumbbell Press", "decline dumbbell press", "Decline dumbbell press", "decline Dumbbell Press", "Decline Dumbbell Presses", "decline dumbbell presses", "Decline dumbbell presses", "decline Dumbbell Presses",
 
 //Goblet Squat
 "Goblet Squat", "goblet squat", "Goblet squat", "goblet Squat", "Goblet Squats", "goblet squats", "Goblet squats", "goblet Squats",
 
 //Chin-Up
-"Chin-Up", "chin-up", "CHIN-UP", "Chin-Ups", "chin-ups", "CHIN-UPS", "Chin Up", "chin up", "CHIN UP", "Chin Ups", "chin ups", "CHIN UPS",
+"Chin-Up", "chin-up", "CHIN-UP", "Chin-Ups", "chin-ups", "CHIN-UPS", "chin-Up", "Chin-up",  "chin-Ups", "Chin-ups", "Chin Up", "chin up", "CHIN UP", "Chin Ups", "chin ups", "CHIN UPS", "chin Up", "Chin up",  "chin Ups", "Chin ups",
 
 //Dumbbell Row
 "Dumbbell Row", "dumbbell row", "Dumbbell row", "dumbbell Row", "Dumbbell Rows", "dumbbell rows", "Dumbbell rows", "dumbbell Rows",
 
 //Hammer Curl
 "Hammer Curl", "hammer curl", "Hammer curl", "hammer Curl", "Hammer Curls", "hammer curls", "Hammer curls", "hammer Curls",
+
+//Hamstring Curl
+"Hamstring Curl", "hamstring curl", "Hamstring curl", "hamstring Curl", "Hamstring Curls", "hamstring curls", "Hamstring curls", "hamstring Curls",
 
 //Skull Crusher
 "Skull Crusher", "skull crusher", "Skull crusher", "skull Crusher", "Skull Crushers", "skull crushers", "Skull crushers", "skull Crushers",
@@ -245,14 +317,32 @@ const validExercises = [
 //Dumbbell Pullover
 "Dumbbell Pullover", "dumbbell pullover", "Dumbbell pullover", "dumbbell Pullover", "Dumbbell Pullovers", "dumbbell pullovers", "Dumbbell pullovers", "dumbbell Pullovers",
 
+//Dumbbell Fly
+"Dumbbell Fly", "dumbbell fly", "Dumbbell flies", "dumbbell flies", "Fly", "fly", "Flies", "flies", "Dumbbell flyes", "dumbbell flyes", "Flyes", "flyes", "Dumbbell flys", "dumbbell flys", "Flys", "flys",
+
 //Barbell Curl
 "Barbell Curl", "barbell curl", "Barbell curl", "barbell Curl", "Barbell Curls", "barbell curls", "Barbell curls", "barbell Curls",
+
+//Sumo Deadlift
+"Sumo Deadlift", "sumo deadlift", "Sumo deadlift", "sumo Deadlift", "Sumo Deadlifts", "sumo deadlifts", "Sumo deadlifts", "sumo Deadlifts",
+
+//Back Squat
+"Back Squat", "back squat", "Back squat", "back Squat", "Back Squats", "back squats", "Back squats", "back Squats",
+
+//Clean and Jerk
+"Clean and Jerk", "clean and jerk", "Clean and jerk", "clean and Jerk", "Clean and Jerks", "clean and jerks", "Clean and jerks", "clean and Jerks", "Clean And Jerk", "clean And jerk", "Clean And jerk", "clean And Jerk", "Clean And Jerks", "clean And jerks", "Clean And jerks", "clean And Jerks", "Clean & Jerk", "clean & jerk", "Clean & jerk", "clean & Jerk", "Clean & Jerks", "clean & jerks", "Clean & jerks", "clean & Jerks",
 
 //Close-Grip Bench Press
 "Close-Grip Bench Press", "close-grip bench press", "Close-Grip Bench Presses", "close-grip bench presses",
 
+//Reverse Grip Bench Press
+"Reverse Grip Bench Press", "reverse grip bench press", "Reverse grip bench press", "reverse Grip Bench Press", "Reverse Grip Bench Presses", "reverse grip bench presses", "Reverse grip bench presses", "reverse Grip Bench Presses",
+
 //Reverse Curl
 "Reverse Curl", "reverse curl", "Reverse curl", "reverse Curl", "Reverse Curls", "reverse curls", "Reverse curls", "reverse Curls",
+
+//Front Raise
+"Front Raise", "front raise", "Front raise", "front Raise", "Front Raises", "front raises", "Front raises", "front Raises",
 
 //Reverse Fly
 "Reverse Fly", "reverse fly", "Reverse fly", "reverse Fly", "Reverse Flies", "reverse flies", "Reverse flies", "reverse Flies",
@@ -270,7 +360,7 @@ const validExercises = [
 "Side Lunge", "side lunge", "Side lunge", "side Lunge", "Side Lunges", "side lunges", "Side lunges", "side Lunges",
 
 //Hyperextension
-"Hyperextension", "hyperextension", "Hyperextensions", "hyperextensions",
+"Hyperextension", "hyperextension", "Hyperextensions", "hyperextensions","Hyper Extension", "hyper extension", "Hyper extension", "hyper Extension", "Hyper Extensions", "hyper extensions", "Hyper extensions", "hyper Extensions",
 
 //Flutter Kick
 "Flutter Kick", "flutter kick", "Flutter kick", "flutter Kick", "Flutter Kicks", "flutter kicks", "Flutter kicks", "flutter Kicks",
@@ -281,8 +371,14 @@ const validExercises = [
 //Lateral Raise
 "Lateral Raise", "lateral raise", "Lateral raise", "lateral Raise", "Lateral Raises", "lateral raises", "Lateral raises", "lateral Raises",
 
+//Lateral Bound
+"Lateral Bound", "lateral bound", "Lateral bound", "lateral Bound", "Lateral Bounds", "lateral bounds", "Lateral bounds", "lateral Bounds",
+
 //Shrug
 "Shrug", "shrug", "Shrugs", "shrugs",
+
+//TRX Row
+"TRX Row", "trx row", "TRX row", "trx Row", "TRX Rows", "trx rows", "TRX rows", "trx Rows",
 
 //Machine Chest Press
 "Machine Chest Press", "machine chest press", "Machine Chest Presses", "machine chest presses",
@@ -338,8 +434,14 @@ const validExercises = [
 //Hanging Knee Raise
 "Hanging Knee Raise", "hanging knee raise", "Hanging Knee Raises", "hanging knee raises",
 
+//Tricep Extension
+"Tricep Extension", "tricep extension", "Triceps Extension", "triceps extension", "Tricep Extensions", "tricep extensions", "Triceps Extensions", "triceps extensions",
+
 //Battle Rope
 "Battle Rope", "battle rope", "Battle rope", "battle Rope", "Battle Ropes", "battle ropes", "Battle ropes", "battle Ropes",
+
+//Battling Rope
+"Battling Rope", "battling rope", "Battling rope", "battling Rope", "Battling Ropes", "battling ropes", "Battling ropes", "battling Ropes",
 
 //Clean
 "Cleans", "cleans", "Clean", "clean",
@@ -350,8 +452,14 @@ const validExercises = [
 //Cable Crunch
 "Cable Crunch", "cable crunch", "Cable crunch", "cable Crunch", "Cable Crunches", "cable crunches", "Cable crunches", "cable Crunches",
 
+//Cable Crossover
+"Cable Crossover", "cable crossover", "Cable crossover", "cable Crossover", "Cable Crossovers", "cable crossovers", "Cable crossovers", "cable Crossovers",
+
 //Seated Cable Row
 "Seated Cable Row", "seated cable row", "Seated Cable Rows", "seated cable rows",
+
+//Pushdown
+"Pushdown", "pushdown", "Push down", "push down", "Pushdowns", "pushdowns", "Push downs", "push downs",
 
 //Tricep Cable Pushdown
 "Tricep Cable Pushdown", "tricep cable pushdown", "Tricep Cable Pushdowns", "tricep cable pushdowns",
@@ -374,8 +482,14 @@ const validExercises = [
 //Cable Face Pull
 "Cable Face Pull", "cable face pull", "Cable Face Pulls", "cable face pulls",
 
+//Farmers Walk
+"Farmers Walk", "farmers walk", "Farmers walk", "farmers Walk", "Farmers Walks", "farmers walks", "Farmers walks", "farmers Walks", "Farmer Walk", "farmer walk", "Farmer walk", "farmer Walk", "Farmer Walks", "farmer walks", "Farmer walks", "farmer Walks",
+
 //Face Pull
 "Face Pull", "face pull", "Face pull", "face Pull", "Face Pulls", "face pulls", "Face pulls", "face Pulls",
+
+//Woodchopper
+"Woodchopper", "woodchopper", "Woodchoppers", "woodchoppers",
 
 //Cable Woodchopper
 "Cable Woodchopper", "cable woodchopper", "Cable Woodchoppers", "cable woodchoppers",
@@ -385,6 +499,12 @@ const validExercises = [
 
 //Cable Shoulder Press
 "Cable Shoulder Press", "cable shoulder press", "Cable Shoulder Presses", "cable shoulder presses",
+
+//Reverse Wrist Curl
+"Reverse Wrist Curl", "reverse wrist curl", "Reverse wrist curl", "reverse Wrist Curl", "Reverse Wrist Curls", "reverse wrist curls", "Reverse wrist curls", "reverse Wrist Curls",
+
+//Upright Row
+"Upright Row", "upright row", "Upright row", "upright Row", "Upright Rows", "upright rows", "Upright rows", "upright Rows",
 
 //Cable Upright Row
 "Cable Upright Row", "cable upright row", "Cable Upright Rows", "cable upright rows",
@@ -410,8 +530,14 @@ const validExercises = [
 //Cable Tricep Extension
 "Cable Tricep Extension", "cable tricep extension", "Cable Tricep Extensions", "cable tricep extensions",
 
+//Side Lateral Raise
+"Side Lateral Raise", "side lateral raise", "Side lateral raise", "side Lateral Raise", "Side Lateral Raises", "side lateral raises", "Side lateral raises", "side Lateral Raises",
+
 //Cable Side Lateral Raise
 "Cable Side Lateral Raise", "cable side lateral raise", "Cable Side Lateral Raises", "cable side lateral raises",
+
+//Wrist Curl
+"Wrist Curl", "wrist curl", "Wrist curl", "wrist Curl", "Wrist Curls", "wrist curls", "Wrist curls", "wrist Curls",
 
 //Cable Wrist Curl
 "Cable Wrist Curl", "cable wrist curl", "Cable Wrist Curls", "cable wrist curls",
@@ -464,8 +590,20 @@ const validExercises = [
 //Cable Preacher Curl
 "Cable Preacher Curl", "cable preacher curl", "Cable Preacher Curls", "cable preacher curls",
 
+//Preacher Curl
+"Preacher Curl", "preacher curl", "Preacher curl", "preacher Curl", "Preacher Curls", "preacher curls", "Preacher curls", "preacher Curls",
+
+//Concentration Curl
+"Concentration Curl", "concentration curl", "Concentration curl", "concentration Curl", "Concentration Curls", "concentration curls", "Concentration curls", "concentration Curls",
+
 //Cable Close-Grip Bench Press
 "Cable Close-Grip Bench Press", "cable close-grip bench press", "Cable Close-Grip Bench Presses", "cable close-grip bench presses",
+
+//Bear Crawl
+"Bear Crawl", "bear crawl", "Bear crawl", "bear Crawl", "Bear Crawls", "bear crawls", "Bear crawls", "bear Crawls",
+
+//Sled Pull
+"Sled Pull", "sled pull", "Sled pull", "sled Pull", "Sled Pulls", "sled pulls", "Sled pulls", "sled Pulls",
 
 //Cable Reverse Curl
 "Cable Reverse Curl", "cable reverse curl", "Cable Reverse Curls", "cable reverse curls",
@@ -485,7 +623,7 @@ const validExercises = [
 //Hip Thrust
 "Hip Thrust", "hip thrust", "Hip thrust", "hip Thrust", "Hip Thrusts", "hip thrusts", "Hip thrusts", "hip Thrusts",
 
-// Glute Bridge
+//Glute Bridge
 "Glute Bridge", "glute bridge", "Glute bridge", "glute Bridge", "Glute Bridges", "glute bridges", "Glute bridges", "glute Bridges",
 
 
