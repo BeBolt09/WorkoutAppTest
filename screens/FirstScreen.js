@@ -72,7 +72,7 @@ const FirstScreen = ({ navigation }) => {
 
   const spin = rotation.interpolate({
     inputRange: [0, 1],
-    outputRange: ["0deg", "1300deg"],
+    outputRange: ["0deg", "1080deg"],
   });
 
   return (
@@ -94,6 +94,7 @@ const FirstScreen = ({ navigation }) => {
             />
             {isLoading && (
               <View style={FirstScreenStyles.loadingOverlay}>
+              <View style={FirstScreenStyles.loadingLogoContainer}>
                 <Animated.Image
                   source={LogoArrows}
                   style={[
@@ -106,6 +107,7 @@ const FirstScreen = ({ navigation }) => {
                   style={FirstScreenStyles.logoDumbbell}
                 ></Image>
                 <Image source={Logo} style={FirstScreenStyles.logo}></Image>
+              </View> 
               </View>
             )}
             {!isLoading && (

@@ -28,19 +28,37 @@ const GlobalStyles = StyleSheet.create({
 
 const FirstScreenStyles = StyleSheet.create({
   logoArrows: {
+    position: 'absolute',
     width: 100,
     height: 100,
-    top: '16%',
+    bottom: '43%',
   },
   logoDumbbell: {
+    position: 'absolute',
     width: 34.34,
     height: 44.24,
-    top: '6.9%',
+    bottom: '50%',
   },
   logo: {
+    position: 'absolute',
     width: 220,
     height: 70,
-    top: '12%',
+    bottom: '25%',
+  },
+  loadingLogoContainer: {
+    position: 'absolute',
+    alignItems: "center",
+    justifyContent: "center",
+    width: 400,
+    height: 400,
+    bottom: '10%',
+  },
+  loadingOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: "center",
+    height: "100%",
+    alignItems: "center",
+    backgroundColor: "#293236",
   },
   webContainer: {
     maxWidth: 400,
@@ -172,13 +190,6 @@ const FirstScreenStyles = StyleSheet.create({
     fontSize: 20,
     textAlign: "center",
     fontWeight: "600",
-  },
-  loadingOverlay: {
-    ...StyleSheet.absoluteFillObject,
-    justifyContent: "center",
-    height: "100%",
-    alignItems: "center",
-    backgroundColor: "#293236",
   },
 });
 
