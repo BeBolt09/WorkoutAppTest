@@ -157,8 +157,8 @@ const FirstScreenStyles = StyleSheet.create({
   },
   errorText: {
     color: '#FDABB1',
-    marginLeft: "7.5%",
-    bottom: Platform.OS === "web" ? "15%" :'5%',
+    //marginLeft: "7.5%",
+    //bottom: Platform.OS === "web" ? "15%" :'5%',
     fontSize: 16,
   },
   errorIcon: {
@@ -546,10 +546,10 @@ const SearchScreenStyles = StyleSheet.create({
     height: 45,
     alignSelf: "center",
     marginHorizontal: "5%",
-    right: Platform.OS === "web" ? 5 : 20,
+    right: "5%",
     borderWidth: 2,
     width: 300,
-    top: Platform.OS === "web" ? 5 : 20,
+    top: Platform.OS === "web" ? "35%" : "44%",
     borderRadius: 50,
     borderColor: "gray",
     backgroundColor: "#293236",
@@ -557,16 +557,16 @@ const SearchScreenStyles = StyleSheet.create({
     paddingLeft: 40,
     fontSize: 18,
     textTransform: "capitalize",
-    paddingHorizontal: Platform.OS === "web" ? "10%" : 0,
+    paddingHorizontal: Platform.OS === "web" ? "10%" : "0%",
   },
   inputContainer: {
-    right: Platform.OS === "web" ? "9%" : 12,
-    top: Platform.OS === "web" ? "38%" : 0,
+    left: Platform.OS === "web" ? "-9%" : "-3%",
+    bottom: Platform.OS === "web" ? "-25%" : "0%",
+    height: 45,
   },
   searchButton: {
     position: "absolute",
     zIndex: 1,
-    //top: 3,
     top: Platform.OS === "web" ? "20%" : "66%",
     marginLeft: Platform.OS === "web" ? "15%" : "9%",
   },
@@ -617,7 +617,7 @@ const SearchScreenStyles = StyleSheet.create({
   errorText: {
     color: '#FDABB1',
     marginLeft: "7.5%",
-    paddingTop: "7%",
+    paddingTop: Platform.OS === "web" ? "7%" :  "7%",
     fontSize: 16,
   },
   inputError: {
