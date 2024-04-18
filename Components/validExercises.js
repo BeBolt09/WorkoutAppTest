@@ -401,8 +401,10 @@ const validExercises = [
 //Machine Leg Extension
 "Machine Leg Extension", "machine leg extension", "Machine Leg Extensions", "machine leg extensions", "MACHINE LEG EXTENSION", "MACHINE LEG EXTENSIONS",
 
-//Machine Bicep Curl
 "Machine Bicep Curl", "machine bicep curl", "Machine Bicep Curls", "machine bicep curls", "MACHINE BICEP CURL", "MACHINE BICEP CURLS",
+
+//Machine Bicep Curl
+"Bicep Curl", "bicep curl", "Bicep Curls", "bicep curls", "BICEP CURL", "BICEP CURLS",
 
 //Machine Tricep Extension
 "Machine Tricep Extension", "machine tricep extension", "Machine Tricep Extensions", "machine tricep extensions", "MACHINE TRICEP EXTENSION", "MACHINE TRICEP EXTENSIONS",
